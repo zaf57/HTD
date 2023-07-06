@@ -23,24 +23,14 @@
         }
 
         function chargerCorrespondances() {
-            
-            
-           
             var fichier = "hauteur site.xlsx";
             var requete = new XMLHttpRequest();
         
             requete.open("GET", fichier, true);
             requete.responseType = "arraybuffer";
 
-            
-            
-            
-            
-            var fichier = document.getElementById("fichier-correspondances").files[0];
-            var lecteur = new FileReader();
-
-            lecteur.onload = function(e) {
-                var contenu = new Uint8Array(e.target.result);
+            requete.onload = function() {
+                var contenu = new Uint8Array(requete.response);
                 var classeur = XLSX.read(contenu, {type: 'array'});
 
                 var feuille = classeur.Sheets[classeur.SheetNames[0]];
@@ -54,15 +44,12 @@
                 console.log(correspondances);
             };
 
-            lecteur.readAsArrayBuffer(fichier);
+            requete.send();
         }
     </script>
 </head>
 <body>
     <h1>Titre de ma page</h1>
-    
-    <input type="file" id="fichier-correspondances" accept=".xlsx">
-    <button onclick="chargerCorrespondances()">Charger Correspondances</button>
     
     <br><br>
     
