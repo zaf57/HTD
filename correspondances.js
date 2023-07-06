@@ -1,10 +1,21 @@
 function chargerCorrespondances() {
-  var fichier = document.getElementById("fichier-correspondances").files[0];
-  var lecteur = new FileReader();
-  
-  lecteur.onload = function(e) {
-      var contenu = new Uint8Array(e.target.result);
-      var classeur = XLSX.read(contenu, {type: 'array'});
+  var fichierInput = document.getElementById("fichier-correspondances");
+if (fichierInput.files.length > 0) {
+    var fichier = fichierInput.files[0];
+    var lecteur = new FileReader();
+
+    lecteur.onload = function(e) {
+        var contenu = new Uint8Array(e.target.result);
+        var classeur = XLSX.read(contenu, {type: 'array'});
+
+        // Reste du code...
+    };
+
+    lecteur.readAsArrayBuffer(fichier);
+} else {
+    console.log("Aucun fichier sélectionné.");
+}
+
       
       var nomFeuille = "hauteur site"; // Nom de la feuille du fichier Excel
       var feuille = classeur.Sheets[nomFeuille];
