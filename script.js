@@ -16,5 +16,5 @@ function enregistrerValeurs() {
   document.getElementById("valeur1").value = "";
   document.getElementById("valeur2").value = "";
 
-  alert("Valeurs enregistrées !");
+  alert("Valeurs enregistrées LOL mais où je sais pas!!");
 }
