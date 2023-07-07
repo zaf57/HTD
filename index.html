@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="xlsx.js"></script>
     <script>
-        var correspondances = {}; // Ajout de la variable correspondances
-        
-        window.onload = function() {
-            chargerCorrespondances();
+        var correspondances = {
             "ZAFER":"THE CREATOR 😁",
             "RUKIYE UZ":"♥ ASKIM ♥",
             "692"	:	"300"	,
-         "692 trad" : "mes couiles",
+            "692 trad" : "mes couiles",
+                              }; // Ajout de la variable correspondances
+        
+        window.onload = function() {
+            chargerCorrespondances();
+            
         };
 
         function afficherHauteur() {
