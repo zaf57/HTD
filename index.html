@@ -54,14 +54,64 @@
 </head>
 <body>
     <h1>HEIGHT TIRE DETECTOR</h1>
+
+    <div id="page1">
+        <label for="code-pneu">Code pneu:</label>
+        <input type="text" id="code-pneu" placeholder="Entrez le code du pneu" onkeyup="afficherHauteur()" style="height: 40px;width: 300px;">
+
+        <br><br>
+
+        <label for="hauteur-pneu">Hauteur du pneu:</label>
+        <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 270px;">
+        <span class="unit">mm</span>
+      
+      
+     
+    </div>
+    <div id="page2" style="display: none;">
     
-    <label for="code-pneu">Code pneu:</label>
-    <input type="text" id="code-pneu" placeholder="Entrez le code du pneu" onkeyup="afficherHauteur()" style="height: 40px;width: 300px;">
-    
-    <br><br>
-    
-    <label for="hauteur-pneu">Hauteur du pneu:</label>
-    <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 270px;" >
-    <span class="unit">mm</span>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Enregistrement de valeurs</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <h1></h1>
+        <form id="myForm">
+            <label for="valeur1">Valeur 1:</label>
+            <input type="text" id="valeur1" name="valeur1" required>
+          
+          <br><br>
+
+            <label for="valeur2">Valeur 2:</label>
+            <input type="text" id="valeur2" name="valeur2" required><br><br>
+
+            <button type="button" onclick="enregistrerValeurs()">Enregistrer</button>
+        </form>
+
+        <script src="script.js"></script>
+    </body>
+    </html>
+</div>
+
+<br><br>
+    <div class="button-container">
+        
+        <button onclick="afficherPage1()"><</button>
+        <button onclick="afficherPage2()">></button>
+    </div>
+
+    <script>
+        function afficherPage1() {
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+        }
+
+        function afficherPage2() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+        }
+    </script>
 </body>
 </html>
