@@ -18,5 +18,8 @@ function enregistrerValeurs() {
   var fichierExcel = XLSX.write(classeur, { bookType: "xlsx", type: "array" });
 
   // Enregistrer le fichier Excel
+  var contenu = "Contenu du fichier à télécharger";
+  var nomFichier = "fichier.txt";
+  var fichier = new File([contenu], nomFichier, { type: "text/plain;charset=utf-8" });
   saveAs(new Blob([fichierExcel], { type: "application/octet-stream" }), "donnees.xlsx");
 }
