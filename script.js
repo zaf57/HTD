@@ -13,7 +13,7 @@ function initSheetsAPI() {
 "token_uri":"https://oauth2.googleapis.com/token",
 "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
 "client_secret":"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",
-"redirect_uris":["https://zaf57.github.io/HTD/"]
+"redirect_uris":["https://zaf57.github.io/HTD/","https://zaf57.github.io"]
     
   }).then(function() {
     // API Google Sheets prête à être utilisée
