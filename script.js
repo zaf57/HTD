@@ -24,7 +24,7 @@ function enregistrerValeurs() {
   var valeur2 = document.getElementById("valeur2").value;
 
   var spreadsheetId = 'hauteur site';
-  var range = 'Feuille 1!A1:B1';
+  var range = 'Feuille 1!A1:C1';
   var values = [
     [valeur1, valeur2]
   ];
