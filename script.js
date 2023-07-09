@@ -29,7 +29,7 @@ function enregistrerValeurs() {
     [valeur1, valeur2]
   ];
 
-  gapi.client.sheets.spreadsheets.values.update({
+  gapi.client.sheets.spreadsheets.values.append({
     spreadsheetId: spreadsheetId,
     range: range,
     valueInputOption: 'USER_ENTERED',
