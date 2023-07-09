@@ -5,6 +5,7 @@ function initSheetsAPI() {
     apiKey: '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com',
     clientId: 'Client Web 1',
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    scope: 'https://www.googleapis.com/auth/spreadsheets'
   }).then(function() {
     // API Google Sheets prête à être utilisée
   });
