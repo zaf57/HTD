@@ -7,7 +7,7 @@ function initSheetsAPI() {
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
     scope: 'https://www.googleapis.com/auth/spreadsheets',
     
-
+client_id:"578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com",
 project_id:"site-htd",
 auth_uri:"https://accounts.google.com/o/oauth2/auth",
 token_uri:"https://oauth2.googleapis.com/token",
@@ -23,23 +23,21 @@ function enregistrerValeurs() {
   var valeur1 = document.getElementById("valeur1").value;
   var valeur2 = document.getElementById("valeur2").value;
 
-  var spreadsheetId = 'hauteur site';
+  var spreadsheetId = 'hauteur site2';
   var range = 'Feuille 1!A1:C1';
   var values = [
     [valeur1, valeur2]
   ];
 
-  gapi.client.sheets.spreadsheets.values.append({
-    spreadsheetId: spreadsheetId,
-    range: range,
-    valueInputOption: 'USER_ENTERED',
-    resource: {
-      values: values
+  gapi.client.sheets.spreadsheets.create({
+    properties: {
+      title: 'New hauteur'
     }
   }).then(function(response) {
-    console.log('Valeurs enregistrées dans Google Sheets.');
-  }, function(error) {
-    console.error('Une erreur s\'est produite lors de l\'enregistrement des valeurs dans Google Sheets:', error);
+    var spreadsheetId = response.result.spreadsheetId;
+    console.log('Nouveau document créé avec l\'ID :', spreadsheetId);
+  }).catch(function(error) {
+    console.error('Une erreur s\'est produite lors de la création du document :', error);
   });
+  
 }
-
