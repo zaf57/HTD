@@ -7,7 +7,7 @@ function initSheetsAPI() {
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
     scope: 'https://www.googleapis.com/auth/spreadsheets',
 
-/*client_id:"578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com",*/
+client_id:"578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com",
 project_id:"site-htd",
 auth_uri:"https://accounts.google.com/o/oauth2/auth",
 token_uri:"https://oauth2.googleapis.com/token",
