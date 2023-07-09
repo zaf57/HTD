@@ -2,6 +2,7 @@ gapi.load('client', initSheetsAPI);
 
 function initSheetsAPI() {
   gapi.client.init({
+    key: AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E
     apiKey: '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com',
     clientId: 'Client_Web_1',
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
