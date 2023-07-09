@@ -24,7 +24,7 @@ function enregistrerValeurs() {
   var valeur2 = document.getElementById("valeur2").value;
 
   var spreadsheetId = 'hauteur site';
-  var range = 'Feuille 1!A1:C1';
+  var range = 'Feuille 1!A1:B1';
   var values = [
     [valeur1, valeur2]
   ];
@@ -37,8 +37,9 @@ function enregistrerValeurs() {
       values: values
     }
   }).then(function(response) {
-    console.log('Données enregistrées dans Google Sheets.');
+    console.log('Valeurs enregistrées dans Google Sheets.');
   }, function(error) {
-    console.error('Une erreur s\'est produite lors de l\'enregistrement des données dans Google Sheets:', error);
+    console.error('Une erreur s\'est produite lors de l\'enregistrement des valeurs dans Google Sheets:', error);
   });
 }
+
