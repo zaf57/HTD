@@ -2,7 +2,7 @@ gapi.load('client', initSheetsAPI);
 
 function initSheetsAPI() {
   gapi.client.init({
-    CLIENT_ID = 'Client_Web_1',
+    CLIENT_ID: 'Client_Web_1',
     API_KEY = 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
     apiKey: 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
     clientId: '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com',
