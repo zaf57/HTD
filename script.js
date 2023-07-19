@@ -52,7 +52,12 @@ function calculerDouille() {
 
   var douilleValue = (extensionValue === 440 && galbageValue === 240) ? 335 : "";
 
+  if (jpCheckbox.checked) {
+    douilleValue -= 10;
+  }
+
   douilleResult.value = douilleValue;
 }
+
 
 
