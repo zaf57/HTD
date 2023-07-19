@@ -134,24 +134,67 @@ function enregistrerValeurs() {
     </body>
     </html>
 </div>
+  
+   <div id="page3" style="display: none;">
+     <!DOCTYPE html>
+    <html>
+          <head>
+        <title>valeurs Douille</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+      <body>
+  <label for="extension-input">Extension:</label>
+  <input type="text" id="extension-input" placeholder="Entrez la valeur de l'extension" oninput="calculerDouille()">
 
-<br><br>
+  <br><br>
+
+  <label for="galbage-input">Galbage:</label>
+  <input type="text" id="galbage-input" placeholder="Entrez la valeur du galbage" oninput="calculerDouille()">
+
+  <br><br>
+
+  <label for="jp-checkbox">JP:</label>
+  <input type="checkbox" id="jp-checkbox" onchange="calculerDouille()">
+
+  <br><br>
+
+  <label for="douille-result">Douille:</label>
+  <input type="text" id="douille-result" readonly>
+</div>
+
+</div>
+
+<body>
+</html>
+ <br><br>
     <div class="button-container">
         
-        <button onclick="afficherPage1()"><</button>
-        <button onclick="afficherPage2()">></button>
+        <button onclick="afficherPage1()">1</button>
+        <button onclick="afficherPage2()">2</button>
+        <button onclick="afficherPage3()">3</button>
+          
     </div>
 
     <script>
         function afficherPage1() {
-            document.getElementById("page1").style.display = "block";
-            document.getElementById("page2").style.display = "none";
-        }
+    document.getElementById("page1").style.display = "block";
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "none";
+}
 
-        function afficherPage2() {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "block";
-        }
-    </script>
+function afficherPage2() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+    document.getElementById("page3").style.display = "none";
+}
+
+function afficherPage3() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "block";
+}
+
+    
+     </script>
 </body>
 </html>
