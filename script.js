@@ -44,20 +44,6 @@ function enregistrerValeurs() {
     console.error('Une erreur s\'est produite lors de l\'enregistrement des valeurs dans Google Sheets:', error);
   });
 }
-function calculerDouille() {
-  var extensionValue = parseInt(document.getElementById("extension-input").value);
-  var galbageValue = parseInt(document.getElementById("galbage-input").value);
-  var jpCheckbox = document.getElementById("jp-checkbox");
-  var douilleResult = document.getElementById("douille-result");
-
-  var douilleValue = (extensionValue === 440 && galbageValue === 240) ? 335 : "";
-
-  if (jpCheckbox.checked) {
-    douilleValue -= 10;
-  }
-
-  douilleResult.value = douilleValue;
-}
 
 
 
