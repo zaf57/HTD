@@ -85,6 +85,22 @@ function enregistrerValeurs() {
             }
             return buf;
         }
+        function calculerDouille() {
+           var extensionValue = parseInt(document.getElementById("extension-input").value);
+           var galbageValue = parseInt(document.getElementById("galbage-input").value);
+           var jpCheckbox = document.getElementById("jp-checkbox");
+           var douilleResult = document.getElementById("douille-result");
+
+           var douilleValue = ((extensionValue === 480 && galbageValue === 280) || (extensionValue === 440 && galbageValue === 240)) ? 335 : "";
+
+
+           if (jpCheckbox.checked) {
+           douilleValue -= 10;
+  }
+
+           douilleResult.value = douilleValue;
+}
+
         
 
         
