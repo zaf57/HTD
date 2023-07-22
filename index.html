@@ -178,13 +178,14 @@ function enregistrerValeurs() {
 
   <br><br>
 
-  <label for="jp-checkbox">JP:</label>
-  <input type="checkbox" id="jp-checkbox" onchange="calculerDouille()">
+ <div style="display: inline-block;">
+    <label for="jp-checkbox">JP:</label>
+    <input type="checkbox" id="jp-checkbox" class="jp-checkbox"      onchange="calculerDouille()">
+  </div>
 
-  <br><br>
-
-  <label for="douille-result">Douille:</label>
-  <input type="text" id="douille-result" readonly>
+  <div style="display: inline-block; margin-left: 10px;">
+    <label for="douille-result">Douille:</label>
+    <input type="text" id="douille-result" readonly>
 </div>
 
 </div>
