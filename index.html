@@ -86,20 +86,27 @@ function enregistrerValeurs() {
             return buf;
         }
         function calculerDouille() {
-           var extensionValue = parseInt(document.getElementById("extension-input").value);
-           var galbageValue = parseInt(document.getElementById("galbage-input").value);
-           var jpCheckbox = document.getElementById("jp-checkbox");
-           var douilleResult = document.getElementById("douille-result");
+  var extensionValue = parseInt(document.getElementById("extension-input").value);
+  var galbageValue = parseInt(document.getElementById("galbage-input").value);
+  var jpCheckbox = document.getElementById("jp-checkbox");
+  var douilleResult = document.getElementById("douille-result");
 
-           var douilleValue = ((extensionValue === 480 && galbageValue === 280) || (extensionValue === 440 && galbageValue === 240)) ? 335 : "";
+  // Définir les coefficients a, b et c obtenus à partir de la régression linéaire
+  var a = -0.3333; // Remplacez par les coefficients réels que vous avez trouvés
+  var b = 0.3333; // Remplacez par les coefficients réels que vous avez trouvés
+  var c = 401.666; // Remplacez par les coefficients réels que vous avez trouvés
 
+  // Calculez la douille en utilisant l'équation linéaire : D = (E * a) + (G * b) + c
+  var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
 
-           if (jpCheckbox.checked) {
-           douilleValue -= 10;
+  // Réduisez la douille de 10 si la case JP est cochée
+  if (jpCheckbox.checked) {
+    douilleValue -= 10;
   }
 
-           douilleResult.value = douilleValue;
+  douilleResult.value = douilleValue;
 }
+
 
         
 
