@@ -62,7 +62,8 @@ input[type="text"]:focus {
 
 input[readonly] {
     background-color: #262323;
-    width: 100px;
+    margin-top: 10px;
+    width: 128px;
 }
 
 footer {
