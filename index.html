@@ -114,12 +114,12 @@ function enregistrerValeurs() {
     <h1>HEIGHT TIRE DETECTOR</h1>
 
     <div id="page1">
-        <label for="code-pneu">Code pneu:</label>
-        <input type="text" id="code-pneu" placeholder="Entrez le code du pneu" onkeyup="afficherHauteur()" style="height: 40px;width: 300px;">
+        <label for="code-pneu">Code Rolling:</label>
+        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 300px;">
 
         <br><br>
 
-        <label for="hauteur-pneu">Hauteur du pneu:</label>
+        <label for="hauteur-pneu">Hauteur Rolling:</label>
         <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 270px;">
         <span class="unit">mm</span>
       
@@ -137,12 +137,14 @@ function enregistrerValeurs() {
     <body>
         <h1></h1>
         <form id="myForm">
-            <label for="valeur1">Code rohling:</label>
+            <label for="valeur1">Code Rolling:</label>
+            <input type="text" id="code-pneu" placeholder="Entrez valeur"
             <input type="text" id="valeur1" name="valeur1" required>
           
           <br><br>
 
-            <label for="valeur2">Hauteur rohling:</label>
+            <label for="valeur2">Hauteur Rolling:</label>
+            <input type="text" id="code-pneu" placeholder="Entrez valeur"
             <input type="text" id="valeur2" name="valeur2" required><br><br>
 
             <button type="button" onclick="enregistrerValeurs()">Enregistrer</button>
