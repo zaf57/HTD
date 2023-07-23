@@ -64,7 +64,7 @@ input[type="text"] {
 .jp-checkbox {
     scale: 2; /* Augmente la taille de la case à cocher */
     margin-top: 14px;
-    margin-right: 10px; /* Ajoute une marge à droite pour plus d'espace entre la case et son libellé */
+    margin-right: 20px; /* Ajoute une marge à droite pour plus d'espace entre la case et son libellé */
   }
 
 input[type="text"]:focus {
@@ -75,7 +75,7 @@ input[type="text"]:focus {
 
 input[readonly] {
     background-color: #262323;
-    margin-top: 10px;
+    margin-top: 6px;
     width: 128px;
 }
 
