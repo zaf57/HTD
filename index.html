@@ -3,18 +3,14 @@
 <head>
     <title>HTD</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     
-    
-
-
-    <script>
+ <script>
         var correspondances = {
             "zafer":"THE CREATOR 😁",
             }; // Ajout de la variable correspondances
@@ -23,7 +19,6 @@
             chargerCorrespondances();
             
         };
-
         function afficherHauteur() {
             var codePneu = document.getElementById("code-pneu").value;
             var hauteurPneu = document.getElementById("hauteur-pneu");
@@ -34,7 +29,6 @@
                 hauteurPneu.value = "";
             }
         }
-
         function chargerCorrespondances() {
             var fichier = "hauteur site.xlsx";
             var requete = new XMLHttpRequest();
@@ -59,7 +53,7 @@
 
             requete.send();
         }
-function enregistrerValeurs() {
+        function enregistrerValeurs() {
             var valeur1 = document.getElementById("valeur1").value;
             var valeur2 = document.getElementById("valeur2").value;
 
@@ -77,7 +71,6 @@ function enregistrerValeurs() {
             var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
             saveAs(blob, 'data.xlsx');
         }
-
         function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
             var view = new Uint8Array(buf);
@@ -87,10 +80,10 @@ function enregistrerValeurs() {
             return buf;
         }
         function calculerDouille() {
-  var extensionValue = parseInt(document.getElementById("extension-input").value);
-  var galbageValue = parseInt(document.getElementById("galbage-input").value);
-  var jpCheckbox = document.getElementById("jp-checkbox");
-  var douilleResult = document.getElementById("douille-result");
+            var extensionValue = parseInt(document.getElementById("extension-input").value);
+            var galbageValue = parseInt(document.getElementById("galbage-input").value);
+            var jpCheckbox = document.getElementById("jp-checkbox");
+            var douilleResult = document.getElementById("douille-result");
 
   // Définir les coefficients a, b et c obtenus à partir de la régression linéaire
   var a = -1; // Remplacez par les coefficients réels que vous avez trouvés
@@ -112,6 +105,7 @@ function enregistrerValeurs() {
 </head>
 <body>
     <h1>HEIGHT TIRE DETECTOR</h1>
+    <link rel="stylesheet" href="style.css">
 
     <div id="page1">
         <label for="code-pneu">Code Rolling:</label>
