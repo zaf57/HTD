@@ -115,12 +115,12 @@ function enregistrerValeurs() {
 
     <div id="page1">
         <label for="code-pneu">Code Rolling:</label>
-        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 300px;">
+        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 280px;">
 
         <br><br>
 
         <label for="hauteur-pneu">Hauteur Rolling:</label>
-        <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 270px;">
+        <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 250px;">
         <span class="unit">mm</span>
       
       
@@ -139,13 +139,13 @@ function enregistrerValeurs() {
         <form id="myForm">
             <label for="valeur1">Code Rolling:</label>
             <input type="text" id="code-pneu" placeholder="Entrez valeur"
-            <input type="text" id="valeur1" name="valeur1" required>
+            <input type="text" id="valeur1" name="valeur1" required style="height: 40px;width: 280px;">
           
           <br><br>
 
             <label for="valeur2">Hauteur Rolling:</label>
             <input type="text" id="code-pneu" placeholder="Entrez valeur"
-            <input type="text" id="valeur2" name="valeur2" required><br><br>
+            <input type="text" id="valeur2" name="valeur2" required style="height: 40px;width: 280px;"><br><br>
 
             <button type="button" onclick="enregistrerValeurs()">Enregistrer</button>
         </form>
@@ -168,12 +168,12 @@ function enregistrerValeurs() {
     </head>
       <body>
   <label for="extension-input">Extension:</label>
-  <input type="text" id="extension-input" placeholder="Entrez valeur" oninput="calculerDouille()">
+  <input type="text" id="extension-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
 
   <br><br>
 
   <label for="galbage-input">Galbage:</label>
-  <input type="text" id="galbage-input" placeholder="Entrez valeur" oninput="calculerDouille()">
+  <input type="text" id="galbage-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
 
   <br><br>
 
@@ -184,7 +184,7 @@ function enregistrerValeurs() {
 
   <div style="display: inline-block; margin-left: 10px;">
     <label for="douille-result">Douille:</label>
-    <input type="text" id="douille-result" readonly>
+    <input type="text" id="douille-result" readonly style="height: 40px;width: 200px;">
     <span class="unit">mm</span>
 </div>
 
