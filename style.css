@@ -22,7 +22,7 @@ button {
     
 }
 .button-container-all {
-    height: 60px;
+    height: 100px;
     display: flex; /* Utilisez le modèle de disposition flexbox */
     /* justify-content: center;  Centre les boutons horizontalement */
     align-items: center; /* Centre les boutons verticalement */
