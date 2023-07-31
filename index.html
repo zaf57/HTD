@@ -3,224 +3,129 @@
 <head>
     <title>HTD</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     
- <script>
-        var correspondances = {
-            "zafer":"THE CREATOR 😁",
-            }; // Ajout de la variable correspondances
-        
-        window.onload = function() {
-            chargerCorrespondances();
-            
-        };
-        function afficherHauteur() {
-            var codePneu = document.getElementById("code-pneu").value;
-            var hauteurPneu = document.getElementById("hauteur-pneu");
-
-            if (correspondances.hasOwnProperty(codePneu)) {
-                hauteurPneu.value = correspondances[codePneu];
-            } else {
-                hauteurPneu.value = "";
-            }
-        }
-        function chargerCorrespondances() {
-            var fichier = "hauteur site.xlsx";
-            var requete = new XMLHttpRequest();
-        
-            requete.open("GET", fichier, true);
-            requete.responseType = "arraybuffer";
-
-            requete.onload = function() {
-                var contenu = new Uint8Array(requete.response);
-                var classeur = XLSX.read(contenu, {type: 'array'});
-
-                var feuille = classeur.Sheets[classeur.SheetNames[0]];
-                var donnees = XLSX.utils.sheet_to_json(feuille);
-
-                correspondances = {};
-                donnees.forEach(function(d) {
-                    correspondances[d.code_pneu] = d.hauteur;
-                });
-
-                console.log(correspondances);
-            };
-
-            requete.send();
-        }
-        function enregistrerValeurs() {
-            var valeur1 = document.getElementById("valeur1").value;
-            var valeur2 = document.getElementById("valeur2").value;
-
-            var spreadsheetId = 'hauteur site';
-            var range = 'Feuille 1!A1:C1';
-            var values = [
-                [valeur1, valeur2]
-            ];
-
-            var worksheet = XLSX.utils.aoa_to_sheet(values);
-            var workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-            var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
-
-            var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
-            saveAs(blob, 'data.xlsx');
-        }
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i < s.length; i++) {
-                view[i] = s.charCodeAt(i) & 0xFF;
-            }
-            return buf;
-        }
-        function calculerDouille() {
-            var extensionValue = parseInt(document.getElementById("extension-input").value);
-            var galbageValue = parseInt(document.getElementById("galbage-input").value);
-            var jpCheckbox = document.getElementById("jp-checkbox");
-            var douilleResult = document.getElementById("douille-result");
-
-  // Définir les coefficients a, b et c obtenus à partir de la régression linéaire
-  var a = -1; // Remplacez par les coefficients réels que vous avez trouvés
-  var b = 1; // Remplacez par les coefficients réels que vous avez trouvés
-  var c = 535; // Remplacez par les coefficients réels que vous avez trouvés
-
-  // Calculez la douille en utilisant l'équation linéaire : D = (E * a) + (G * b) + c
-  var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
-
-  // Réduisez la douille de 10 si la case JP est cochée
-  if (jpCheckbox.checked) {
-    douilleValue -= 10;
-  }
-
-  douilleResult.value = douilleValue;
-}
-    
-    </script>
 </head>
 <body>
     <h1>HEIGHT TIRE DETECTOR</h1>
 
     <div id="page1">
-        <link rel="stylesheet" href="style.css">
+        <!-- Le contenu de la première page -->
         <label for="code-pneu">Code Rolling:</label>
         <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 280px;">
 
         <br><br>
 
         <label for="hauteur-pneu">Hauteur Rolling:</label>
-        <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 250px;margin-bottom: 8px;">
+        <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 250px;">
         <span class="unit">mm</span>
-        
+      
         <br><br> 
         <br><br>
-        <br><br>
-      
-      
-     
+        <br><br> 
     </div>
+
     <div id="page2" style="display: none;">
-    
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Enregistrement de valeurs</title>
-        <link rel="stylesheet" type="text/css" href="style2.css">
-    </head>
-    <body>
+        <!-- Le contenu de la deuxième page -->
         <h1></h1>
         <form id="myForm">
             <label for="valeur1">Code Rolling:</label>
-            <input type="text" id="code-rolling" placeholder="Entrez valeur"
             <input type="text" id="valeur1" name="valeur1" required style="height: 40px;width: 280px;">
           
-          <br><br>
+            <br><br>
 
             <label for="valeur2">Hauteur Rolling:</label>
-            <input type="text" id="hauteur-rolling" placeholder="Entrez valeur"
             <input type="text" id="valeur2" name="valeur2" required style="height: 40px;width: 280px;"><br><br>
 
-            <button type="button" onclick="enregistrerValeurs()"style="margin-bottom: 11px;">Enregistrer</button>
+            <button type="button" onclick="enregistrerValeurs()">Enregistrer</button>
         </form>
         <br><br>
-
-        <script src="script.js"></script>
-        <script src="FileSaver.min.js"></script>
-        <script src="FileSaver.js"></script>
-
-        
-    </body>
-    </html>
-</div>
+    </div>
   
-   <div id="page3" style="display: none;">
-     <!DOCTYPE html>
-    <html>
-          <head>
-        <title>valeurs Douille</title>
-        <link rel="stylesheet" type="text/css" href="style3.css">
-    </head>
-      <body>
-  <label for="extension-input">Extension:</label>
-  <input type="text" id="extension-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
+    <div id="page3" style="display: none;">
+        <!-- Le contenu de la troisième page -->
+        <label for="extension-input">Extension:</label>
+        <input type="text" id="extension-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
 
-  <br><br>
+        <br><br>
 
-  <label for="galbage-input">Galbage:</label>
-  <input type="text" id="galbage-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
+        <label for="galbage-input">Galbage:</label>
+        <input type="text" id="galbage-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
 
-  <br><br>
+        <br><br>
 
- <div style="display: inline-block;">
-    <label for="jp-checkbox">JP:</label>
-    <input type="checkbox" id="jp-checkbox" class="jp-checkbox"      onchange="calculerDouille()">
-  </div>
+        <div style="display: inline-block;">
+            <label for="jp-checkbox">JP:</label>
+            <input type="checkbox" id="jp-checkbox" class="jp-checkbox" onchange="calculerDouille()">
+        </div>
 
-  <div style="display: inline-block; margin-left: 10px;">
-    <label for="douille-result">Douille:</label>
-    <input type="text" id="douille-result" readonly style="height: 40px;width: 200px;">
-    <span class="unit">mm</span>
-</div>
+        <div style="display: inline-block; margin-left: 10px;">
+            <label for="douille-result">Douille:</label>
+            <input type="text" id="douille-result" readonly style="height: 40px;width: 200px;">
+            <span class="unit">mm</span>
+        </div>
+    </div>
 
-</div>
-
-<body>
-</html>
- <br><br>
+    <br><br>
     <div class="button-container-all">
-      <div class="button-container">
-        
-        <button class="nav-button" onclick="afficherPage1()">1</button>
-        <button class="nav-button" onclick="afficherPage2()">2</button>
-        <button class="nav-button" onclick="afficherPage3()">3</button>
-         </div> 
+        <div class="button-container">
+            <button class="nav-button" onclick="afficherPage1()">1</button>
+            <button class="nav-button" onclick="afficherPage2()">2</button>
+            <button class="nav-button" onclick="afficherPage3()">3</button>
+        </div> 
     </div>
 
     <script>
         function afficherPage1() {
-    document.getElementById("page1").style.display = "block";
-    document.getElementById("page2").style.display = "none";
-    document.getElementById("page3").style.display = "none";
-}
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "none";
+        }
 
-function afficherPage2() {
-    document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "block";
-    document.getElementById("page3").style.display = "none";
-}
+        function afficherPage2() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            document.getElementById("page3").style.display = "none";
+        }
 
-function afficherPage3() {
-    document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "none";
-    document.getElementById("page3").style.display = "block";
-}
+        function afficherPage3() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "block";
+        }
 
-    
-     </script>
+        function calculerDouille() {
+            var extensionValue = parseInt(document.getElementById("extension-input").value);
+            var galbageValue = parseInt(document.getElementById("galbage-input").value);
+            var jpCheckbox = document.getElementById("jp-checkbox");
+            var douilleResult = document.getElementById("douille-result");
+
+            // Vérifier que la différence entre l'extension et le galbage est supérieure ou égale à 200
+            if (extensionValue - galbageValue > 200) {
+                douilleResult.value = "Pas possible";
+            } else {
+                // Définir les coefficients a, b et c obtenus à partir de la régression linéaire
+                var a = -1; // Remplacez par les coefficients réels que vous avez trouvés
+                var b = 1;  // Remplacez par les coefficients réels que vous avez trouvés
+                var c = 535;  // Remplacez par les coefficients réels que vous avez trouvés
+
+                // Calculez la douille en utilisant l'équation linéaire : D = (E * a) + (G * b) + c
+                var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
+
+                // Réduisez la douille de 10 si la case JP est cochée
+                if (jpCheckbox.checked) {
+                    douilleValue -= 10;
+                }
+
+                douilleResult.value = douilleValue;
+            }
+        }
+    </script>
 </body>
 </html>
