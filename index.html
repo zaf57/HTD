@@ -78,7 +78,10 @@
             <button class="nav-button" onclick="afficherPage1()">1</button>
             <button class="nav-button" onclick="afficherPage2()">2</button>
             <button class="nav-button" onclick="afficherPage3()">3</button>
-        </div> 
+        </div>
+        
+        <div id="message-banner" class="message-banner" style="display: none;">
+            Enregistrement réussi!
     </div>
 
     <script>
@@ -162,6 +165,15 @@
 
             var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
             saveAs(blob, 'data.xlsx');
+
+             // Afficher la bannière pour indiquer l'enregistrement réussi
+            var messageBanner = document.getElementById("message-banner");
+            messageBanner.style.display = "block";
+
+            // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
+            setTimeout(function() {
+            messageBanner.style.display = "none";
+            }, 3000); // 3000 millisecondes (3 secondes
         }
 
         function s2ab(s) {
