@@ -34,6 +34,17 @@ button {
     /* Vous pouvez ajuster la hauteur selon vos préférences */
    max-height: 100%; 
   }
+.message-banner {
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
 
 .button:hover {
   background-color: #ddd;
