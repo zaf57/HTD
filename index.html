@@ -99,7 +99,79 @@
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "block";
         }
+        
+        var correspondances = {
+            "zafer":"THE CREATOR 😁",
+            }; // Ajout de la variable correspondances
+        
+        window.onload = function() {
+            chargerCorrespondances();
+            
+        };
+        
+        function afficherHauteur() {
+            var codePneu = document.getElementById("code-pneu").value;
+            var hauteurPneu = document.getElementById("hauteur-pneu");
 
+            if (correspondances.hasOwnProperty(codePneu)) {
+                hauteurPneu.value = correspondances[codePneu];
+            } else {
+                hauteurPneu.value = "";
+            }
+        }
+
+        function chargerCorrespondances() {
+            var fichier = "hauteur site.xlsx";
+            var requete = new XMLHttpRequest();
+        
+            requete.open("GET", fichier, true);
+            requete.responseType = "arraybuffer";
+
+            requete.onload = function() {
+                var contenu = new Uint8Array(requete.response);
+                var classeur = XLSX.read(contenu, {type: 'array'});
+
+                var feuille = classeur.Sheets[classeur.SheetNames[0]];
+                var donnees = XLSX.utils.sheet_to_json(feuille);
+
+                correspondances = {};
+                donnees.forEach(function(d) {
+                    correspondances[d.code_pneu] = d.hauteur;
+                });
+
+                console.log(correspondances);
+            };
+
+            requete.send();
+        }
+
+        function enregistrerValeurs() {
+            var valeur1 = document.getElementById("valeur1").value;
+            var valeur2 = document.getElementById("valeur2").value;
+
+            var spreadsheetId = 'hauteur site';
+            var range = 'Feuille 1!A1:C1';
+            var values = [
+                [valeur1, valeur2]
+            ];
+
+            var worksheet = XLSX.utils.aoa_to_sheet(values);
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+            var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
+
+            var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
+            saveAs(blob, 'data.xlsx');
+        }
+
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
         function calculerDouille() {
             var extensionValue = parseInt(document.getElementById("extension-input").value);
             var galbageValue = parseInt(document.getElementById("galbage-input").value);
