@@ -5,6 +5,8 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
@@ -181,65 +183,44 @@ function enregistrerPage1() {
     }
 }
 
-function initClient() {
-    var apiKey = 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E';
-    //var apiKey = '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com';
-    var clientId = 'Client_Web_1';
-
-    gapi.client.init({
-        apiKey: apiKey,
-        clientId: clientId,
-        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-        scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets"
-    }).then(function() {
-        // L'initialisation est réussie, vous pouvez maintenant utiliser l'API Google Sheets ici
-        // Assurez-vous d'appeler la fonction enregistrerValeurs() après l'initialisation
-        enregistrerValeurs();
-    }, function(error) {
-        console.error("Erreur lors de l'initialisation de l'API Google Sheets :", error);
-    });
-}
-
-    function enregistrerValeurs() {
-    var valeur1 = document.getElementById("valeur1").value;
-    var valeur2 = document.getElementById("valeur2").value;
-
-    // ...
-
-    // Enregistrez le fichier Excel sur Google Drive
+    var clientId = '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com';
     var spreadsheetId = 'hauteur site2';
     var range = 'Feuille 1!A1:C1';
-    var values = [
-        [valeur1, valeur2]
-    ];
 
-    // Authentifiez-vous avec les identifiants d'authentification de votre projet Google Cloud
-    gapi.client.init({
-        var apiKey = 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E';
-        //apiKey: '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com',
-        clientId: 'Client_Web_1',
-        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-        scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets"
-    }).then(function() {
-        gapi.client.load("sheets", "v4", function() {
-            var request = gapi.client.sheets.spreadsheets.values.append({
-                spreadsheetId: spreadsheetId,
-                range: range,
-                valueInputOption: "RAW",
-                insertDataOption: "INSERT_ROWS",
-                resource: {
-                    values: values
-                }
-            });
-
-            request.then(function(response) {
-                console.log("Données enregistrées dans Google Sheets.");
-            }, function(reason) {
-                console.error("Erreur lors de l'enregistrement des données :", reason.result.error.message);
+    function initClient() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init({
+                client_id: clientId
+            }).then(function(authInstance) {
+                // L'initialisation est réussie, vous pouvez maintenant utiliser l'API Google Sheets ici
+                // Assurez-vous d'appeler la fonction enregistrerValeurs() après l'initialisation
+                enregistrerValeurs(authInstance.currentUser.get().getAuthResponse().access_token);
+            }, function(error) {
+                console.error("Erreur lors de l'initialisation de l'authentification :", error);
             });
         });
-    });
-}
+    }
+
+    function enregistrerValeurs(accessToken) {
+        var valeur1 = document.getElementById("valeur1").value;
+        var valeur2 = document.getElementById("valeur2").value;
+        var values = [[valeur1, valeur2]];
+
+        // Utilisez le jeton d'accès OAuth2 pour appeler l'API Google Sheets
+        gapi.client.sheets.spreadsheets.values.append({
+            spreadsheetId: spreadsheetId,
+            range: range,
+            valueInputOption: "RAW",
+            insertDataOption: "INSERT_ROWS",
+            resource: {
+                values: values
+            }
+        }).then(function(response) {
+            console.log("Données enregistrées dans Google Sheets.");
+        }, function(reason) {
+            console.error("Erreur lors de l'enregistrement des données :", reason.result.error.message);
+        });
+    }
 
         function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
