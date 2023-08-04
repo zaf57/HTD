@@ -29,8 +29,10 @@
             <br><br>
 
         <img src="https://github.com/zaf57/HTD/blob/main/qr-code2.png?raw=true" alt="Image de votre choix" style="width: 150px; height: auto;">
+        
+        <div id="message-banner" class="message-banner" style="display: none;">
+        Enregistrement réussi!
       
- 
     </div>
   
     <div id="page2" style="display: none;">
@@ -150,32 +152,37 @@
             requete.send();
         }
 
-        function enregistrerPage1() {
-           var codeEtHauteur = document.getElementById("code-pneu").value;
+function enregistrerPage1() {
+    var codeEtHauteur = document.getElementById("code-pneu").value;
   
-          // Vérifier que le code et la hauteur ne sont pas vides avant d'enregistrer
-          if (codeEtHauteur.trim() !== '') {
-          var texte = "Code et Hauteur Rolling: " + codeEtHauteur + " mm";
-          var blobText = new Blob([texte], { type: 'text/plain' });
+    // Vérifier que le code et la hauteur ne sont pas vides avant d'enregistrer
+    if (codeEtHauteur.trim() !== '') {
+        var texte = "Code et Hauteur Rolling: " + codeEtHauteur + " mm";
+        var blobText = new Blob([texte], { type: 'text/plain' });
 
-          // Créer un lien pour le téléchargement du fichier texte
-          var downloadLink = document.createElement("a");
-          downloadLink.download = "Code&hauteurRolling.txt";
-          downloadLink.href = URL.createObjectURL(blobText);
-          downloadLink.click();
-          console.log("Enregistrement réussi pour la page 1.");
-          } else {
-          console.log("Veuillez saisir à la fois le code et la hauteur avant d'enregistrer.");
-         }
-              // Afficher la bannière pour indiquer l'enregistrement réussi
+        // Créer un lien pour le téléchargement du fichier texte
+        var downloadLink = document.createElement("a");
+        downloadLink.download = "Code&hauteurRolling.txt";
+        downloadLink.href = URL.createObjectURL(blobText);
+
+        // Ajouter un événement pour afficher le message une fois que le lien est cliqué
+        downloadLink.addEventListener('click', function() {
             var messageBanner = document.getElementById("message-banner");
             messageBanner.style.display = "block";
 
             // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
             setTimeout(function() {
-            messageBanner.style.display = "none";
+                messageBanner.style.display = "none";
             }, 3000); // 3000 millisecondes (3 secondes)
+        });
+
+        downloadLink.click();
+        console.log("Enregistrement réussi pour la page 1.");
+    } else {
+        console.log("Veuillez saisir à la fois le code et la hauteur avant d'enregistrer.");
+    }
 }
+
 
 function enregistrerValeurs() {
     var valeur1 = document.getElementById("valeur1").value;
