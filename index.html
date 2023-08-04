@@ -185,36 +185,41 @@ function enregistrerValeurs() {
     var valeur1 = document.getElementById("valeur1").value;
     var valeur2 = document.getElementById("valeur2").value;
 
-   /* // Créez le contenu du fichier texte avec les valeurs saisies
-    var texte = "Rolling: " + valeur1 + "\nHauteur: " + valeur2;
-    // Enregistrez le fichier texte
-    var blobText = new Blob([texte], { type: 'text/plain' });
-    saveAs(blobText, 'data.txt');*/
-    
-    // Enregistrez le fichier Excel
-    var spreadsheetId = 'hauteur site';
+    // ...
+
+    // Enregistrez le fichier Excel sur Google Drive
+    var spreadsheetId = 'hauteur site2';
     var range = 'Feuille 1!A1:C1';
     var values = [
         [valeur1, valeur2]
     ];
-    var worksheet = XLSX.utils.aoa_to_sheet(values);
-    var workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-    var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
-    var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
-    saveAs(blob, 'data.xlsx');
 
+    // Authentifiez-vous avec les identifiants d'authentification de votre projet Google Cloud
+    gapi.client.init({
+        apiKey: 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
+        clientId: '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com',
+        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+        scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets"
+    }).then(function() {
+        gapi.client.load("sheets", "v4", function() {
+            var request = gapi.client.sheets.spreadsheets.values.append({
+                spreadsheetId: spreadsheetId,
+                range: range,
+                valueInputOption: "RAW",
+                insertDataOption: "INSERT_ROWS",
+                resource: {
+                    values: values
+                }
+            });
 
-
-             // Afficher la bannière pour indiquer l'enregistrement réussi
-            var messageBanner = document.getElementById("message-banner");
-            messageBanner.style.display = "block";
-
-            // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
-            setTimeout(function() {
-            messageBanner.style.display = "none";
-            }, 3000); // 3000 millisecondes (3 secondes)
-        }
+            request.then(function(response) {
+                console.log("Données enregistrées dans Google Sheets.");
+            }, function(reason) {
+                console.error("Erreur lors de l'enregistrement des données :", reason.result.error.message);
+            });
+        });
+    });
+}
 
         function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
