@@ -18,7 +18,8 @@
     <div id="page1">
         <!-- Le contenu de la première page -->
         <label for="code-pneu">Code Rolling:</label>
-        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 280px;">
+        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 230px;">
+        <button type="button" id="enregistrer-btn" onclick="enregistrerPage1()">Enregistrer</button>
 
         <br><br>
 
@@ -31,25 +32,8 @@
       
  
     </div>
-
-    <div id="page2" style="display: none;">
-        <!-- Le contenu de la deuxième page -->
-        <h1></h1>
-        <form id="myForm">
-            <label for="valeur1">Code Rolling:</label>
-            <input type="text" id="valeur1" placeholder="Entrez valeur" name="valeur1" required style="height: 40px;width: 280px;">
-          
-            <br><br>
-
-            <label for="valeur2">Hauteur Rolling:</label>
-            <input type="text" id="valeur2" placeholder="Entrez valeur" name="valeur2" required style="height: 40px;width: 280px;"><br><br>
-
-            <button type="button" onclick="enregistrerValeurs()" style="margin-bottom: 11px;">Enregistrer</button>
-        </form>
-        <br><br>
-    </div>
   
-    <div id="page3" style="display: none;">
+    <div id="page2" style="display: none;">
         <!-- Le contenu de la troisième page -->
         <label for="extension-input">Extension:</label>
         <input type="text" id="extension-input" placeholder="Entrez valeur" oninput="calculerDouille()" style="height: 40px;width: 280px;">
@@ -71,6 +55,23 @@
             <input type="text" id="douille-result" readonly style="height: 40px;width: 200px;">
             <span class="unit">mm</span>
         </div>
+    </div>
+
+        <div id="page3" style="display: none;">
+        <!-- Le contenu de la deuxième page -->
+        <h1></h1>
+        <form id="myForm">
+            <label for="valeur1">Code Rolling:</label>
+            <input type="text" id="valeur1" placeholder="Entrez valeur" name="valeur1" required style="height: 40px;width: 280px;">
+          
+            <br><br>
+
+            <label for="valeur2">Hauteur Rolling:</label>
+            <input type="text" id="valeur2" placeholder="Entrez valeur" name="valeur2" required style="height: 40px;width: 280px;"><br><br>
+
+            <button type="button" onclick="enregistrerValeurs()" style="margin-bottom: 11px;">Enregistrer</button>
+        </form>
+        <br><br>
     </div>
 
     <br><br>
@@ -149,6 +150,33 @@
             requete.send();
         }
 
+        function enregistrerPage1() {
+           var codeEtHauteur = document.getElementById("code-pneu").value;
+  
+          // Vérifier que le code et la hauteur ne sont pas vides avant d'enregistrer
+          if (codeEtHauteur.trim() !== '') {
+          var texte = "Code et Hauteur Rolling: " + codeEtHauteur + " mm";
+          var blobText = new Blob([texte], { type: 'text/plain' });
+
+          // Créer un lien pour le téléchargement du fichier texte
+          var downloadLink = document.createElement("a");
+          downloadLink.download = "Code&hauteurRolling.txt";
+          downloadLink.href = URL.createObjectURL(blobText);
+          downloadLink.click();
+          console.log("Enregistrement réussi pour la page 1.");
+          } else {
+          console.log("Veuillez saisir à la fois le code et la hauteur avant d'enregistrer.");
+         }
+              // Afficher la bannière pour indiquer l'enregistrement réussi
+            var messageBanner = document.getElementById("message-banner");
+            messageBanner.style.display = "block";
+
+            // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
+            setTimeout(function() {
+            messageBanner.style.display = "none";
+            }, 3000); // 3000 millisecondes (3 secondes)
+}
+
 function enregistrerValeurs() {
     var valeur1 = document.getElementById("valeur1").value;
     var valeur2 = document.getElementById("valeur2").value;
@@ -180,7 +208,7 @@ function enregistrerValeurs() {
             // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
             setTimeout(function() {
             messageBanner.style.display = "none";
-            }, 3000); // 3000 millisecondes (3 secondes
+            }, 3000); // 3000 millisecondes (3 secondes)
         }
 
         function s2ab(s) {
