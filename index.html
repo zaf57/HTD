@@ -181,10 +181,13 @@ function enregistrerValeurs() {
     var valeur1 = document.getElementById("valeur1").value;
     var valeur2 = document.getElementById("valeur2").value;
 
-    // Créez le contenu du fichier texte avec les valeurs saisies
+   /* // Créez le contenu du fichier texte avec les valeurs saisies
     var texte = "Rolling: " + valeur1 + "\nHauteur: " + valeur2;
-
-   /* // Enregistrez le fichier Excel
+    // Enregistrez le fichier texte
+    var blobText = new Blob([texte], { type: 'text/plain' });
+    saveAs(blobText, 'data.txt');*/
+    
+    // Enregistrez le fichier Excel
     var spreadsheetId = 'hauteur site';
     var range = 'Feuille 1!A1:C1';
     var values = [
@@ -195,11 +198,9 @@ function enregistrerValeurs() {
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
     var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
     var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
-    saveAs(blob, 'data.xlsx');*/
+    saveAs(blob, 'data.xlsx');
 
-    // Enregistrez le fichier texte
-    var blobText = new Blob([texte], { type: 'text/plain' });
-    saveAs(blobText, 'data.txt');
+
 
              // Afficher la bannière pour indiquer l'enregistrement réussi
             var messageBanner = document.getElementById("message-banner");
