@@ -5,8 +5,6 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
@@ -112,7 +110,6 @@
         
         window.onload = function() {
             chargerCorrespondances();
-            gapi.load("client:auth2", initClient);
             
         };
         
@@ -183,44 +180,41 @@ function enregistrerPage1() {
     }
 }
 
-    var clientId = '578231543025-m9a7l9mqcti4d7i482rqnd5u9fgpt5ju.apps.googleusercontent.com';
-    var spreadsheetId = '1zx1jPXA1uHc3h-KLOVPhW_T8rj3Q17skCnN2zn0hpqw';
+
+function enregistrerValeurs() {
+    var valeur1 = document.getElementById("valeur1").value;
+    var valeur2 = document.getElementById("valeur2").value;
+
+   /* // Créez le contenu du fichier texte avec les valeurs saisies
+    var texte = "Rolling: " + valeur1 + "\nHauteur: " + valeur2;
+    // Enregistrez le fichier texte
+    var blobText = new Blob([texte], { type: 'text/plain' });
+    saveAs(blobText, 'data.txt');*/
+    
+    // Enregistrez le fichier Excel
+    var spreadsheetId = 'hauteur site';
     var range = 'Feuille 1!A1:C1';
+    var values = [
+        [valeur1, valeur2]
+    ];
+    var worksheet = XLSX.utils.aoa_to_sheet(values);
+    var workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
+    var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
+    saveAs(blob, 'data.xlsx');
 
-    function initClient() {
-        gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: clientId
-            }).then(function(authInstance) {
-                // L'initialisation est réussie, vous pouvez maintenant utiliser l'API Google Sheets ici
-                // Assurez-vous d'appeler la fonction enregistrerValeurs() après l'initialisation
-                enregistrerValeurs(authInstance.currentUser.get().getAuthResponse().access_token);
-            }, function(error) {
-                console.error("Erreur lors de l'initialisation de l'authentification :", error);
-            });
-        });
-    }
 
-    function enregistrerValeurs(accessToken) {
-        var valeur1 = document.getElementById("valeur1").value;
-        var valeur2 = document.getElementById("valeur2").value;
-        var values = [[valeur1, valeur2]];
 
-        // Utilisez le jeton d'accès OAuth2 pour appeler l'API Google Sheets
-        gapi.client.sheets.spreadsheets.values.append({
-            spreadsheetId: spreadsheetId,
-            range: range,
-            valueInputOption: "RAW",
-            insertDataOption: "INSERT_ROWS",
-            resource: {
-                values: values
-            }
-        }).then(function(response) {
-            console.log("Données enregistrées dans Google Sheets.");
-        }, function(reason) {
-            console.error("Erreur lors de l'enregistrement des données :", reason.result.error.message);
-        });
-    }
+             // Afficher la bannière pour indiquer l'enregistrement réussi
+            var messageBanner = document.getElementById("message-banner");
+            messageBanner.style.display = "block";
+
+            // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
+            setTimeout(function() {
+            messageBanner.style.display = "none";
+            }, 3000); // 3000 millisecondes (3 secondes)
+        }
 
         function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
