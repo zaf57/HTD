@@ -30,6 +30,12 @@ button {
   padding-right: 0px;
     
 }
+.hide {
+      display: none;
+    }
+.hide-label {
+      display: none;
+    }
 .button-container-all {
     height: 100px;
     display: flex; /* Utilisez le modèle de disposition flexbox */
