@@ -1,3 +1,9 @@
+.hide {
+      display: none;
+    }
+.hide-label {
+      display: none;
+    }
 body {
     background-image: url("trace de pneu.png");
     background-repeat: no-repeat;
