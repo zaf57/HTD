@@ -59,17 +59,41 @@
         <div id="page3" style="display: none;">
         <!-- Le contenu de la deuxième page -->
         <h1></h1>
-        <form id="myForm">
-            <label for="valeur1">Code Rolling:</label>
-            <input type="text" id="valeur1" placeholder="Entrez valeur" name="valeur1" required style="height: 40px;width: 280px;">
-          
-            <br><br>
+  <form id="test-form">
 
-            <label for="valeur2">Hauteur Rolling:</label>
-            <input type="text" id="valeur2" placeholder="Entrez valeur" name="valeur2" required style="height: 40px;width: 280px;"><br><br>
+    <label for="code_pneu">Code Rolling</label>
+    <input type="text" name="code_pneu" id="code_pneu" />
 
-            <button type="button" onclick="enregistrerValeurs()" style="margin-bottom: 11px;">Enregistrer</button>
-        </form>
+    <br /><br />
+
+    <label for="hauteur">Hauteur Rolling</label>
+    <input type="text" name="hauteur" id="hauteur" />
+
+    <br /><br />
+
+    <button type="submit" id="submit-form" name="envoyer">Envoyer</button>
+  </form>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      
+  </script>
+  <script type="text/javascript">
+    var $form = $('form#test-form'),
+    url = 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec';
+
+    $('#submit-form').on('click', function(e) {
+      e.preventDefault();
+      var jqxhr = $.ajax({
+        url: url,
+        method: "GET",
+        dataType: "json",
+        data: $form.serializeObject()
+      }).done(function() { // Corrected: Removed extra ')' and added parameter 'response'
+        // do something with the response
+      });
+    });
+  </script>
         <br><br>
     </div>
 
