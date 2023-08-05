@@ -186,7 +186,9 @@ function enregistrerPage1() {
         console.log("Veuillez saisir à la fois le code et la hauteur avant d'enregistrer.");
     }
 }
-        //function Envoyer page 3    
+        
+        
+//function Envoyer page 3    
         var $form = $('form#test-form'),
     url = 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec';
 
@@ -200,35 +202,7 @@ function enregistrerPage1() {
       }).done(function() { // Corrected: Removed extra ')' and added parameter 'response'
         // do something with the response
       });
-    });
-
-
-function enregistrerValeurs() {
-    var valeur1 = document.getElementById("valeur1").value;
-    var valeur2 = document.getElementById("valeur2").value;
-
-   /* // Créez le contenu du fichier texte avec les valeurs saisies
-    var texte = "Rolling: " + valeur1 + "\nHauteur: " + valeur2;
-    // Enregistrez le fichier texte
-    var blobText = new Blob([texte], { type: 'text/plain' });
-    saveAs(blobText, 'data.txt');*/
-    
-    // Enregistrez le fichier Excel
-    var spreadsheetId = 'hauteur site';
-    var range = 'Feuille 1!A1:C1';
-    var values = [
-        [valeur1, valeur2]
-    ];
-    var worksheet = XLSX.utils.aoa_to_sheet(values);
-    var workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-    var xlsxData = XLSX.write(workbook, { type: 'binary', bookType: 'xlsx' });
-    var blob = new Blob([s2ab(xlsxData)], { type: 'application/octet-stream' });
-    saveAs(blob, 'data.xlsx');
-
-
-
-             // Afficher la bannière pour indiquer l'enregistrement réussi
+            // Afficher la bannière pour indiquer l'enregistrement réussi
             var messageBanner = document.getElementById("message-banner");
             messageBanner.style.display = "block";
 
@@ -236,7 +210,7 @@ function enregistrerValeurs() {
             setTimeout(function() {
             messageBanner.style.display = "none";
             }, 3000); // 3000 millisecondes (3 secondes)
-        }
+    });
 
         function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
