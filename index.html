@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     
 </head>
 <body>
@@ -74,26 +77,6 @@
     <button type="submit" id="submit-form" name="envoyer">Envoyer</button>
   </form>
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      
-  </script>
-  <script type="text/javascript">
-    var $form = $('form#test-form'),
-    url = 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec';
-
-    $('#submit-form').on('click', function(e) {
-      e.preventDefault();
-      var jqxhr = $.ajax({
-        url: url,
-        method: "GET",
-        dataType: "json",
-        data: $form.serializeObject()
-      }).done(function() { // Corrected: Removed extra ')' and added parameter 'response'
-        // do something with the response
-      });
-    });
-  </script>
         <br><br>
     </div>
 
@@ -203,6 +186,21 @@ function enregistrerPage1() {
         console.log("Veuillez saisir à la fois le code et la hauteur avant d'enregistrer.");
     }
 }
+        //function Envoyer page 3    
+        var $form = $('form#test-form'),
+    url = 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec';
+
+    $('#submit-form').on('click', function(e) {
+      e.preventDefault();
+      var jqxhr = $.ajax({
+        url: url,
+        method: "GET",
+        dataType: "json",
+        data: $form.serializeObject()
+      }).done(function() { // Corrected: Removed extra ')' and added parameter 'response'
+        // do something with the response
+      });
+    });
 
 
 function enregistrerValeurs() {
