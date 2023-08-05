@@ -31,7 +31,7 @@ button {
       display: none;
     }
 .button-container-all {
-    height: 100px;
+    height: 0px;
     display: flex; /* Utilisez le modèle de disposition flexbox */
     /* justify-content: center;  Centre les boutons horizontalement */
     align-items: center; /* Centre les boutons verticalement */
