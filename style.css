@@ -94,6 +94,12 @@ input[readonly] {
     margin-top: 6px;
     width: 128px;
 }
+    .hide {
+      display: none;
+    }
+    .hide-label {
+      display: none;
+    }
 
 footer {
     text-align: left;
