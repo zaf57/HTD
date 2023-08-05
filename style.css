@@ -33,9 +33,9 @@ button {
 .button-container-all {
     height: 0px;
     display: flex; /* Utilisez le modèle de disposition flexbox */
-    /* justify-content: center;  Centre les boutons horizontalement */
-    align-items: center; /* Centre les boutons verticalement */
-    margin-top: 20px; /* Ajoute une marge en haut de 20 pixels */
+    justify-content: center;  Centre les boutons horizontalement */
+    /*align-items: center; /* Centre les boutons verticalement */
+    margin-top: 0px; /* Ajoute une marge en haut de 20 pixels */
     /* Vous pouvez également ajuster d'autres styles si nécessaire */
   }
 .nav-button {
