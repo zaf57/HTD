@@ -35,7 +35,7 @@ button {
     display: flex; /* Utilisez le modèle de disposition flexbox */
     /*justify-content: center;  Centre les boutons horizontalement */
     /*align-items: center; /* Centre les boutons verticalement */
-    margin-top: 0px; /* Ajoute une marge en haut de 20 pixels */
+    margin-top: 40px; /* Ajoute une marge en haut de 20 pixels */
     margin-left: 39px;
   }
 .nav-button {
