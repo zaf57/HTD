@@ -20,33 +20,7 @@
 
     <div id="page1">
         <!-- Le contenu de la première page -->
-    <!-- Clavier numérique -->
-    <div id="numeric-keyboard">
-        <!-- Ligne 1 -->
-        <div class="numeric-row">
-            <button class="numeric-button">1</button>
-            <button class="numeric-button">2</button>
-            <button class="numeric-button">3</button>
-              </div>
-        <!-- Ligne 2 -->
-        <div class="numeric-row">
-            <button class="numeric-button">4</button>
-            <button class="numeric-button">5</button>
-            <button class="numeric-button">6</button>
-        </div>
-        <!-- Ligne 3 -->
-        <div class="numeric-row">
-            <button class="numeric-button">7</button>
-            <button class="numeric-button">8</button>
-            <button class="numeric-button">9</button>
-          </div>
-        <!-- Ligne 4 -->
-        <div class="numeric-row">
-            <button class="numeric-button">0</button>
-            <button id="clear-button" class="numeric-button">⌫</button>
-            
-        </div>
-    </div>  
+     
       
       <label for="code-pneu">Code Rolling:</label>
         <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 210px;">
@@ -58,9 +32,37 @@
         <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 210px;margin-bottom: 8px;">
         <span class="unit">mm</span>
             <br><br>
-
-        <img src="https://github.com/zaf57/HTD/blob/main/qr-code4.png?raw=true" alt="Image de votre choix" style="width: 150px; height: auto; margin-left: 107px;margin-top: 0px;">
       
+      <!-- Clavier numérique -->
+    <div id="numeric-keyboard">
+        <!-- Ligne 1 -->
+        <div class="numeric-row">
+            <button class="numeric-button">1</button>
+            <button class="numeric-button">2</button>
+            <button class="numeric-button">3</button>
+              </div>
+        <!-- Ligne 2 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">4</button>
+            <button class="numeric-button"style="margin-top: 3px;">5</button>
+            <button class="numeric-button"style="margin-top: 3px;">6</button>
+        </div>
+        <!-- Ligne 3 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">7</button>
+            <button class="numeric-button"style="margin-top: 3px;">8</button>
+            <button class="numeric-button"style="margin-top: 3px;">9</button>
+          </div>
+        <!-- Ligne 4 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">0</button>
+            <button id="clear-button" class="numeric-button"style="margin-top: 3px;">⌫</button>
+            
+        </div>
+    </div> 
+
+        <img src="https://github.com/zaf57/HTD/blob/main/qr-code4.png?raw=true" alt="Image de votre choix" style="width: 150px; height: auto; margin-left: 107px;margin-top: 0px;display: none;">
+    
     </div>
   
     <div id="page2" style="display: none;">
