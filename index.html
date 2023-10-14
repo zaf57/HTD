@@ -126,7 +126,7 @@
 
         <div style="display: inline-block; margin-left: 10px;">
             <label for="douille-result">Douille:</label>
-            <input type="text" id="douille-result" readonly style="height: 40px;width: 200px;margin-bottom: 40px;">
+            <input type="text" id="douille-result" readonly style="height: 40px;width: 220px;margin-bottom: 40px;">
             <span class="unit">mm</span>
         </div>
         <br><br>
@@ -313,7 +313,7 @@
 
             // Vérifier que la différence entre l'extension et le galbage est supérieure ou égale à 200
             if (extensionValue - galbageValue > 200) {
-                douilleResult.value = "  ⚠ jeu de douille ⚠";
+                douilleResult.value = "⚠ Augmenter Galbage ⚠";
             } else {
                 // Définir les coefficients a, b et c obtenus à partir de la régression linéaire
                 var a = -1; // Remplacez par les coefficients réels que vous avez trouvés
