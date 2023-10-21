@@ -248,23 +248,11 @@ function chargerDonnees() {
         if (request.status >= 200 && request.status < 400) {
             // Le téléchargement a réussi, vous pouvez traiter les données ici
             var data = JSON.parse(request.responseText);
-            // Vérifiez si les données ont été récupérées avec succès en affichant les données brutes dans la console
-            console.log(data);
-            // Parcourez les données et affichez les valeurs individuelles dans la console
-            for (var i = 0; i < data.length; i++) {
-                // Récupérer les valeurs spécifiques
-                var codePneu = data[i].code_pneu;
-                var hauteur = data[i].hauteur;
-                var b = data[i].B;
-                var d = data[i].D;
-
-                // Afficher les valeurs dans la console du navigateur
-                console.log("Code Pneu : " + codePneu + ", Hauteur : " + hauteur + ", B : " + b + ", D : " + d);
-                // Vous pouvez également manipuler ces valeurs comme vous le souhaitez ici
-            }
+            // Afficher les données sous forme d'alertes pour le débogage
+            alert("Données récupérées : " + JSON.stringify(data));
         } else {
-            // Afficher le statut de la requête en cas d'erreur
-            console.error("Échec de la requête. Statut : " + request.status);
+            // Le serveur a atteint votre URL mais a renvoyé une erreur
+            console.error("Une erreur s'est produite lors du chargement des données");
         }
     };
     request.onerror = function() {
@@ -273,6 +261,7 @@ function chargerDonnees() {
     };
     request.send();
 }
+
        
 //function Envoyer page 3    
         var $form = $('form#test-form'),
