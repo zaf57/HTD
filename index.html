@@ -241,7 +241,37 @@
             requete.send();
         }
         
-        
+ function chargerDonnees() {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec', true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Le téléchargement a réussi, vous pouvez traiter les données ici
+            var data = JSON.parse(request.responseText);
+            // Supposons que vous souhaitez afficher les valeurs dans la console du navigateur
+            for (var i = 0; i < data.length; i++) {
+                // Récupérer les valeurs spécifiques
+                var codePneu = data[i].code_pneu;
+                var hauteur = data[i].hauteur;
+                var b = data[i].B;
+                var d = data[i].D;
+
+                // Afficher les valeurs dans la console du navigateur
+                console.log("Code Pneu : " + codePneu + ", Hauteur : " + hauteur + ", B : " + b + ", D : " + d);
+                // Vous pouvez également manipuler ces valeurs comme vous le souhaitez ici
+            }
+        } else {
+            // Le serveur a atteint votre URL mais a renvoyé une erreur
+            console.error("Une erreur s'est produite lors du chargement des données");
+        }
+    };
+    request.onerror = function() {
+        // Il y a eu une erreur de connexion
+        console.error("Impossible de se connecter au serveur");
+    };
+    request.send();
+}
+       
 //function Envoyer page 3    
         var $form = $('form#test-form'),
     url = 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec';
