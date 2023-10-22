@@ -195,71 +195,28 @@
             document.getElementById("page3").style.display = "block";
         }
         
-// Définition des variables pour le stockage des données
-var correspondances = {};
-var correspondances2 = {};
+        var correspondances = {
+            "Zafer":"THE CREATOR 😁",
+            "1":"2",
+            }; // Ajout de la variable correspondances
+        
+        window.onload = function() {
+            chargerCorrespondances();
+            
+        };
+        
+        function afficherHauteur() {
+            var codePneu = document.getElementById("code-pneu").value;
+            var hauteurPneu = document.getElementById("hauteur-pneu");
 
-// Fonction pour charger des données à partir d'un fichier XLSX à partir de Google Drive
-function chargerDonneesXLSXGoogleDrive(lienPartage, variableStockage) {
-    var requete = new XMLHttpRequest();
-
-    requete.open("GET", lienPartage, true);
-    requete.responseType = "arraybuffer";
-
-    requete.onload = function () {
-        var contenu = new Uint8Array(requete.response);
-        var classeur = XLSX.read(contenu, { type: 'array' });
-
-        var feuille = classeur.Sheets[classeur.SheetNames[0]];
-        var donnees = XLSX.utils.sheet_to_json(feuille);
-
-        // Utilisation de la variableStockage pour stocker les données
-        if (variableStockage === 'correspondances') {
-            correspondances = {};
-            donnees.forEach(function (d) {
-                correspondances[d.code_pneu] = d.hauteur;
-            });
-            console.log(correspondances);
-        } else if (variableStockage === 'correspondances2') {
-            correspondances2 = {};
-            donnees.forEach(function (d) {
-                correspondances2[d.code_pneu] = d.hauteur;
-            });
-            console.log(correspondances2);
+            if (correspondances.hasOwnProperty(codePneu)) {
+                hauteurPneu.value = correspondances[codePneu];
+            } else {
+                hauteurPneu.value = "";
+            }
         }
-    };
 
-    requete.send();
-}
-
-
-// Charger les fichiers à partir de Google Drive
-chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing');
-chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/1zx1jPXA1uHc3h-KLOVPhW_T8rj3Q17skCnN2zn0hpqw/edit?usp=sharing');
-
-// Code d'exemple pour lire des données à partir de Google Sheets en utilisant l'API JavaScript de Google Sheets
-function lireDonneesFeuilleCalcul() {
-  var spreadsheetId = 'https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing';
-  var range = 'Sheet1!A1:C1';  // plage de cellules à lire
-  gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: spreadsheetId,
-    range: range,
-  }).then(function(response) {
-    var range = response.result;
-    if (range.values.length > 0) {
-      for (i = 0; i < range.values.length; i++) {
-        var row = range.values[i];
-        // Process row data
-      }
-    } else {
-      console.log('No data found.');
-    }
-  }, function(response) {
-    console.log('Error: ' + response.result.error.message);
-  });
-}
-
-function chargerCorrespondances() {
+        function chargerCorrespondances() {
             var fichier = "hauteur site.xlsx";
             var requete = new XMLHttpRequest();
         
@@ -284,16 +241,26 @@ function chargerCorrespondances() {
             requete.send();
         }
         
-        function afficherHauteur() {
-            var codePneu = document.getElementById("code-pneu").value;
-            var hauteurPneu = document.getElementById("hauteur-pneu");
-
-            if (correspondances.hasOwnProperty(codePneu)) {
-                hauteurPneu.value = correspondances[codePneu];
-            } else {
-                hauteurPneu.value = "";
-            }
+function chargerDonnees() {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://script.google.com/macros/s/AKfycbyJvm-W_9uJLPg-TxtNhhBGq5scXw0B_C8Ps9Q1-j8jG_sga-npcpQWBYp7GNTOsm8/exec', true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Le téléchargement a réussi, vous pouvez traiter les données ici
+            var data = JSON.parse(request.responseText);
+            // Afficher les données sous forme d'alertes pour le débogage
+            alert("Données récupérées : " + JSON.stringify(data));
+        } else {
+            // Le serveur a atteint votre URL mais a renvoyé une erreur
+            console.error("Une erreur s'est produite lors du chargement des données");
         }
+    };
+    request.onerror = function() {
+        // Il y a eu une erreur de connexion
+        console.error("Impossible de se connecter au serveur");
+    };
+    request.send();
+}
 
        
 //function Envoyer page 3    
