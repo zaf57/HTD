@@ -232,6 +232,9 @@ function chargerDonneesXLSXGoogleDrive(lienPartage, variableStockage) {
     requete.send();
 }
 
+        window.onload = function() {
+            chargerCorrespondances();
+
 // Charger les fichiers à partir de Google Drive
 chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing');
 chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/1zx1jPXA1uHc3h-KLOVPhW_T8rj3Q17skCnN2zn0hpqw/edit?usp=sharing');
