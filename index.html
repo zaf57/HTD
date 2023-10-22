@@ -236,7 +236,27 @@ function chargerDonneesXLSXGoogleDrive(lienPartage, variableStockage) {
 chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing');
 chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/1zx1jPXA1uHc3h-KLOVPhW_T8rj3Q17skCnN2zn0hpqw/edit?usp=sharing');
 
-
+// Code d'exemple pour lire des données à partir de Google Sheets en utilisant l'API JavaScript de Google Sheets
+function lireDonneesFeuilleCalcul() {
+  var spreadsheetId = 'https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing';
+  var range = 'Sheet1!A1:C1';  // plage de cellules à lire
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: spreadsheetId,
+    range: range,
+  }).then(function(response) {
+    var range = response.result;
+    if (range.values.length > 0) {
+      for (i = 0; i < range.values.length; i++) {
+        var row = range.values[i];
+        // Process row data
+      }
+    } else {
+      console.log('No data found.');
+    }
+  }, function(response) {
+    console.log('Error: ' + response.result.error.message);
+  });
+}
         
         function afficherHauteur() {
             var codePneu = document.getElementById("code-pneu").value;
