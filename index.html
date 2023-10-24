@@ -240,6 +240,45 @@
 
             requete.send();
         }
+      
+        
+    var correspondances = {};
+      var correspondances2 = {};
+      window.onload = function() {
+        chargerDonneesXLSXGoogleDrive();
+      };
+      // Fonction pour charger des données à partir d'un fichier XLSX à partir de Google Drive
+      function chargerDonneesXLSXGoogleDrive(lienPartage, variableStockage) {
+        var requete = new XMLHttpRequest();
+        requete.open("GET", lienPartage, true);
+        requete.responseType = "arraybuffer";
+        requete.onload = function() {
+          var contenu = new Uint8Array(requete.response);
+          var classeur = XLSX.read(contenu, {
+            type: 'array'
+          });
+          var feuille = classeur.Sheets[classeur.SheetNames[0]];
+          var donnees = XLSX.utils.sheet_to_json(feuille);
+          // Utilisation de la variableStockage pour stocker les données
+          if (variableStockage === 'correspondances') {
+            correspondances = {};
+            donnees.forEach(function(d) {
+              correspondances[d.code_pneu] = d.hauteur;
+            });
+            console.log(correspondances);
+          } else if (variableStockage === 'correspondances2') {
+            correspondances2 = {};
+            donnees.forEach(function(d) {
+              correspondances2[d.code_pneu] = d.hauteur;
+            });
+            console.log(correspondances2);
+          }
+        };
+        requete.send();
+      }
+      // Charger les fichiers à partir de Google Drive
+      chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/edit?usp=sharing');
+      chargerDonneesXLSXGoogleDrive('https://docs.google.com/spreadsheets/d/1zx1jPXA1uHc3h-KLOVPhW_T8rj3Q17skCnN2zn0hpqw/edit?usp=sharing');
         
 function chargerDonnees() {
     var request = new XMLHttpRequest();
