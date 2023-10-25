@@ -191,31 +191,26 @@
             document.getElementById("page3").style.display = "block";
         }
         
-        var correspondances = {
-            "Zafer":"THE CREATOR 😁",
-            "1":"2",
-            }; // Ajout de la variable correspondances
-        
-        window.onload = function() {
-            chargerCorrespondances();
-            
-        };
-        
-        function afficherHauteur() {
-            var codePneu = document.getElementById("code-pneu").value;
-            var hauteurPneu = document.getElementById("hauteur-pneu");
+ 
+      
+        var correspondances = {};
 
-            if (correspondances.hasOwnProperty(codePneu)) {
-                hauteurPneu.value = correspondances[codePneu];
-            } else {
-                hauteurPneu.value = "";
-            }
+        function start() {
+            gapi.client.init({
+                'apiKey': 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
+                'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+            }).then(function () {
+                console.log('API initialized');
+                chargerCorrespondances();
+            }, function (error) {
+                console.log('Error initializing API', error);
+            });
         }
 
         function chargerCorrespondances() {
-            var fichier = "hauteur site.xlsx";
+            var fichier = "https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/export?format=xlsx";
             var requete = new XMLHttpRequest();
-        
+
             requete.open("GET", fichier, true);
             requete.responseType = "arraybuffer";
 
@@ -230,14 +225,49 @@
                 donnees.forEach(function(d) {
                     correspondances[d.code_pneu] = d.hauteur;
                 });
-
-                console.log(correspondances);
             };
 
             requete.send();
         }
-      
-        
+
+        function getCodePneu() {
+            var codePneu = document.getElementById('code-pneu').value;
+            gapi.client.sheets.spreadsheets.values.get({
+                spreadsheetId: '13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA',
+                range: 'Feuille 1!A2:C', 
+            }).then(function(response) {
+                var values = response.result.values;
+                var hauteurPneu = 'Non trouvé';
+                if (values && values.length > 0) {
+                    for (var i = 0; i < values.length; i++) {
+                        var row = values[i];
+                        if (row[0] === codePneu) {
+                            hauteurPneu = row[1];
+                            break;
+                        }
+                    }
+                }
+                document.getElementById('hauteur-pneu').value = hauteurPneu;
+            }, function(response) {
+                console.log('Erreur : ' + response.result.error.message);
+            });
+        }
+
+        function afficherHauteur() {
+            var codePneu = document.getElementById("code-pneu").value;
+            var hauteurPneu = document.getElementById("hauteur-pneu");
+
+            if (correspondances.hasOwnProperty(codePneu)) {
+                hauteurPneu.value = correspondances[codePneu];
+            } else {
+                hauteurPneu.value = "";
+            }
+        }
+
+        window.onload = function() {
+          chargerCorrespondances();
+            gapi.load('client', start);
+        };  
 
        
 //function Envoyer page 3    
