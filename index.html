@@ -272,7 +272,11 @@
         method: "GET",
         dataType: "json",
         data: $form.serializeObject()
-      }).done(function() { // Corrected: Removed extra ')' and added parameter 'response'
+      }).done(function(response) {
+                // Réinitialisez les valeurs des champs de saisie à une chaîne vide
+                $('#code_pneu').val('');
+                $('#hauteur').val('');
+          
         // do something with the response
       });
             // Afficher la bannière pour indiquer l'enregistrement réussi
