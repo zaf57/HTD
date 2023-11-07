@@ -167,3 +167,13 @@ footer p {
     color: black;
 }
 
+input[type="number"],
+select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: orange;
+  background-color: #262323;
+  font-size: 20px;
+}
+
