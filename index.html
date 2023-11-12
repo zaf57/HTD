@@ -346,6 +346,40 @@ clearButton.addEventListener('click', function() {
 });
 
 //fonction keyboards
+$('#hauteur')
+	.keyboard({
+		layout: 'custom',
+		customLayout: {
+			'normal' : [
+				'1 2 3',
+				'4 5 6',
+				'7 8 9',
+				'0 - %2B',
+				'{bksp} {a} {c}'
+			]
+		},
+		maxLength : 6,
+		// Prevent keys not in the displayed keyboard from being typed in
+		restrictInput : true,
+		// include lower case characters (added v1.25.7)
+		restrictInclude: 'a b c d e f',
+		// don't use combos or A+E could become a ligature
+		useCombos : false,
+		// activate the "validate" callback function
+		acceptValid : true,
+    beforeClose: function(e, keyboard, el, accepted) {
+        if (accepted && keyboard.last.key === '{bksp}') {
+            // La touche {bksp} a été utilisée, effacer tout le contenu
+            keyboard.$preview.val('');
+            // Appeler la fonction de validation pour mettre à jour la vue du clavier
+            keyboard.checkValid();
+        }
+    }
+  
+	})
+	.addTyping();
+
+	    //fonction keyboards
 $('#hex')
 	.keyboard({
 		layout: 'custom',
