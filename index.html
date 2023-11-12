@@ -11,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.28.8/js/jquery.keyboard.min.js"></script>
     
 </head>
 <body>
@@ -344,6 +344,40 @@ clearButton.addEventListener('click', function() {
     codePneu.value = "";
     afficherHauteur();
 });
+
+//fonction keyboards
+$('#hex')
+	.keyboard({
+		layout: 'custom',
+		customLayout: {
+			'normal' : [
+				'1 2 3',
+				'4 5 6',
+				'7 8 9',
+				'0 - %2B',
+				'{bksp} {a} {c}'
+			]
+		},
+		maxLength : 6,
+		// Prevent keys not in the displayed keyboard from being typed in
+		restrictInput : true,
+		// include lower case characters (added v1.25.7)
+		restrictInclude: 'a b c d e f',
+		// don't use combos or A+E could become a ligature
+		useCombos : false,
+		// activate the "validate" callback function
+		acceptValid : true,
+    beforeClose: function(e, keyboard, el, accepted) {
+        if (accepted && keyboard.last.key === '{bksp}') {
+            // La touche {bksp} a été utilisée, effacer tout le contenu
+            keyboard.$preview.val('');
+            // Appeler la fonction de validation pour mettre à jour la vue du clavier
+            keyboard.checkValid();
+        }
+    }
+  
+	})
+	.addTyping();
 
 
     </script>
