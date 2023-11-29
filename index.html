@@ -323,6 +323,15 @@
                 douilleResult.value = douilleValue;
             }
         }
+	    function afficherPage2() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+    document.getElementById("page3").style.display = "none";
+    
+    // Ajoutez cette ligne pour calculer la douille directement
+    calculerDouille();
+}
+
       
 // Récupérez tous les boutons numériques et la touche "Effacer"
 var numericButtons = document.querySelectorAll('.numeric-button');
