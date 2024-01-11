@@ -124,7 +124,6 @@
         <div style="display: inline-block;">
             <label for="douille-result">Douille:</label>
             <input type="text" id="douille-result" readonly style="height: 40px;width: 170px;font-size: 20px;text-align: center;margin-bottom: 40px;">
-            <span class="unit">mm</span>
         </div>
         <br><br>
         <img src="https://github.com/zaf57/HTD/blob/main/douille.png?raw=true" alt="Image de votre choix" style="width: 100px; height: auto; margin-left: 131px;margin-top: 0px;">
@@ -320,7 +319,7 @@
                     douilleValue -= 10;
                 }
 
-                douilleResult.value = douilleValue;
+                douilleResult.value = douilleValue + " mm";
             }
         }
 	    function afficherPage2() {
