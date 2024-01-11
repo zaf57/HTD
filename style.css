@@ -80,7 +80,7 @@ select {
         background-color: #262323;
         border-radius: 4px;
         height: 52px;
-        width: 280px;
+        width: 170px;
         text-align: center;
           
         }
@@ -89,10 +89,6 @@ label {
     display: inline-block;
     width: 132px; /* Ajustez la largeur selon vos besoins */
     margin-bottom: 8px;
-}
-.unit {
-    display: inline-block;
-    margin-left: 5px; /* Ajustez la marge selon vos besoins */
 }
 
 input[type="text"] {
