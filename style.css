@@ -22,7 +22,7 @@ button {
   width: 90px;
   padding-left: 0px;
   padding-right: 0px;
-  background: linear-gradient(to bottom, orange, black);
+  background: linear-gradient(to bottom, orange, #201502);
     
 }
 .hide {
@@ -162,7 +162,7 @@ footer p {
     width: 72px;
     height: 53px;
     font-size: 18px;
-    background: linear-gradient(to bottom, orange, black);
+    background: linear-gradient(to bottom, orange, #201502);
     color: black;
 }
 
