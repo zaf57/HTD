@@ -254,6 +254,18 @@
                 hauteurPneu.value = "";
             }
         }
+	    // Ajoutez un gestionnaire d'événements pour les champs de classe "numeric-input"
+$('.numeric-input').on('input', function() {
+    // Remplacez le contenu pour autoriser uniquement les chiffres, "+" et "-"
+    this.value = this.value.replace(/[^0-9+-]/g, '');
+
+    // Validez le motif à l'aide de la fonction checkValidity()
+    if (!this.checkValidity()) {
+        // Affichez un message d'erreur ou effectuez d'autres actions en cas de motif non valide
+        console.log('Valeur non valide');
+    }
+});
+
 
         window.onload = function() {
           chargerCorrespondances();
