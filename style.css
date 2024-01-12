@@ -99,6 +99,7 @@ input[type="text"] {
     color: orange;
     background-color: #262323;
     font-size: 20px;
+    text-align: center;
 }
 .jp-checkbox {
     scale: 2; /* Augmente la taille de la case à cocher */
