@@ -16,11 +16,14 @@
     
 </head>
 <body>
-    <h1>HEIGHT TIRE DETECTOR</h1>
+    <h1></h1>
 
     <div id="page1">
         <!-- Le contenu de la première page -------------------------------------------------------------------------------------------------------------------------------------------------------->
-     
+                 <div class="logo-container">
+        <img class="logo" src="https://raw.githubusercontent.com/zaf57/HTD/main/HTD%20logo.png" alt="Logo de votre site">
+     <h2>Calculer Rolling:</h2>   
+    </div>
       
       <label for="code-pneu">Code Rolling:</label>
         <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 160px;margin-left: 10px;">
@@ -66,7 +69,12 @@
   
     <div id="page2" style="display: none;">
         <!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
-        <label for="extension-input">Extension:</label>
+                    <div class="logo-container">
+        <img class="logo" src="https://raw.githubusercontent.com/zaf57/HTD/main/HTD%20logo.png" alt="Logo de votre site">
+     <h2>Calculer Douille:</h2>   
+    </div>
+	    
+	    <label for="extension-input">Extension:</label>
     <select id="extension-input" onchange="calculerDouille()" style="">
         <option value="490">490</option>
         <option value="480" selected="">480</option>
@@ -131,8 +139,12 @@
 
         <div id="page3" style="display: none;">
         <!-- Le contenu de la troisième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
-        <h1></h1>
-  <form id="test-form">
+                      <div class="logo-container">
+        <img class="logo" src="https://raw.githubusercontent.com/zaf57/HTD/main/HTD%20logo.png" alt="Logo de votre site">
+     <h2>Enregister rolling:</h2>   
+    </div>
+  
+		<form id="test-form">
 
 <label for="code_pneu">Code Rolling:</label>
 <input type="number" name="code_pneu" placeholder="Enregistrer valeur" id="code_pneu" required pattern="[-+]?[0-9]+" class="numeric-input" style="height: 40px; width: 180px;"/>
