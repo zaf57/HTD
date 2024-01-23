@@ -1,3 +1,20 @@
+        
+.logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: ;
+        }
+.logo {
+            width: 100px; 
+            height: auto;
+            margin-right: 10px;
+        }
+h2 {
+            margin : 20px;
+            text-decoration: underline;
+            text-align: ;
+        }
+
 body {
     background-image: url("trace de pneu.png");
     background-repeat: no-repeat;
