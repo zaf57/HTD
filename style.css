@@ -5,9 +5,10 @@
             justify-content: ;
         }
 .logo {
-            width: 100px; 
+            width: 120px; 
             height: auto;
-            margin-right: 10px;
+            margin-right: 0px;
+            margin-bottom: 10px;
         }
 h2 {
             margin : 20px;
