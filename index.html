@@ -153,6 +153,11 @@
 
 <label for="hauteur">Hauteur Rolling:</label>
 <input type="number" name="hauteur" placeholder="Entrez valeur" id="hauteur" required pattern="[-+]?[0-9]+" class="numeric-input" style="height: 40px; width: 180px;" />
+			  
+<select name="plus" id="plus" style="height: 40px; width: 40px;">
+            <option value="+">+</option>
+            <option value="-">-</option>
+        </select>
       
     <br /><br />
 
@@ -299,6 +304,7 @@ $('.numeric-input').on('input', function() {
                 // Réinitialisez les valeurs des champs de saisie à une chaîne vide
                 $('#code_pneu').val('');
                 $('#hauteur').val('');
+	        $('#plus').val('');
           
         // do something with the response
       });
