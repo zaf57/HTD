@@ -215,28 +215,32 @@
             });
         }
 
-        function chargerCorrespondances() {
-            var fichier = "https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/export?format=xlsx";
-            var requete = new XMLHttpRequest();
+       function chargerCorrespondances() {
+       var fichier = "https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/export?format=xlsx";
+       var requete = new XMLHttpRequest();
 
-            requete.open("GET", fichier, true);
-            requete.responseType = "arraybuffer";
+       requete.open("GET", fichier, true);
+       requete.responseType = "arraybuffer";
 
-            requete.onload = function() {
-                var contenu = new Uint8Array(requete.response);
-                var classeur = XLSX.read(contenu, {type: 'array'});
+       requete.onload = function () {
+        var contenu = new Uint8Array(requete.response);
+        var classeur = XLSX.read(contenu, { type: 'array' });
 
-                var feuille = classeur.Sheets[classeur.SheetNames[0]];
-                var donnees = XLSX.utils.sheet_to_json(feuille);
+        var feuille = classeur.Sheets[classeur.SheetNames[0]];
+        var donnees = XLSX.utils.sheet_to_json(feuille);
 
-                correspondances = {};
-                donnees.forEach(function(d) {
-                    correspondances[d.code_pneu] = d.hauteur;
-                });
+        correspondances = {};
+        donnees.forEach(function (d) {
+            correspondances[d.code_pneu] = {
+                hauteur: d.hauteur,
+                plus: d.plus // Assurez-vous que votre fichier Excel a une colonne "plus"
             };
+        });
+         //console.log(correspondances);
+    };
 
-            requete.send();
-        }
+    requete.send();
+}
 
         function getCodePneu() {
             var codePneu = document.getElementById('code-pneu').value;
