@@ -199,6 +199,7 @@ select {
   color: orange;
   background-color: #262323;
   font-size: 20px;
+  text-align: center;
 }
 
 /* Ajouter du contenu personnalisé pour afficher le "+" sur la touche avec la valeur "%2B" */
