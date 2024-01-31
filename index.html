@@ -242,28 +242,33 @@
     requete.send();
 }
 
-        function getCodePneu() {
-            var codePneu = document.getElementById('code-pneu').value;
-            gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: '13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA',
-                range: 'Feuille 1!A2:C', 
-            }).then(function(response) {
-                var values = response.result.values;
-                var hauteurPneu = 'Non trouvé';
-                if (values && values.length > 0) {
-                    for (var i = 0; i < values.length; i++) {
-                        var row = values[i];
-                        if (row[0] === codePneu) {
-                            hauteurPneu = row[1];
-                            break;
-                        }
-                    }
+function getCodePneu() {
+    var codePneu = document.getElementById('code-pneu').value;
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA',
+        range: 'Feuille 1!A2:D', // Mettez à jour la plage pour inclure la colonne "plus"
+    }).then(function(response) {
+        var values = response.result.values;
+        var hauteurPneu = 'Non trouvé';
+        var plusValue = ''; // Ajoutez cette ligne pour récupérer la valeur de la colonne "plus"
+        
+        if (values && values.length > 0) {
+            for (var i = 0; i < values.length; i++) {
+                var row = values[i];
+                if (row[0] === codePneu) {
+                    hauteurPneu = row[1];
+                    plusValue = row[2]; // Mettez à jour l'indice pour la colonne "plus"
+                    break;
                 }
-                document.getElementById('hauteur-pneu').value = hauteurPneu;
-            }, function(response) {
-                console.log('Erreur : ' + response.result.error.message);
-            });
+            }
         }
+        
+        // Mettez à jour la valeur de la case "hauteur-pneu" avec la colonne "plus"
+        document.getElementById('hauteur-pneu').value = hauteurPneu + "  mm (plus: " + plusValue + ")";
+    }, function(response) {
+        console.log('Erreur : ' + response.result.error.message);
+    });
+}
 
         function afficherHauteur() {
             var codePneu = document.getElementById("code-pneu").value;
