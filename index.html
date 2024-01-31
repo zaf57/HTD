@@ -271,15 +271,19 @@ function getCodePneu() {
 }
 
         function afficherHauteur() {
-            var codePneu = document.getElementById("code-pneu").value;
-            var hauteurPneu = document.getElementById("hauteur-pneu");
+    var codePneu = document.getElementById("code-pneu").value;
+    var hauteurPneu = document.getElementById("hauteur-pneu");
 
-            if (correspondances.hasOwnProperty(codePneu)) {
-                hauteurPneu.value = correspondances[codePneu] + "  mm";
-            } else {
-                hauteurPneu.value = "";
-            }
-        }
+    if (correspondances.hasOwnProperty(codePneu)) {
+        var hauteur = correspondances[codePneu].hauteur;
+        var plus = correspondances[codePneu].plus;
+
+        // Afficher la hauteur, la valeur de "plus" (si elle existe) et l'unité dans la même case
+        hauteurPneu.value = hauteur + (plus ? "" + plus : "") + " mm";
+    } else {
+        hauteurPneu.value = "-";
+    }
+}
 	    // Ajoutez un gestionnaire d'événements pour les champs de classe "numeric-input"
 $('.numeric-input').on('input', function() {
     // Remplacez le contenu pour autoriser uniquement les chiffres, "+" et "-"
