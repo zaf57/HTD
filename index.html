@@ -5,7 +5,6 @@
     <link rel="icon" type="image/x-icon" href="htd black.ico">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
@@ -28,8 +27,7 @@
       <label for="code-pneu">Code Rolling:</label>
         <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 160px;margin-left: 10px;">
         
-
-        <br><br>
+<br><br>
 
         <label for="hauteur-pneu">Hauteur Rolling:</label>
         <input type="text" id="hauteur-pneu" readonly="" style="height: 40px;width: 160px;margin-bottom: 55px;margin-left: 10px;">
@@ -64,7 +62,6 @@
         </div>
     </div> 
 
-    
     </div>
   
     <div id="page2" style="display: none;">
@@ -198,9 +195,6 @@
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "block";
         }
-        
- 
-      
         var correspondances = {};
 
         function start() {
@@ -238,10 +232,8 @@
         });
          //console.log(correspondances);
     };
-
-    requete.send();
+requete.send();
 }
-
 function getCodePneu() {
     var codePneu = document.getElementById('code-pneu').value;
     gapi.client.sheets.spreadsheets.values.get({
@@ -262,9 +254,7 @@ function getCodePneu() {
                 }
             }
         }
-        
-        // Mettez à jour la valeur de la case "hauteur-pneu" avec la colonne "plus"
-        document.getElementById('hauteur-pneu').value = hauteurPneu + "  mm (plus: " + plusValue + ")";
+         document.getElementById('hauteur-pneu').value = hauteurPneu + "  mm (plus: " + plusValue + ")";
     }, function(response) {
         console.log('Erreur : ' + response.result.error.message);
     });
@@ -281,29 +271,23 @@ function getCodePneu() {
         // Afficher la hauteur, la valeur de "plus" (si elle existe) et l'unité dans la même case
         hauteurPneu.value = hauteur + (plus ? "" + plus : "") + " mm";
     } else {
-        hauteurPneu.value = "-";
+        hauteurPneu.value = "";
     }
 }
 	    // Ajoutez un gestionnaire d'événements pour les champs de classe "numeric-input"
 $('.numeric-input').on('input', function() {
     // Remplacez le contenu pour autoriser uniquement les chiffres, "+" et "-"
     this.value = this.value.replace(/[^0-9+-]/g, '');
-
-    // Validez le motif à l'aide de la fonction checkValidity()
     if (!this.checkValidity()) {
-        // Affichez un message d'erreur ou effectuez d'autres actions en cas de motif non valide
         console.log('Valeur non valide');
     }
 });
-
-
-        window.onload = function() {
+window.onload = function() {
           chargerCorrespondances();
             gapi.load('client', start);
         };  
 
-       
-//function Envoyer page 3    
+       //function Envoyer page 3    
         var $form = $('form#test-form'),
         url = 'https://script.google.com/macros/s/AKfycby34RasVRKyltXRHjD0bZA7IE1AXakPyhoHJQO7A_QoVP7jc8BvVJ_vythxySdRmv8/exec';
 
@@ -319,8 +303,6 @@ $('.numeric-input').on('input', function() {
                 $('#code_pneu').val('');
                 $('#hauteur').val('');
 	        $('#plus').val('');
-          
-        // do something with the response
       });
             // Afficher la bannière pour indiquer l'enregistrement réussi
             var messageBanner = document.getElementById("message-banner");
@@ -374,13 +356,10 @@ $('.numeric-input').on('input', function() {
     // Ajoutez cette ligne pour calculer la douille directement
     calculerDouille();
 }
-
-      
 // Récupérez tous les boutons numériques et la touche "Effacer"
 var numericButtons = document.querySelectorAll('.numeric-button');
 var clearButton = document.getElementById('clear-button');
 var codePneu = document.getElementById("code-pneu");
-
 // Ajoutez un gestionnaire d'événements clic à chaque bouton numérique
 numericButtons.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -389,83 +368,12 @@ numericButtons.forEach(function(button) {
         afficherHauteur();
     });
 });
-
 // Ajoutez un gestionnaire d'événements clic pour la touche "Effacer"
 clearButton.addEventListener('click', function() {
     // Réinitialisez la valeur du champ "Code Rolling" à une chaîne vide
     codePneu.value = "";
     afficherHauteur();
 });
-
-//fonction keyboards
-/*$('#hex')
-	.keyboard({
-		layout: 'custom',
-		customLayout: {
-			'normal' : [
-				'1 2 3',
-				'4 5 6',
-				'7 8 9',
-				'0 - %2B',
-				'{bksp} {a} {c}'
-			]
-		},
-		maxLength : 6,
-		// Prevent keys not in the displayed keyboard from being typed in
-		restrictInput : true,
-		// include lower case characters (added v1.25.7)
-		restrictInclude: 'a b c d e f',
-		// don't use combos or A+E could become a ligature
-		useCombos : false,
-		// activate the "validate" callback function
-		acceptValid : true,
-    beforeClose: function(e, keyboard, el, accepted) {
-        if (accepted && keyboard.last.key === '{bksp}') {
-            // La touche {bksp} a été utilisée, effacer tout le contenu
-            keyboard.$preview.val('');
-            // Appeler la fonction de validation pour mettre à jour la vue du clavier
-            keyboard.checkValid();
-        }
-    }
-  
-	})
-	.addTyping();
-
-	    //fonction keyboards
-$('#hex')
-	.keyboard({
-		layout: 'custom',
-		customLayout: {
-			'normal' : [
-				'1 2 3',
-				'4 5 6',
-				'7 8 9',
-				'0 - %2B',
-				'{bksp} {a} {c}'
-			]
-		},
-		maxLength : 6,
-		// Prevent keys not in the displayed keyboard from being typed in
-		restrictInput : true,
-		// include lower case characters (added v1.25.7)
-		restrictInclude: 'a b c d e f',
-		// don't use combos or A+E could become a ligature
-		useCombos : false,
-		// activate the "validate" callback function
-		acceptValid : true,
-    beforeClose: function(e, keyboard, el, accepted) {
-        if (accepted && keyboard.last.key === '{bksp}') {
-            // La touche {bksp} a été utilisée, effacer tout le contenu
-            keyboard.$preview.val('');
-            // Appeler la fonction de validation pour mettre à jour la vue du clavier
-            keyboard.checkValid();
-        }
-    }
-  
-	})
-	.addTyping();
-*/
-
     </script>
 </body>
 </html>
