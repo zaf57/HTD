@@ -163,8 +163,6 @@ footer p {
     .input-container {
         width: 100%;
     }
-
-    /* Autres styles spécifiques aux appareils mobiles */
 }
 #numeric-keyboard {
     display: table-cell;
@@ -202,17 +200,5 @@ select {
   text-align: center;
 }
 
-/* Ajouter du contenu personnalisé pour afficher le "+" sur la touche avec la valeur "%2B" */
-.ui-keyboard-button[data-value="%2B"] span {
-    display: block;
-    visibility: hidden; /* Vous pouvez utiliser visibility pour cacher le texte tout en conservant l'espace */
-}
-
-.ui-keyboard-button[data-value="%2B"]::before {
-    content: "+";
-}
-.ui-keyboard-button {
-    height: 39px; /* Ajustez la hauteur selon vos besoins */
-    vertical-align: middle;
 
 
