@@ -203,6 +203,11 @@
             }).then(function () {
                 console.log('API initialized');
                 chargerCorrespondances();
+	// Ajoutez ici le code pour afficher "Prêt" dans la case hauteur-pneu
+        document.getElementById("hauteur-pneu").value = "Prêt";
+        setTimeout(function() {
+            afficherHauteur();
+        }, 10000); // Délai de 100 millisecondes
             }, function (error) {
                 console.log('Error initializing API', error);
             });
