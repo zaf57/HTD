@@ -164,12 +164,32 @@
         <br><br>
     </div>
 
+          <div id="page4" style="display: none;">
+        <!-- Le contenu de la quatrième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+                      <div class="logo-container">
+        <img class="logo" src="htd black.png" alt="HTD">
+     <h2>Anneau de transfert:</h2>   
+    </div>
+ 
+            <br /><br />
+  600-650 (605 max)<br /><br />
+	550-600 (cale de 25 =592)<br /><br />
+  525-575 (cale de 37.5 =567)<br /><br />
+  cale disponible: 0.5, 1, 1.5
+
+    
+        <br /><br />
+
+
+    </div>
+  
     <br><br>
     <div class="button-container-all">
         <div class="button-container">
             <button class="nav-button" onclick="afficherPage1()">./Hauteur</button>
             <button class="nav-button" onclick="afficherPage2()">./Douille</button>
             <button class="nav-button" onclick="afficherPage3()">./Enregistrer</button>
+            <button class="nav-button" onclick="afficherPage4()">./Conf</button>
         </div>
         
         <div id="message-banner" class="message-banner" style="display: none;">
@@ -181,18 +201,27 @@
             document.getElementById("page1").style.display = "block";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "none";
+            document.getElementById("page4").style.display = "none";
         }
 
         function afficherPage2() {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "block";
             document.getElementById("page3").style.display = "none";
+            document.getElementById("page4").style.display = "none";
         }
 
         function afficherPage3() {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "block";
+            document.getElementById("page4").style.display = "none";
+        }
+          function afficherPage4() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "none";
+            document.getElementById("page4").style.display = "block";
         }
         var correspondances = {};
 
