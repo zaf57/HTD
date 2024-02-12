@@ -55,12 +55,12 @@ button {
     /*justify-content: center;  Centre les boutons horizontalement */
     /*align-items: center; /* Centre les boutons verticalement */
     margin-top: 20px; /* Ajoute une marge en haut de 20 pixels */
-    margin-left: 39px;
+    margin-left: 0px;
   }
 .nav-button {
     height: 40px;/* Ajoutez une hauteur fixe aux boutons */
-    /* Vous pouvez ajuster la hauteur selon vos préférences */
-   max-height: 100%; 
+    max-height: 100%;
+    width: 83px;
   }
 .message-banner {
   background-color: green;
