@@ -58,9 +58,10 @@ button {
     margin-left: 0px;
   }
 .nav-button {
-    height: 40px;/* Ajoutez une hauteur fixe aux boutons */
-    max-height: 100%;
-    width: 83px;
+  height: 40px;
+  max-height: 100%;
+  font-size: 14px;
+  width: 83px;
   }
 .message-banner {
   background-color: green;
