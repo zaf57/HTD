@@ -338,9 +338,9 @@ var $form = $('form#test-form'),
         data: $form.serializeObject()
       }).done(function(response) {
                 // Réinitialisez les valeurs des champs de saisie à une chaîne vide
-                $('#code_pneu').val('');
-                $('#hauteur').val('');
-	        $('#plus').val('');
+                // $('#code_pneu').val('');
+                // $('#hauteur').val('');
+	        // $('#plus').val('');
       });
             // Afficher la bannière pour indiquer l'enregistrement réussi
             var messageBanner = document.getElementById("message-banner");
@@ -349,8 +349,15 @@ var $form = $('form#test-form'),
             // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
             setTimeout(function() {
             messageBanner.style.display = "none";
-            }, 3000); // 3000 millisecondes (3 secondes)
-    });
+            }, 800); // 800 millisecondes (1 secondes)
+   
+    // Réinitialiser les champs après un délai supplémentaire (par exemple, 500 millisecondes) pour garantir une réinitialisation plus rapide
+    setTimeout(function() {
+        $('#code_pneu').val('');
+        $('#hauteur').val('');
+        $('#plus').val('');
+    }, 500); // 500 millisecondes
+});
 
 function s2ab(s) {
             var buf = new ArrayBuffer(s.length);
