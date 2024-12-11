@@ -202,16 +202,29 @@ select {
   text-align: center;
 }
 
+.carousel-container {
+    display: flex; /* Aligne les enfants (label et carrousel) sur la même ligne */
+    align-items: center; /* Centre verticalement le label et le carrousel */
+    margin-bottom: 20px; /* Espacement entre les blocs */
+}
+
+.carousel-container label {
+    margin-right: 10px; /* Ajoute un espace entre le label et le carrousel */
+    font-weight: bold; /* Rend le label plus visible */
+    font-size: 18px; /* Ajuste la taille de la police */
+    white-space: nowrap; /* Empêche le label de se diviser sur plusieurs lignes */
+}
+
 .carousel {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+    align-items: center; /* Centre verticalement les boutons et la valeur */
 }
 
 .carousel-value {
     font-size: 24px;
     width: 60px;
     text-align: center;
+    margin: 0 10px; /* Espacement horizontal autour de la valeur */
 }
+
 
