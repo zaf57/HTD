@@ -156,7 +156,8 @@
             <button class="nav-button" onclick="afficherPage1()">./Hauteur</button>
             <button class="nav-button" onclick="afficherPage2()">./Douille</button>
             <button class="nav-button" onclick="afficherPage3()">./Enregistrer</button>
-            <button class="nav-button" onclick="afficherPage4()">./Conf</button>
+            <button class="nav-button" onclick="afficherPage4()">./Vessie</button>
+			<button class="nav-button" onclick="afficherPage5()">./Conf</button>
         </div>
         
         <div id="message-banner" class="message-banner" style="display: none;">
@@ -171,31 +172,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 // Fonction pour afficher la quatrième page
-function afficherPage1() {
+         function afficherPage1() {
             document.getElementById("page1").style.display = "block";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "none";
             document.getElementById("page4").style.display = "none";
+	        document.getElementById("page5").style.display = "none";
         }
 
-        function afficherPage2() {
+         function afficherPage2() {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "block";
             document.getElementById("page3").style.display = "none";
             document.getElementById("page4").style.display = "none";
+			document.getElementById("page5").style.display = "none";
         }
 
-        function afficherPage3() {
+         function afficherPage3() {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "block";
             document.getElementById("page4").style.display = "none";
+			document.getElementById("page5").style.display = "none";
         }
           function afficherPage4() {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "none";
             document.getElementById("page4").style.display = "block";
+			document.getElementById("page5").style.display = "none";
+        }
+	     function afficherPage5() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "none";
+            document.getElementById("page4").style.display = "none";
+			document.getElementById("page5").style.display = "block";
         }
 var correspondances = {};
 
@@ -425,3 +437,4 @@ clearButton.addEventListener('click', function() {
     </script>
 </body>
 </html>
+
