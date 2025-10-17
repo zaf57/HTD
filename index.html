@@ -247,7 +247,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 // Fonction pour afficher la quatrième page
-         function afficherPage1() {
+    function afficherPage(pageNumber) {
+		for(let i=1; i <=5; i++) {
+		document.getElementById("page" + i).style.display=(i===pageNumber)? "block":"none";
+	}
+	}
+	
+	function afficherPage1() {
             document.getElementById("page1").style.display = "block";
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "none";
@@ -515,6 +521,7 @@ clearButton.addEventListener('click', function() {
     </script>
 </body>
 </html>
+
 
 
 
