@@ -130,6 +130,80 @@
         <br><br>
     </div>
 
+
+<div id="page4" style="display: none;">
+	<!-- Le contenu de la 4eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD">
+    <h2>Type Vessie:</h2>
+  </div>
+
+  <div id="table-container">Chargement des données...</div>
+
+  <style>
+    /* Style moderne pour le tableau */
+    #table-container table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    #table-container th, #table-container td {
+      border: 1px solid #ddd;
+      padding: 10px 15px;
+      text-align: left;
+    }
+    #table-container th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    #table-container tr:hover {
+      background-color: #f0f8ff;
+    }
+  </style>
+
+  <script>
+    const sheetCsvUrl =
+      "https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/export?format=csv&gid=0";
+
+    function parseCsvToArray(csvText) {
+      const rows = csvText.trim().split("\n");
+      return rows.map(row => row.split(",").map(cell => cell.trim()));
+    }
+
+    function buildHtmlTable(dataArray) {
+      if (!dataArray || dataArray.length === 0) return "<p>Aucune donnée disponible.</p>";
+
+      let html = "<table><thead><tr>";
+      html += `<th>${dataArray[0][0] || ""}</th>`;
+      html += `<th>${dataArray[0][1] || ""}</th>`;
+      html += "</tr></thead><tbody>";
+
+      for (let i = 1; i < dataArray.length; i++) {
+        const row = dataArray[i];
+        if (row.length >= 2) html += `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`;
+      }
+
+      html += "</tbody></table>";
+      return html;
+    }
+
+    fetch(sheetCsvUrl)
+      .then(res => res.text())
+      .then(csv => {
+        const data = parseCsvToArray(csv);
+        document.getElementById("table-container").innerHTML = buildHtmlTable(data);
+      })
+      .catch(err => {
+        console.error("Erreur :", err);
+        document.getElementById("table-container").innerHTML = "<p>Erreur de chargement.</p>";
+      });
+  </script>
+</div>
+
+	
           <div id="page5" style="display: none;">
         <!-- Le contenu de la 5eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
                       <div class="logo-container">
@@ -437,5 +511,6 @@ clearButton.addEventListener('click', function() {
     </script>
 </body>
 </html>
+
 
 
