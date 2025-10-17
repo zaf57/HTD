@@ -227,11 +227,11 @@
     <br><br>
     <div class="button-container-all">
         <div class="button-container">
-            <button class="nav-button" onclick="afficherPage(0)">./Hauteur</button>
-            <button class="nav-button" onclick="afficherPage(1)">./Douille</button>
-            <button class="nav-button" onclick="afficherPage(2)">./Enregistrer</button>
-            <button class="nav-button" onclick="afficherPage(3)">./Vessie</button>
-            <button class="nav-button" onclick="afficherPage(4)">./Conf</button>
+            <button class="nav-button" onclick="afficherPage(1)">./Hauteur</button>
+            <button class="nav-button" onclick="afficherPage(2)">./Douille</button>
+            <button class="nav-button" onclick="afficherPage(3)">./Enregistrer</button>
+            <button class="nav-button" onclick="afficherPage(4)">./Vessie</button>
+            <button class="nav-button" onclick="afficherPage(5)">./Conf</button>
 
         </div>
         
@@ -511,51 +511,12 @@ clearButton.addEventListener('click', function() {
 });
 
 	__________SWIPE PAGE______________
-	let touchStartX = 0;
-let touchEndX = 0;
 
-// Tableau des IDs des pages dans l'ordre
-const pages = ["page1", "page2", "page3", "page4", "page5"];
-let currentIndex = 0;
-
-function afficherPage(index) {
-    pages.forEach((id, i) => {
-        document.getElementById(id).style.display = (i === index) ? "block" : "none";
-    });
-    currentIndex = index;
-}
-
-// Détecter le début du touch
-document.addEventListener('touchstart', function(event) {
-    touchStartX = event.changedTouches[0].screenX;
-}, false);
-
-// Détecter la fin du touch
-document.addEventListener('touchend', function(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    handleGesture();
-}, false);
-
-function handleGesture() {
-    const threshold = 50;
-    if (touchEndX < touchStartX - threshold) {
-        // Swipe gauche → page suivante
-        let nextIndex = (currentIndex + 1) % pages.length;
-        afficherPage(nextIndex);
-    }
-    if (touchEndX > touchStartX + threshold) {
-        // Swipe droite → page précédente
-        let prevIndex = (currentIndex - 1 + pages.length) % pages.length;
-        afficherPage(prevIndex);
-    }
-}
-
-// Initialiser la première page visible
-showPage(0);
 	
     </script>
 </body>
 </html>
+
 
 
 
