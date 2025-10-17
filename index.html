@@ -227,11 +227,12 @@
     <br><br>
     <div class="button-container-all">
         <div class="button-container">
-            <button class="nav-button" onclick="afficherPage1()">./Hauteur</button>
-            <button class="nav-button" onclick="afficherPage2()">./Douille</button>
-            <button class="nav-button" onclick="afficherPage3()">./Enregistrer</button>
-            <button class="nav-button" onclick="afficherPage4()">./Vessie</button>
-			<button class="nav-button" onclick="afficherPage5()">./Conf</button>
+            <button class="nav-button" onclick="afficherPage(0)">./Hauteur</button>
+            <button class="nav-button" onclick="afficherPage(1)">./Douille</button>
+            <button class="nav-button" onclick="afficherPage(2)">./Enregistrer</button>
+            <button class="nav-button" onclick="afficherPage(3)">./Vessie</button>
+            <button class="nav-button" onclick="afficherPage(4)">./Conf</button>
+
         </div>
         
         <div id="message-banner" class="message-banner" style="display: none;">
@@ -536,16 +537,16 @@ document.addEventListener('touchend', function(event) {
 }, false);
 
 function handleGesture() {
-    const threshold = 50; // distance minimale pour considérer le swipe
+    const threshold = 50;
     if (touchEndX < touchStartX - threshold) {
         // Swipe gauche → page suivante
         let nextIndex = (currentIndex + 1) % pages.length;
-        showPage(nextIndex);
+        afficherPage(nextIndex);
     }
     if (touchEndX > touchStartX + threshold) {
         // Swipe droite → page précédente
         let prevIndex = (currentIndex - 1 + pages.length) % pages.length;
-        showPage(prevIndex);
+        afficherPage(prevIndex);
     }
 }
 
@@ -555,6 +556,7 @@ showPage(0);
     </script>
 </body>
 </html>
+
 
 
 
