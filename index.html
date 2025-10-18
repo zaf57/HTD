@@ -516,11 +516,56 @@ clearButton.addEventListener('click', function() {
     afficherHauteur();
 });
 
+//SWIPE CODE
+  let currentPage = 1;
+const totalPages = 5;
 
+// Quand on change de page via les boutons existants :
+function afficherPage(pageNumber) {
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+    currentPage = pageNumber;
+}
+
+// Gestion du swipe tactile
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50; // distance minimale du glissement
+
+document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const diff = touchEndX - touchStartX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff < 0) {
+            // Swipe gauche → page suivante
+            if (currentPage < totalPages) {
+                currentPage++;
+                afficherPage(currentPage);
+            }
+        } else {
+            // Swipe droite → page précédente
+            if (currentPage > 1) {
+                currentPage--;
+                afficherPage(currentPage);
+            }
+        }
+    }
+}
 	
     </script>
 </body>
 </html>
+
 
 
 
