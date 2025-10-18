@@ -227,4 +227,11 @@ select {
     margin: 0 10px; /* Espacement horizontal autour de la valeur */
 }
 
+.nav-button.active-button {
+  background-color: #333;     /* Couleur de fond du bouton actif */
+  color: #fff;                /* Couleur du texte */
+  border: 2px solid #fff;     /* Optionnel : petit contour blanc */
+  transition: all 0.2s ease;  /* Animation douce */
+}
+
 
