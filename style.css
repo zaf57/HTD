@@ -277,7 +277,7 @@ select {
   width: 160px;
   height: auto;
   border-radius: 10px;
-  border: 2px solid #ccc;
+  border: 0px solid #ccc;
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
   user-select: none;
 }
@@ -288,5 +288,6 @@ select {
   font-weight: bold;
   color: #fff;
 }
+
 
 
