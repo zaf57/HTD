@@ -561,10 +561,32 @@ function handleSwipe() {
         }
     }
 }
+
+	//couleur bouton
+  function afficherPage(pageNumber) {
+    // Afficher la bonne page
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+
+    // Mettre à jour la page courante
+    currentPage = pageNumber;
+
+    // Gérer la couleur active des boutons
+    const buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach((btn, index) => {
+        if (index + 1 === pageNumber) {
+            btn.classList.add('active-button');
+        } else {
+            btn.classList.remove('active-button');
+        }
+    });
+}
 	
     </script>
 </body>
 </html>
+
 
 
 
