@@ -20,13 +20,13 @@ body {
     background-image: url("trace de pneu.png");
     background-repeat: no-repeat;
     background-color: black;
-    color: orange;
+    color: #ffa500;
     font-family: Arial, sans-serif;
     margin: 10px;
 }
 
 button {
-  background-color: orange;
+  background-color: #ffa500;
   color: black;
   padding: 10px 20px;
   border: none;
@@ -40,7 +40,7 @@ button {
   width: 85px;
   padding-left: 0px;
   padding-right: 0px;
-  background: linear-gradient(to bottom, orange, #201502);
+  background: linear-gradient(to bottom, #ffa500, #201502);
     
 }
 .hide {
@@ -85,7 +85,7 @@ button {
 }
 
 h1 {
-    color: orange;
+    color: #ffa500;
     font-size: 30px;
 }
 
@@ -95,7 +95,7 @@ label {
     font-weight: bold;
 }
 select {
-        color: orange;
+        color: #ffa500;
         font-size: 20px;
         background-color: #262323;
         border-radius: 4px;
@@ -116,7 +116,7 @@ input[type="text"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: orange;
+    color: #ffa500;
     background-color: #262323;
     font-size: 20px;
     text-align: center;
@@ -146,7 +146,7 @@ input[readonly] {
 footer {
     text-align: left;
     background-color: #000;
-    color: orange;
+    color: #ffa500;
     padding: 20px;
     font-size: 10px;
 }
@@ -182,12 +182,12 @@ footer p {
     width: 72px;
     height: 53px;
     font-size: 18px;
-    background: linear-gradient(to bottom, orange, #201502);
+    background: linear-gradient(to bottom, #ffa500, #201502);
     color: black;
 }
 
 #clear-button {
-    background-color: orange; /* Couleur de la touche Effacer */
+    background-color: #ffa500; /* Couleur de la touche Effacer */
     color: black;
 }
 
@@ -196,7 +196,7 @@ select {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  color: orange;
+  color: #ffa500;
   background-color: #262323;
   font-size: 20px;
   text-align: center;
@@ -288,6 +288,7 @@ select {
   font-weight: bold;
   color: #fff;
 }
+
 
 
 
