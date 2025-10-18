@@ -57,47 +57,60 @@
 
     </div>
   
-    <div id="page2" style="display: none;">
-        <!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
-                    <div class="logo-container">
-        <img class="logo" src="htd black.png" alt="HTD"/>
-     <h2>Calculer Douille:</h2>   
-    </div>
-	    
-	    <div class="carousel-container">
+<!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+                    <div id="page2" style="display: none;">
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD"/>
+    <h2>Calculer Douille:</h2>
+  </div>
+
+  <!-- SECTION EXTENSION -->
+  <div class="carousel-container">
     <label for="extension-input">Extension:</label>
     <div class="carousel">
-        <button onclick="prevExtension()">-10</button>
+      <div class="carousel-display" id="extension-carousel">
+        <img id="extension-image" src="480.png" alt="Extension" class="carousel-img">
         <div id="extension-value" class="carousel-value">480</div>
-        <button onclick="nextExtension()">+10</button>
+      </div>
+      <div class="carousel-buttons">
+        <button onclick="nextExtension()">▲</button>
+        <button onclick="prevExtension()">▼</button>
+      </div>
     </div>
-</div>
+  </div>
 
-<br><br>
+  <br><br>
 
-<div class="carousel-container">
+  <!-- SECTION GALBAGE -->
+  <div class="carousel-container">
     <label for="galbage-input">Galbage:</label>
     <div class="carousel">
-        <button onclick="prevGalbage()">-5</button>
+      <div class="carousel-display" id="galbage-carousel">
+        <img id="galbage-image" src="280.png" alt="Galbage" class="carousel-img">
         <div id="galbage-value" class="carousel-value">280</div>
-        <button onclick="nextGalbage()">+5</button>
+      </div>
+      <div class="carousel-buttons">
+        <button onclick="nextGalbage()">▲</button>
+        <button onclick="prevGalbage()">▼</button>
+      </div>
     </div>
+  </div>
+
+  <br><br>
+
+  <div style="display: inline-block;">
+    <label for="jp-checkbox">Anneau JP:</label>
+    <input type="checkbox" id="jp-checkbox" class="jp-checkbox" onchange="calculerDouille()" style="margin-left: 7px;margin-bottom: 25px;margin-top: 15px;">
+  </div>
+
+  <div style="display: block;">
+    <label for="douille-result">Douille:</label>
+    <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
+  </div>
+
+  <br>
+  <img src="https://github.com/zaf57/HTD/blob/main/douille.png?raw=true" alt="Image Douille" style="width: 140px; height: auto; margin-left: 118px;margin-top: 0px;">
 </div>
-
-        <br>
-
-        <div style="display: inline-block;">
-            <label for="jp-checkbox">Anneau JP:</label>
-            <input type="checkbox" id="jp-checkbox" class="jp-checkbox" onchange="calculerDouille()"style="margin-left: 7px;margin-bottom: 25px;margin-top: 15px;">
-        </div>
-
-        <div style="display: block;">
-            <label for="douille-result">Douille:</label>
-            <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
-        </div>
-        <br>
-        <img src="https://github.com/zaf57/HTD/blob/main/douille.png?raw=true" alt="Image de votre choix" style="width: 140px; height: auto; margin-left: 118px;margin-top: 0px;">
-    </div>
 
         <div id="page3" style="display: none;">
         <!-- Le contenu de la troisième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -441,14 +454,18 @@ function s2ab(s) {
         let galbageIndex = galbageValues.indexOf(280); // Index initial
 
         function updateExtension() {
-            document.getElementById('extension-value').textContent = extensionValues[extensionIndex];
-            calculerDouille();
-        }
+  const val = extensionValues[extensionIndex];
+  document.getElementById('extension-value').textContent = val;
+  document.getElementById('extension-image').src = val + ".png";
+  calculerDouille();
+}
 
-        function updateGalbage() {
-            document.getElementById('galbage-value').textContent = galbageValues[galbageIndex];
-            calculerDouille();
-        }
+function updateGalbage() {
+  const val = galbageValues[galbageIndex];
+  document.getElementById('galbage-value').textContent = val;
+  document.getElementById('galbage-image').src = val + ".png";
+  calculerDouille();
+}
 
         function prevExtension() {
             extensionIndex = (extensionIndex > 0) ? extensionIndex - 1 : extensionValues.length - 1;
@@ -515,6 +532,9 @@ clearButton.addEventListener('click', function() {
     codePneu.value = "";
     afficherHauteur();
 });
+	// Initialisation
+updateExtension();
+updateGalbage();
 
 //SWIPE CODE
   let currentPage = 1;
@@ -586,6 +606,7 @@ function handleSwipe() {
     </script>
 </body>
 </html>
+
 
 
 
