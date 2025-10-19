@@ -296,7 +296,7 @@ select {
 }
 
 .extension-buttons button {
-  background-color: #005f99;
+  background-color: #ffa500;
   color: white;
 }
 .extension-buttons button:hover {
@@ -394,6 +394,7 @@ select {
 .switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 
 
