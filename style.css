@@ -209,7 +209,7 @@ select {
 }
 
 .carousel-container label {
-    margin-right: 10px; /* Ajoute un espace entre le label et le carrousel */
+    margin-right: 15px; /* Ajoute un espace entre le label et le carrousel */
     font-weight: bold; /* Rend le label plus visible */
     font-size: 18px; /* Ajuste la taille de la police */
     white-space: nowrap; /* Empêche le label de se diviser sur plusieurs lignes */
@@ -292,7 +292,7 @@ select {
   width: 130px;
   height: auto;
   border-radius: 10px;
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 .extension-buttons button {
@@ -336,6 +336,7 @@ select {
   background-color: #7e7e7e;
 }
 }
+
 
 
 
