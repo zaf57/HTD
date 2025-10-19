@@ -64,37 +64,36 @@
     <h2>Calculer Douille:</h2>
   </div>
 
-  <!-- SECTION EXTENSION -->
-  <div class="carousel-container">
-    <label for="extension-input">Extension:</label>
-    <div class="carousel">
-      <div class="carousel-display" id="extension-carousel">
-        <img id="extension-image" src="480.png" alt="Extension" class="carousel-img">
-        <div id="extension-value" class="carousel-value" style="display: none;" >480</div>
-      </div>
-      <div class="carousel-buttons">
-        <button onclick="nextExtension()">▲+10</button>
-        <button onclick="prevExtension()">▼-10</button>
-      </div>
+<!-- SECTION EXTENSION -->
+<div class="carousel-container extension-carousel">
+  <label for="extension-input">Extension:</label>
+  <div class="carousel">
+    <div class="carousel-display" id="extension-carousel">
+      <img id="extension-image" src="480.png" alt="Extension" class="carousel-img extension-img">
+      <div id="extension-value" class="carousel-value extension-value">480</div>
+    </div>
+    <div class="carousel-buttons extension-buttons">
+      <button onclick="nextExtension()">▲+10</button>
+      <button onclick="prevExtension()">▼-10</button>
     </div>
   </div>
+</div>
 
-  <br><br>
-
-  <!-- SECTION GALBAGE -->
-  <div class="carousel-container">
-    <label for="galbage-input">Galbage:</label>
-    <div class="carousel">
-      <div class="carousel-display" id="galbage-carousel">
-        <img id="galbage-image" src="280.png" alt="Galbage" class="carousel-img">
-        <div id="galbage-value" class="carousel-value" style="display: none;" >280</div>
-      </div>
-      <div class="carousel-buttons">
-        <button onclick="nextGalbage()">▲+5</button>
-        <button onclick="prevGalbage()">▼-5</button>
-      </div>
+<!-- SECTION GALBAGE -->
+<div class="carousel-container galbage-carousel">
+  <label for="galbage-input">Galbage:</label>
+  <div class="carousel">
+    <div class="carousel-display" id="galbage-carousel">
+      <img id="galbage-image" src="280.png" alt="Galbage" class="carousel-img galbage-img">
+      <div id="galbage-value" class="carousel-value galbage-value">280</div>
+    </div>
+    <div class="carousel-buttons galbage-buttons">
+      <button onclick="nextGalbage()">▲+5</button>
+      <button onclick="prevGalbage()">▼-5</button>
     </div>
   </div>
+</div>
+
 
   <br><br>
 
@@ -606,6 +605,7 @@ function handleSwipe() {
     </script>
 </body>
 </html>
+
 
 
 
