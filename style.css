@@ -345,7 +345,8 @@ select {
   margin: 20px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #000;
+  color: #ffa500;
+  font-weight: bold;
 }
 
 .switch {
@@ -393,6 +394,7 @@ select {
 .switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 
 
