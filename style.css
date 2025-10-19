@@ -234,6 +234,9 @@ select {
   transition: all 0.2s ease;  /* Animation douce */
 }
 
+
+
+        
 .carousel-container {
   //text-align: center;
   margin-bottom: 0px;
@@ -273,21 +276,64 @@ select {
   background-color: #444;
 }
 
-.carousel-img {
-  width: 100px;
-  height: auto;
-  border-radius: 10px;
-  border: 0px solid #ccc;
-  box-shadow: 0 0 8px rgba(0,0,0,0.3);
-  user-select: none;
-}
-
 .carousel-value {
   margin-top: 8px;
   font-size: 18px;
   font-weight: bold;
   color: #fff;
 }
+
+ .extension-carousel label {
+  color: #66ccff;
+  font-weight: 600;
+}
+
+.extension-img {
+  width: 160px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #66ccff;
+  box-shadow: 0 0 8px rgba(102, 204, 255, 0.5);
+}
+
+.extension-buttons button {
+  background-color: #005f99;
+  color: white;
+}
+.extension-buttons button:hover {
+  background-color: #0088cc;
+}
+
+.extension-value {
+  color: #66ccff;
+}
+
+        .galbage-carousel label {
+  color: #ffcc66;
+  font-weight: 600;
+}
+
+.galbage-img {
+  width: 160px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #ffcc66;
+  box-shadow: 0 0 8px rgba(255, 204, 102, 0.5);
+}
+
+.galbage-buttons button {
+  background-color: #b37400;
+  color: white;
+}
+.galbage-buttons button:hover {
+  background-color: #e6a400;
+}
+
+.galbage-value {
+  color: #ffcc66;
+}
+
+
 
 
 
