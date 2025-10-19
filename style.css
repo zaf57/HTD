@@ -292,6 +292,7 @@ select {
   width: 130px;
   height: auto;
   border-radius: 10px;
+  margin-right: 20px;
 }
 
 .extension-buttons button {
@@ -328,6 +329,7 @@ select {
 .galbage-value {
   color: ;
 }
+
 
 
 
