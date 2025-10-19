@@ -289,7 +289,7 @@ select {
 }
 
 .extension-img {
-  width: 100px;
+  width: 130px;
   height: auto;
   border-radius: 10px;
   border: 2px solid #66ccff;
@@ -332,6 +332,7 @@ select {
 .galbage-value {
   color: #ffcc66;
 }
+
 
 
 
