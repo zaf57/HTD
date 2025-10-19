@@ -305,6 +305,9 @@ select {
 
 .extension-value {
   color: ;
+  margin-top: -101px;
+  margin-bottom: 89px;
+  background-color: #7e7e7e;
 }
 
 .galbage-carousel label {
@@ -328,7 +331,12 @@ select {
 
 .galbage-value {
   color: ;
+  margin-top: -85px;
+  margin-bottom: 38px;
+  background-color: #7e7e7e;
 }
+}
+
 
 
 
