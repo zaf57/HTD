@@ -494,6 +494,7 @@ function updateGalbage() {
 
             if (extensionValue - galbageValue > 205) {
                 douilleResult.value = "⚠ Augmenter Galbage!";
+				douilleResult.style.color = "red";
             } else {
                 var a = -1; // Coefficient de régression linéaire pour extension
                 var b = 1;  // Coefficient pour galbage
@@ -506,6 +507,7 @@ function updateGalbage() {
                 }
 
                 douilleResult.value = douilleValue + " mm";
+				douilleResult.style.color = "#ffa500";
             }
         }
 
@@ -605,6 +607,7 @@ function handleSwipe() {
     </script>
 </body>
 </html>
+
 
 
 
