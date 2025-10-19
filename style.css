@@ -5,7 +5,7 @@
             justify-content: ;
         }
 .logo {
-            width: 120px; 
+            width: 100px; 
             height: auto;
             margin-right: 0px;
             margin-bottom: 30px;
@@ -394,6 +394,7 @@ select {
 .switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 
 
