@@ -97,11 +97,14 @@
 
   <br><br>
 
-  <div style="display: inline-block;">
-    <label for="jp-checkbox">Anneau JP:</label>
-    <input type="checkbox" id="jp-checkbox" class="jp-checkbox" onchange="calculerDouille()" style="margin-left: 7px;margin-bottom: 25px;margin-top: 15px;">
-  </div>
-
+<div class="switch-container">
+  <span class="switch-label">Anneau JP:</span>
+  <label class="switch">
+    <input type="checkbox" id="jp-checkbox" onchange="calculerDouille()">
+    <span class="slider"></span>
+  </label>
+</div>
+  
   <div style="display: block;">
     <label for="douille-result">Douille:</label>
     <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
@@ -607,6 +610,7 @@ function handleSwipe() {
     </script>
 </body>
 </html>
+
 
 
 
