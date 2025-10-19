@@ -52,16 +52,16 @@ button {
 .button-container-all {
     height: 40px;
     display: flex; /* Utilisez le modèle de disposition flexbox */
-    /*justify-content: center;  Centre les boutons horizontalement */
-    /*align-items: center; /* Centre les boutons verticalement */
-    margin-top: 20px; /* Ajoute une marge en haut de 20 pixels */
+    justify-content: center;  Centre les boutons horizontalement */
+    align-items: center; /* Centre les boutons verticalement */
+    margin-top: 0px; /* Ajoute une marge en haut de 20 pixels */
     margin-left: 0px;
   }
 .nav-button {
   height: 40px;
   max-height: 100%;
   font-size: 15px;
-  width: 81px;
+  width: 70px;
   margin-right: 0px;
   }
 .message-banner {
@@ -394,6 +394,7 @@ select {
 .switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 
 
