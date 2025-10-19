@@ -235,7 +235,7 @@ select {
 }
 
 .carousel-container {
-  text-align: center;
+  //text-align: center;
   margin-bottom: 0px;
 }
 
@@ -288,6 +288,7 @@ select {
   font-weight: bold;
   color: #fff;
 }
+
 
 
 
