@@ -401,9 +401,9 @@ select {
   background: #ffa500;
   color: black;
   border: none;
-  border-radius: 50%;
+  border-radius: 23px;
   font-size: 20px;
-  padding: 6px 10px;
+  padding:;
   cursor: pointer;
   transition: all 0.2s;
   background: linear-gradient(to bottom, #ffa500, #201502);
@@ -413,6 +413,7 @@ select {
   background: #ffa500;
   transform: scale(1.1);
 }
+
 
 
 
