@@ -398,7 +398,7 @@ select {
 }
 
 #voice-btn {
-  background: #ffa500;
+  /*background: #ffa500;*/
   color: black;
   border: none;
   border-radius: 23px;
@@ -416,9 +416,9 @@ select {
 
         /* --- Animation de clignotement --- */
 @keyframes mic-blink {
-  0% { background-color: #ff5722; box-shadow: 0 0 5px #ff5722; }
-  50% { background-color: #ff3d00; box-shadow: 0 0 15px #ff3d00; }
-  100% { background-color: #ff5722; box-shadow: 0 0 5px #ff5722; }
+  0% { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
+  50% { background-color: #66bb6a; box-shadow: 0 0 15px #66bb6a; }
+  100% { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
 }
 
 /* Quand le micro écoute */
@@ -426,6 +426,7 @@ select {
   animation: mic-blink 1s infinite ease-in-out;
   transform: scale(1.1);
 }
+
 
 
 
