@@ -619,6 +619,7 @@ function handleSwipe() {
 // --- Commande vocale pour le champ Code Rolling ---
 const voiceBtn = document.getElementById("voice-btn");
 const codeInput = document.getElementById("code-pneu");
+const hauteurInput = document.getElementById("hauteur-pneu");
 
 if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -645,6 +646,32 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     if (cleanNumber) {
       codeInput.value = cleanNumber;
       afficherHauteur();
+
+
+
+setTimeout(() => {
+        const hauteur = hauteurInput.value;
+        if (hauteur) {
+          // 🔊 Retour vocal
+          const msg = new SpeechSynthesisUtterance(` ${hauteur}`);
+          msg.lang = "fr-FR";
+          msg.rate = 1; // vitesse
+          msg.pitch = 1.1;
+          window.speechSynthesis.speak(msg);
+        }
+      }, 500);
+
+    } else {
+      const msg = new SpeechSynthesisUtterance("Je n’ai pas compris un nombre, peux-tu répéter ?");
+      msg.lang = "fr-FR";
+      window.speechSynthesis.speak(msg);
+    }
+
+
+
+
+		
+		
     } else {
       alert("Je n’ai pas compris un nombre !");
     }
@@ -678,6 +705,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
