@@ -274,7 +274,7 @@ function showSlide3D(index){
     let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
 
     if(offset === 0){
-      scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10; // centrale
+      scale = 1.2; x = 0; rotateY = 0; opacity = 1; zIndex = 10; // centrale
     } else if(Math.abs(offset) === 1){
       scale = 0.8; x = offset * 120; rotateY = offset * -20; opacity = 0.6; zIndex = 8; // côtés
     } else {
@@ -797,6 +797,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
