@@ -242,19 +242,14 @@ function showSlide3D(index){
 
     let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
 
-    if(offset === 0){
-      scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10;
-    } else if(Math.abs(offset) === 1){
-      scale = 0.8; x = offset * 120; rotateY = offset * -30; opacity = 0.7; zIndex = 8;
-    } else if(Math.abs(offset) === 2){
-      scale = 0.65; x = offset * 200; rotateY = offset * -25; opacity = 0.5; zIndex = 6;
-    } else if(Math.abs(offset) === 3){
-      scale = 0.55; x = offset * 280; rotateY = offset * -20; opacity = 0.35; zIndex = 4;
-    } else if(Math.abs(offset) === 4){
-      scale = 0.45; x = offset * 360; rotateY = offset * -15; opacity = 0.2; zIndex = 2;
-    } else {
-      scale = 0.4; x = offset * 400; rotateY = 0; opacity = 0; zIndex = 1;
-    }
+if(offset === 0){
+  scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10;
+} else if(Math.abs(offset) === 1){
+  scale = 0.8; x = offset * 120; rotateY = offset * -30; opacity = 0.7; zIndex = 8;
+} else {
+  scale = 0.5; x = 0; rotateY = 0; opacity = 0; zIndex = 1;
+}
+
 
     slide.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale}) rotateY(${rotateY}deg)`;
     slide.style.zIndex = zIndex;
@@ -768,6 +763,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
