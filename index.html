@@ -65,7 +65,7 @@
     </div> 
 <button id="voice-btn" title="Dicter le code" style="margin-left: 132px;
   margin-top: 23px;">🎙️</button>
-		<button id="voice-toggle">🔇 Off</button>
+		<button id="voice-toggle">🔇</button>
     </div>
   
 <!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
@@ -628,7 +628,7 @@ updateVoiceButton();
 
 // --- Fonctions On/Off ---
 function updateVoiceButton() {
-  voiceToggle.textContent = voiceEnabled ? "🔊 Son On" : "🔇 Son Off";
+  voiceToggle.textContent = voiceEnabled ? "🔊" : "🔇";
 }
 voiceToggle.addEventListener("click", () => {
   voiceEnabled = !voiceEnabled;
@@ -712,6 +712,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
