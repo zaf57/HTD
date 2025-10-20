@@ -635,7 +635,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
       recognition.start();
       isListening = true;
       voiceBtn.textContent = "🎙️";
-      voiceBtn.classList.add("listening"); // 🔥 ajoute l'effet clignotant
+      voiceBtn.classList.add("listening");
     }
   });
 
@@ -647,51 +647,55 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
       codeInput.value = cleanNumber;
       afficherHauteur();
 
-
-
-setTimeout(() => {
+      setTimeout(() => {
         const hauteur = hauteurInput.value;
         if (hauteur) {
-          // 🔊 Retour vocal
-          const msg = new SpeechSynthesisUtterance(` ${hauteur}`);
-          msg.lang = "fr-FR";
-          msg.rate = 1; // vitesse
-          msg.pitch = 1.1;
-          window.speechSynthesis.speak(msg);
+          speakHeight(hauteur);
         }
       }, 500);
 
     } else {
-      const msg = new SpeechSynthesisUtterance("Je n’ai pas compris un nombre, peux-tu répéter ?");
-      msg.lang = "fr-FR";
-      window.speechSynthesis.speak(msg);
-    }
-
-
-
-
-		
-		
-    } else {
-      alert("Je n’ai pas compris un nombre !");
+      speakText("Je n’ai pas compris un nombre, peux-tu répéter ?");
     }
 
     resetMic();
   };
 
   recognition.onerror = () => {
-    alert("Erreur : impossible d’utiliser le micro.");
+    speakText("Erreur du micro, vérifie les permissions.");
     resetMic();
   };
 
-  recognition.onend = () => {
-    resetMic(); // 🔧 important pour Chrome quand aucun son n'est entendu
-  };
+  recognition.onend = resetMic;
 
   function resetMic() {
     voiceBtn.textContent = "🎙️";
     voiceBtn.classList.remove("listening");
     isListening = false;
+  }
+
+  // 🔊 Fonction pour parler avec voix masculine si possible
+  function speakHeight(text) {
+    const msg = new SpeechSynthesisUtterance(` ${text}`);
+    msg.lang = "fr-FR";
+    msg.rate = 1;
+    msg.pitch = 1;
+
+    // Sélection automatique d'une voix masculine si disponible
+    const voices = window.speechSynthesis.getVoices();
+    const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
+    if (maleVoice) msg.voice = maleVoice;
+
+    window.speechSynthesis.speak(msg);
+  }
+
+  function speakText(text) {
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "fr-FR";
+    const voices = window.speechSynthesis.getVoices();
+    const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
+    if (maleVoice) msg.voice = maleVoice;
+    window.speechSynthesis.speak(msg);
   }
 
 } else {
@@ -705,6 +709,7 @@ setTimeout(() => {
     </script>
 </body>
 </html>
+
 
 
 
