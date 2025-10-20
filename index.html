@@ -167,31 +167,63 @@
     <h2>Type Vessie:</h2>
   </div>
 
-  <div class="carousel3d-container" style="position:relative; width: 400px; height: 300px; margin: auto; perspective: 1000px;">
-    <div id="carousel3d" style="width:100%; height:100%; position:relative; transform-style: preserve-3d;">
-      <!-- Slides générées par JS -->
-    </div>
+  <div class="carousel3d-container" style="position:relative; width:400px; height:300px; margin:auto; perspective:1000px;">
+    <div id="carousel3d" style="width:100%; height:100%; position:relative; transform-style: preserve-3d;"></div>
 
-    <div class="carousel-buttons-below">
-      <button id="prev-vessie">◀</button>
-      <button id="next-vessie">▶</button>
+    <div class="carousel-buttons-below" style="text-align:center; margin-top:10px;">
+      <button id="prev-vessie" style="padding:10px 20px; font-size:18px; margin-right:10px;">◀</button>
+      <button id="next-vessie" style="padding:10px 20px; font-size:18px;">▶</button>
     </div>
-</div>
+  </div>
+
+  <div style="text-align:center; margin-top:30px;">
+    <button id="open-sheet" style="display:none;
+        padding:10px 20px;
+        font-size:16px;
+		margin-top: 50px;
+        border-radius:6px;
+        border:none;
+        background-color:#4CAF50;
+        color:white;
+        cursor:pointer;
+        box-shadow:0 4px 6px rgba(0,0,0,0.2);
+        transition: background-color 0.3s;">
+      Doc vessie
+    </button>
+  </div>
 </div>
 
 <style>
 .slide3d {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5) translateX(0px) rotateY(0deg);
-  transition: transform 0.6s ease, z-index 0.6s ease, opacity 0.6s ease;
-  text-align: center;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0.5);
+  transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s ease;
+  text-align:center;
 }
 .slide3d img {
-  border-radius: 10px;
-  width: 120px;
-  height: auto;
+  border-radius:10px;
+  width:120px;
+  height:auto;
+  display:block;
+  margin:auto;
+}
+.type-text {
+  font-weight:bold;
+  margin-bottom:5px;
+}
+.pastille-text {
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background-color: rgba(255,255,255,0.8);
+  color:black;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:16px;
+  font-weight:bold;
 }
 </style>
 
@@ -199,14 +231,14 @@
 let vessieData3D = [];
 let vessieIndex3D = 0;
 
-// Charger les données CSV depuis Google Sheets
+// Charger le CSV depuis Google Sheets
 fetch("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/export?format=csv&gid=0")
   .then(res => res.text())
   .then(csv => {
     const lines = csv.trim().split("\n");
     vessieData3D = lines.slice(1).map(line => {
       const [type, pastille] = line.split(",");
-      return {type: type.trim(), pastille: pastille.trim()};
+      return {type:type.trim(), pastille:pastille.trim()};
     });
     generateCarousel3D();
     showSlide3D(0);
@@ -216,13 +248,13 @@ fetch("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuw
 function generateCarousel3D(){
   const container = document.getElementById("carousel3d");
   container.innerHTML = "";
-  vessieData3D.forEach((item, idx) => {
+  vessieData3D.forEach(item => {
     const slide = document.createElement("div");
     slide.className = "slide3d";
     slide.innerHTML = `
-      <div style="font-weight:bold; margin-bottom:5px;">${item.type}</div>
+      <div class="type-text">${item.type}</div>
       <img src="https://github.com/zaf57/HTD/blob/main/vessie.png?raw=true">
-      <div style="margin-top:5px; font-size:16px;">${item.pastille}</div>
+      <div class="pastille-text">${item.pastille}</div>
     `;
     container.appendChild(slide);
   });
@@ -235,50 +267,51 @@ function showSlide3D(index){
 
   slides.forEach((slide, idx) => {
     let offset = idx - vessieIndex3D;
-
-    // Gestion du wrap circulaire
     if(offset < -Math.floor(total/2)) offset += total;
     if(offset > Math.floor(total/2)) offset -= total;
 
     let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
 
-if(offset === 0){
-  scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10;
-} else if(Math.abs(offset) === 1){
-  scale = 0.8; x = offset * 120; rotateY = offset * 20; opacity = 0.4; zIndex = 8;
-} else {
-  scale = 0.5; x = 0; rotateY = 0; opacity = 0; zIndex = 1;
-}
-
+    if(offset === 0){
+      scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10; // centrale
+    } else if(Math.abs(offset) === 1){
+      scale = 0.8; x = offset * 120; rotateY = offset * -20; opacity = 0.6; zIndex = 8; // côtés
+    } else {
+      scale = 0.5; x = 0; rotateY = 0; opacity = 0; zIndex = 1; // cachées
+    }
 
     slide.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale}) rotateY(${rotateY}deg)`;
-    slide.style.zIndex = zIndex;
     slide.style.opacity = opacity;
+    slide.style.zIndex = zIndex;
   });
 }
 
-// Ajouter un écouteur pour redimensionner et ajuster le carousel
-window.addEventListener('resize', () => showSlide3D(vessieIndex3D));
-
-
-	
 // Boutons
-document.getElementById("prev-vessie").addEventListener("click", () => showSlide3D(vessieIndex3D - 1));
-document.getElementById("next-vessie").addEventListener("click", () => showSlide3D(vessieIndex3D + 1));
+document.getElementById("prev-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D-1));
+document.getElementById("next-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D+1));
 
 // Swipe tactile
-let touchStartX3D = 0;
-let touchEndX3D = 0;
-document.getElementById("carousel3d").addEventListener("touchstart", e => touchStartX3D = e.changedTouches[0].screenX);
-document.getElementById("carousel3d").addEventListener("touchend", e => {
-  touchEndX3D = e.changedTouches[0].screenX;
+let touchStartX3D=0, touchEndX3D=0;
+const carouselElem = document.getElementById("carousel3d");
+carouselElem.addEventListener("touchstart", e=>touchStartX3D=e.changedTouches[0].screenX);
+carouselElem.addEventListener("touchend", e=>{
+  touchEndX3D=e.changedTouches[0].screenX;
   const diff = touchEndX3D - touchStartX3D;
-  if(Math.abs(diff) > 50){
-    if(diff < 0) showSlide3D(vessieIndex3D + 1);
-    else showSlide3D(vessieIndex3D - 1);
+  if(Math.abs(diff)>50){
+    if(diff<0) showSlide3D(vessieIndex3D+1);
+    else showSlide3D(vessieIndex3D-1);
   }
 });
+
+// Google Sheet
+document.getElementById("open-sheet").addEventListener("click", ()=>{
+  window.open("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/edit?usp=sharing", "_blank");
+});
+
+// Responsive: afficher 3 slides sur mobile
+window.addEventListener('resize', ()=>showSlide3D(vessieIndex3D));
 </script>
+
 
 
 	
@@ -763,6 +796,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
