@@ -65,6 +65,7 @@
     </div> 
 <button id="voice-btn" title="Dicter le code" style="margin-left: 132px;
   margin-top: 23px;">🎙️</button>
+		<button id="voice-toggle">🔇 Off</button>
     </div>
   
 <!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
@@ -620,7 +621,39 @@ function handleSwipe() {
 const voiceBtn = document.getElementById("voice-btn");
 const codeInput = document.getElementById("code-pneu");
 const hauteurInput = document.getElementById("hauteur-pneu");
+const voiceToggle = document.getElementById("voice-toggle");
 
+let voiceEnabled = false; // OFF par défaut
+updateVoiceButton();
+
+// --- Fonctions On/Off ---
+function updateVoiceButton() {
+  voiceToggle.textContent = voiceEnabled ? "🔊 Son On" : "🔇 Son Off";
+}
+voiceToggle.addEventListener("click", () => {
+  voiceEnabled = !voiceEnabled;
+  if (!voiceEnabled) window.speechSynthesis.cancel(); // stop toute synthèse vocale
+  updateVoiceButton();
+});
+
+// --- Synthèse vocale sécurisée ---
+function speakText(text) {
+  if (!voiceEnabled) return;
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "fr-FR";
+  msg.rate = 1;
+  msg.pitch = 1;
+  const voices = window.speechSynthesis.getVoices();
+  const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
+  if (maleVoice) msg.voice = maleVoice;
+  window.speechSynthesis.speak(msg);
+}
+
+function speakHeight(text) {
+  speakText(`${text}`);
+}
+
+// --- Reconnaissance vocale ---
 if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
@@ -642,22 +675,16 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
   recognition.onresult = (event) => {
     const result = event.results[0][0].transcript.trim();
     const cleanNumber = result.replace(/\D/g, "");
-
     if (cleanNumber) {
       codeInput.value = cleanNumber;
       afficherHauteur();
-
       setTimeout(() => {
         const hauteur = hauteurInput.value;
-        if (hauteur) {
-          speakHeight(hauteur);
-        }
+        if (hauteur) speakHeight(hauteur);
       }, 500);
-
     } else {
       speakText("Je n’ai pas compris un nombre, peux-tu répéter ?");
     }
-
     resetMic();
   };
 
@@ -669,33 +696,9 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
   recognition.onend = resetMic;
 
   function resetMic() {
-    voiceBtn.textContent = "🎙️";
+    voiceBtn.textContent = "🎤";
     voiceBtn.classList.remove("listening");
     isListening = false;
-  }
-
-  // 🔊 Fonction pour parler avec voix masculine si possible
-  function speakHeight(text) {
-    const msg = new SpeechSynthesisUtterance(` ${text}`);
-    msg.lang = "fr-FR";
-    msg.rate = 1;
-    msg.pitch = 1;
-
-    // Sélection automatique d'une voix masculine si disponible
-    const voices = window.speechSynthesis.getVoices();
-    const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
-    if (maleVoice) msg.voice = maleVoice;
-
-    window.speechSynthesis.speak(msg);
-  }
-
-  function speakText(text) {
-    const msg = new SpeechSynthesisUtterance(text);
-    msg.lang = "fr-FR";
-    const voices = window.speechSynthesis.getVoices();
-    const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
-    if (maleVoice) msg.voice = maleVoice;
-    window.speechSynthesis.speak(msg);
   }
 
 } else {
@@ -709,6 +712,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
