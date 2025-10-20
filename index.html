@@ -310,19 +310,19 @@
 var correspondances = {};
 
 function start() {
-            gapi.client.init({
+	const hauteurPneu = document.getElementById("hauteur-pneu");
+    // Afficher le message de chargement directement dans la case
+    hauteurPneu.value = "Chargement...";
+             
+	gapi.client.init({
                 'apiKey': 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
                 'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
             }).then(function () {
                 console.log('API initialized');
                 chargerCorrespondances();
 	        
-				// Masquer le message de chargement et afficher le 👍
-        const loadingMessage = document.getElementById("loading-message");
-        loadingMessage.style.display = "none";
-
-        const hauteurPneu = document.getElementById("hauteur-pneu");
-        hauteurPneu.value = "👍";
+				 // Une fois les données prêtes, afficher le 👍
+        hauteurPneu.value = "👍"; 
         
 				setTimeout(function() {
             afficherHauteur();
@@ -678,6 +678,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
