@@ -417,7 +417,7 @@ select {
         /* --- Animation de clignotement --- */
 @keyframes mic-blink {
   0% { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
-  50% { background-color: #66bb6a; box-shadow: 0 0 15px #66bb6a; }
+  50% { background-color: #ffa500; box-shadow: 0 0 15px #ffa500; }
   100% { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
 }
 
@@ -426,6 +426,7 @@ select {
   animation: mic-blink 1s infinite ease-in-out;
   transform: scale(1.1);
 }
+
 
 
 
