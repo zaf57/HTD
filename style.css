@@ -397,6 +397,22 @@ select {
   transform: translateX(26px);
 }
 
+#voice-btn {
+  background: #ffa500;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: linear-gradient(to bottom, #ffa500, #201502);
+  box-shadow: 1px 1px 3px rgb(255, 255, 255);
+}
+#voice-btn:hover {
+  background: #ffa500;
+  transform: scale(1.1);
+}
 
 
 
