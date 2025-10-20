@@ -442,6 +442,42 @@ select {
 
 
 
+.slide3d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5) translateX(0px) rotateY(0deg);
+  transition: transform 0.6s ease, z-index 0.6s ease, opacity 0.6s ease;
+  text-align: center;
+}
+.slide3d img {
+  border-radius: 10px;
+  width: 120px;
+  height: auto;
+}
+
+/* Boutons sous le carousel */
+.carousel-buttons-below {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+.carousel-buttons-below button {
+  font-size: 24px;
+  margin: 0 20px;
+  padding: 5px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  transition: background 0.3s;
+}
+.carousel-buttons-below button:hover {
+  background-color: #555;
+}
+
+
 
 
 
