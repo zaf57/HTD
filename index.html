@@ -161,28 +161,45 @@
 
 
 	<!-- Le contenu de la 4eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
- <div id="page4" style="display: none;">
-	<div class="logo-container">
+<div id="page4" style="display:none;">
+  <div class="logo-container">
     <img class="logo" src="htd black.png" alt="HTD">
     <h2>Type Vessie:</h2>
   </div>
 
-
   <div class="carousel3d-container" style="position:relative; width: 400px; height: 300px; margin: auto; perspective: 1000px;">
-    <button id="prev-vessie" style="position:absolute; left:-50px; top:50%; transform:translateY(-50%); font-size:24px; z-index:10;">◀</button>
-    <button id="next-vessie" style="position:absolute; right:-50px; top:50%; transform:translateY(-50%); font-size:24px; z-index:10;">▶</button>
-
-    <div id="carousel3d" style="width:100%; height:100%; position:relative; transform-style: preserve-3d; transition: transform 0.5s ease;">
-      <!-- Les slides seront générés par JS -->
+    <div id="carousel3d" style="width:100%; height:100%; position:relative; transform-style: preserve-3d;">
+      <!-- Slides générées par JS -->
     </div>
-  </div>
+
+    <div class="carousel-buttons-below">
+      <button id="prev-vessie">◀</button>
+      <button id="next-vessie">▶</button>
+    </div>
 </div>
+</div>
+
+<style>
+.slide3d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5) translateX(0px) rotateY(0deg);
+  transition: transform 0.6s ease, z-index 0.6s ease, opacity 0.6s ease;
+  text-align: center;
+}
+.slide3d img {
+  border-radius: 10px;
+  width: 120px;
+  height: auto;
+}
+</style>
 
 <script>
 let vessieData3D = [];
 let vessieIndex3D = 0;
 
-// Charger les données depuis Google Sheets CSV
+// Charger les données CSV depuis Google Sheets
 fetch("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/export?format=csv&gid=0")
   .then(res => res.text())
   .then(csv => {
@@ -202,15 +219,9 @@ function generateCarousel3D(){
   vessieData3D.forEach((item, idx) => {
     const slide = document.createElement("div");
     slide.className = "slide3d";
-    slide.style.position = "absolute";
-    slide.style.top = "50%";
-    slide.style.left = "50%";
-    slide.style.transform = "translate(-50%, -50%) scale(0.5) translateX(0px)"; 
-    slide.style.transition = "transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease";
-    slide.style.textAlign = "center";
     slide.innerHTML = `
       <div style="font-weight:bold; margin-bottom:5px;">${item.type}</div>
-      <img src="https://github.com/zaf57/HTD/blob/main/vessie.png?raw=true" style="width:120px; height:auto; border-radius:10px;">
+      <img src="https://github.com/zaf57/HTD/blob/main/vessie.png?raw=true">
       <div style="margin-top:5px; font-size:16px;">${item.pastille}</div>
     `;
     container.appendChild(slide);
@@ -220,27 +231,38 @@ function generateCarousel3D(){
 function showSlide3D(index){
   vessieIndex3D = (index + vessieData3D.length) % vessieData3D.length;
   const slides = document.querySelectorAll(".slide3d");
+  const total = slides.length;
+
   slides.forEach((slide, idx) => {
-    const offset = idx - vessieIndex3D;
+    let offset = idx - vessieIndex3D;
+
+    // Gestion du wrap circulaire
+    if(offset < -Math.floor(total/2)) offset += total;
+    if(offset > Math.floor(total/2)) offset -= total;
+
+    let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
+
     if(offset === 0){
-      slide.style.transform = "translate(-50%, -50%) scale(1) translateX(0px)";
-      slide.style.zIndex = 10;
-      slide.style.opacity = 1;
-    } else if(offset === -1 || (offset === slides.length - 1 && vessieIndex3D === 0)){
-      slide.style.transform = "translate(-150%, -50%) scale(0.7) translateX(0px)";
-      slide.style.zIndex = 5;
-      slide.style.opacity = 0.5;
-    } else if(offset === 1 || (offset === -slides.length + 1 && vessieIndex3D === slides.length - 1)){
-      slide.style.transform = "translate(50%, -50%) scale(0.7) translateX(0px)";
-      slide.style.zIndex = 5;
-      slide.style.opacity = 0.5;
+      scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10;
+    } else if(Math.abs(offset) === 1){
+      scale = 0.8; x = offset * 120; rotateY = offset * -30; opacity = 0.7; zIndex = 8;
+    } else if(Math.abs(offset) === 2){
+      scale = 0.65; x = offset * 200; rotateY = offset * -25; opacity = 0.5; zIndex = 6;
+    } else if(Math.abs(offset) === 3){
+      scale = 0.55; x = offset * 280; rotateY = offset * -20; opacity = 0.35; zIndex = 4;
+    } else if(Math.abs(offset) === 4){
+      scale = 0.45; x = offset * 360; rotateY = offset * -15; opacity = 0.2; zIndex = 2;
     } else {
-      slide.style.transform = "translate(-50%, -50%) scale(0.5) translateX(0px)";
-      slide.style.zIndex = 1;
-      slide.style.opacity = 0;
+      scale = 0.4; x = offset * 400; rotateY = 0; opacity = 0; zIndex = 1;
     }
+
+    slide.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale}) rotateY(${rotateY}deg)`;
+    slide.style.zIndex = zIndex;
+    slide.style.opacity = opacity;
   });
 }
+
+  
 
 // Boutons
 document.getElementById("prev-vessie").addEventListener("click", () => showSlide3D(vessieIndex3D - 1));
@@ -743,6 +765,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
