@@ -414,6 +414,19 @@ select {
   transform: scale(1.1);
 }
 
+ #voice-toggle {
+	/* background: #ffa500; */
+	color: black;
+	border: none;
+	border-radius: 23px;
+	font-size: 20px;
+	padding: ;
+	cursor: pointer;
+	transition: all 0.2s;
+	background: linear-gradient(to bottom, #ffa500, #201502);
+	box-shadow: 1px 1px 3px rgb(255, 255, 255);
+}       
+
         /* --- Animation de clignotement --- */
 @keyframes mic-blink {
   0% { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
@@ -426,6 +439,7 @@ select {
   animation: mic-blink 1s infinite ease-in-out;
   transform: scale(1.1);
 }
+
 
 
 
