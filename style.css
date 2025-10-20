@@ -414,6 +414,19 @@ select {
   transform: scale(1.1);
 }
 
+        /* --- Animation de clignotement --- */
+@keyframes mic-blink {
+  0% { background-color: #ff5722; box-shadow: 0 0 5px #ff5722; }
+  50% { background-color: #ff3d00; box-shadow: 0 0 15px #ff3d00; }
+  100% { background-color: #ff5722; box-shadow: 0 0 5px #ff5722; }
+}
+
+/* Quand le micro écoute */
+#voice-btn.listening {
+  animation: mic-blink 1s infinite ease-in-out;
+  transform: scale(1.1);
+}
+
 
 
 
