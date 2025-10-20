@@ -63,7 +63,7 @@
             
         </div>
     </div> 
-
+<button id="voice-btn" title="Dicter le code" style="margin-left:5px;">🎙️</button>
     </div>
   
 <!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
@@ -607,10 +607,69 @@ function handleSwipe() {
         }
     });
 }
+
+// --- Commande vocale pour le champ Code Rolling ---
+const voiceBtn = document.getElementById("voice-btn");
+const codeInput = document.getElementById("code-pneu");
+
+if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = "fr-FR";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  let isListening = false; // ✅ état du micro
+
+  voiceBtn.addEventListener("click", () => {
+    if (!isListening) { // 👈 empêche de redémarrer pendant l’écoute
+      recognition.start();
+      isListening = true;
+      voiceBtn.textContent = "🎙️ Écoute...";
+      voiceBtn.style.background = "#ff7043";
+    }
+  });
+
+  recognition.onresult = (event) => {
+    const result = event.results[0][0].transcript.trim();
+    const cleanNumber = result.replace(/\D/g, "");
+
+    if (cleanNumber) {
+      codeInput.value = cleanNumber;
+      afficherHauteur();
+    } else {
+      alert("Je n’ai pas compris un nombre !");
+    }
+
+    voiceBtn.textContent = "🎙️";
+    voiceBtn.style.background = "";
+    isListening = false; // ✅ reset après résultat
+  };
+
+  recognition.onerror = () => {
+    voiceBtn.textContent = "🎙️";
+    voiceBtn.style.background = "";
+    isListening = false; // ✅ reset aussi si erreur
+    alert("Erreur : impossible d’utiliser le micro.");
+  };
+
+  recognition.onend = () => {
+    // ✅ Certains navigateurs n’appellent pas onresult si rien n’a été entendu
+    voiceBtn.textContent = "🎙️";
+    voiceBtn.style.background = "";
+    isListening = false;
+  };
+} else {
+  voiceBtn.disabled = true;
+  voiceBtn.textContent = "❌";
+  voiceBtn.title = "Micro non supporté sur ce navigateur";
+}
+
 	
     </script>
 </body>
 </html>
+
 
 
 
