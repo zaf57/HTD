@@ -32,6 +32,9 @@
 <br><br>
 
         <label for="hauteur-pneu">Hauteur Rolling:</label>
+		<div id="loading-message" style="font-size:16px; color:orange; text-align:center; margin-top:20px;">
+    ⏳ Chargement en cours...
+</div>
         <input type="text" id="hauteur-pneu" placeholder="..." readonly style="height: 40px;width: 160px;margin-bottom: 55px;margin-left: 10px;">
        
             <br><br>
@@ -316,8 +319,15 @@ function start() {
             }).then(function () {
                 console.log('API initialized');
                 chargerCorrespondances();
-	        document.getElementById("hauteur-pneu").value = "👍";
-        setTimeout(function() {
+	        
+				// Masquer le message de chargement et afficher le 👍
+        const loadingMessage = document.getElementById("loading-message");
+        loadingMessage.style.display = "none";
+
+        const hauteurPneu = document.getElementById("hauteur-pneu");
+        hauteurPneu.value = "👍";
+        
+				setTimeout(function() {
             afficherHauteur();
         }, 10000); // Délai de 100 millisecondes
             }, function (error) {
@@ -671,6 +681,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
