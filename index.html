@@ -233,29 +233,32 @@ function showSlide3D(index){
   const slides = document.querySelectorAll(".slide3d");
   const total = slides.length;
 
-  // Déterminer combien de slides visibles derrière
-  const maxVisible = window.innerWidth < 768 ? 3 : 4; // mobile <768px = 3 slides derrière
-
   slides.forEach((slide, idx) => {
     let offset = idx - vessieIndex3D;
-    if (offset < -Math.floor(total/2)) offset += total;
-    if (offset > Math.floor(total/2)) offset -= total;
 
-    const absOffset = Math.abs(offset);
-    if(absOffset > maxVisible) {
-      slide.style.opacity = 0;
-      slide.style.zIndex = 0;
-      return;
+    // Gestion du wrap circulaire
+    if(offset < -Math.floor(total/2)) offset += total;
+    if(offset > Math.floor(total/2)) offset -= total;
+
+    let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
+
+    if(offset === 0){
+      scale = 1; x = 0; rotateY = 0; opacity = 1; zIndex = 10;
+    } else if(Math.abs(offset) === 1){
+      scale = 0.8; x = offset * 120; rotateY = offset * -30; opacity = 0.7; zIndex = 8;
+    } else if(Math.abs(offset) === 2){
+      scale = 0.65; x = offset * 200; rotateY = offset * -25; opacity = 0.5; zIndex = 6;
+    } else if(Math.abs(offset) === 3){
+      scale = 0.55; x = offset * 280; rotateY = offset * -20; opacity = 0.35; zIndex = 4;
+    } else if(Math.abs(offset) === 4){
+      scale = 0.45; x = offset * 360; rotateY = offset * -15; opacity = 0.2; zIndex = 2;
+    } else {
+      scale = 0.4; x = offset * 400; rotateY = 0; opacity = 0; zIndex = 1;
     }
 
-    const scale = Math.max(1 - 0.15 * absOffset, 0.5);
-    const xTranslate = offset * 140; // espacement horizontal
-    const opacity = Math.max(1 - 0.2 * absOffset, 0);
-    const zIndex = 10 - absOffset;
-
-    slide.style.transform = `translate(-50%, -50%) translateX(${xTranslate}px) scale(${scale}) rotateY(${offset*10}deg)`;
-    slide.style.opacity = opacity;
+    slide.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale}) rotateY(${rotateY}deg)`;
     slide.style.zIndex = zIndex;
+    slide.style.opacity = opacity;
   });
 }
 
@@ -765,6 +768,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
