@@ -40,7 +40,8 @@ button {
   width: 85px;
   padding-left: 0px;
   padding-right: 0px;
-  background: linear-gradient(to bottom, #ffa500, #201502);
+  background: linear-gradient(to bottom, #ffa500, #604000);
+  box-shadow: 1px 1px 3px rgb(255, 255, 255);
     
 }
 .hide {
@@ -182,13 +183,14 @@ footer p {
     width: 72px;
     height: 53px;
     font-size: 18px;
-    background: linear-gradient(to bottom, #ffa500, #201502);
+    background: linear-gradient(to bottom, #ffa500, #604000);
     color: black;
 }
 
 #clear-button {
     background-color: #ffa500; /* Couleur de la touche Effacer */
     color: black;
+    width: 147px;
 }
 
 input[type="number"],
@@ -394,6 +396,7 @@ select {
 .switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 
 
