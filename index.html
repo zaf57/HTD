@@ -400,14 +400,14 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
   </div>
 
   <div id="scanner-container">
-    <video id="scanner-video" width="300" height="200" style="border:1px solid #ccc;"></video>
-	  <div id="scanner-overlay"></div>
-    <div id="scanner-result" style="margin-top: 20px; font-size: 25px; color: green;"></div>
-    <div class="scanner-buttons">
-        <button id="start-scan">Démarrer</button>
-        <button id="stop-scan">Arrêter</button>
+    <video id="scanner-video" autoplay playsinline></video>
+    <div id="scanner-result"></div>
+    <div id="scanner-buttons">
+        <button id="start-scan">Démarrer le scan</button>
+        <button id="stop-scan">Arrêter le scan</button>
     </div>
 </div>
+
 	  
 </div>
 	
@@ -437,7 +437,9 @@ startScanBtn.addEventListener("click", () => {
         type: "LiveStream",
         target: document.querySelector('#scanner-video'),
         constraints: {
-            facingMode: "environment" // caméra arrière
+            facingMode: "environment",
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
         },
         area: { // zone de scan visible
             top: "0%",
@@ -445,11 +447,11 @@ startScanBtn.addEventListener("click", () => {
             left: "0%",
             bottom: "0%"
         },
-        singleChannel: false // couleur normale, pas uniquement gris
+        singleChannel: false
     },
     decoder: {
         readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
-    },
+    }
 }, function(err) {
     if (err) {
         console.error(err);
@@ -895,6 +897,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
