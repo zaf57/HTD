@@ -1,4 +1,17 @@
-        
+#scanner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centre horizontalement */
+    justify-content: center; /* centre verticalement si nécessaire */
+    margin-top: 50px; /* espace par rapport au haut */
+}
+
+.scanner-buttons {
+    display: flex;
+    gap: 10px; /* espace entre les boutons */
+    margin-top: 15px;
+}
+
 .logo-container {
             display: flex;
             align-items: center;
@@ -488,6 +501,7 @@ select {
 .carousel-buttons-container button {
   font-size: 24px;
 }
+
 
 
 
