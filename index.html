@@ -28,6 +28,7 @@
       
       <label for="code-pneu">Code Rolling:</label>
         <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 160px;margin-left: 10px;margin-top: 40px;">
+		<button class="nav-button" onclick="afficherPage(6)">Scanner</button>
         
 <br><br>
 
@@ -402,8 +403,51 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+	
+	<script>
+		
+//scanner code barre
+const startScanBtn = document.getElementById("start-scan");
+const stopScanBtn = document.getElementById("stop-scan");
+const scannerResult = document.getElementById("scanner-result");
+
+startScanBtn.addEventListener("click", () => {
+    Quagga.init({
+        inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector('#scanner-video'),
+            constraints: {
+                facingMode: "environment" // caméra arrière
+            },
+        },
+        decoder: {
+            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
+        },
+    }, function(err) {
+        if (err) {
+            console.error(err);
+            scannerResult.textContent = "Erreur de caméra";
+            return;
+        }
+        Quagga.start();
+        scannerResult.textContent = "Scanning...";
+    });
+
+    Quagga.onDetected(function(data) {
+        const code = data.codeResult.code;
+        scannerResult.textContent = "Code détecté : " + code;
+        // Optionnel : arrêter le scan après détection
+        Quagga.stop();
+    });
+});
+
+stopScanBtn.addEventListener("click", () => {
+    Quagga.stop();
+    scannerResult.textContent = "Scan arrêté";
+});
+		
 	// Fonction pour afficher les pages
  function afficherPage(pageNumber) {
     // Afficher la bonne page
@@ -665,7 +709,7 @@ updateGalbage();
 
 //SWIPE CODE
   let currentPage = 1;
-const totalPages = 5;
+const totalPages = 6;
 
 // Quand on change de page via les boutons existants :
 function afficherPage(pageNumber) {
@@ -825,6 +869,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
