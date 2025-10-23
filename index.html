@@ -333,8 +333,8 @@ async function afficherListeVessies() {
       const tdType = document.createElement("td");
       const tdPastille = document.createElement("td");
 
-      tdType.textContent = row["Type vessie"] || "";
-      tdPastille.textContent = row["Pastille"] || "";
+      tdType.textContent = row["TYPE VESSIE"] || "";
+      tdPastille.textContent = row["PASTILLE"] || "";
 
       [tdType, tdPastille].forEach(td => {
         td.style.border = "1px solid #ccc";
@@ -851,6 +851,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
