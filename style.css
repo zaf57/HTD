@@ -1,19 +1,32 @@
-#scanner-video {
-    border: 1px solid #ccc;
-    width: 90%;       /* s’adapte à la largeur de l’écran */
-    max-width: 400px; /* largeur max */
-    height: auto;     /* garde les proportions */
-    background-color: #000; /* si la caméra ne se lance pas, fond noir */
-    object-fit: cover; /* remplit la vidéo sans déformation */
-    border-radius: 8px; /* optionnel, pour l’esthétique */
-}
-
 #scanner-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }
+
+#scanner-video {
+    width: 90%;       /* s’adapte à l’écran */
+    max-width: 400px; /* largeur max */
+    height: auto;
+    object-fit: cover; /* remplit correctement le cadre */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #000;
+}
+#scanner-result {
+    margin-top: 15px;
+    font-size: 18px;
+    color: green;
+    text-align: center;
+}
+#scanner-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
 
 #scanner-overlay {
     position: absolute;
@@ -24,13 +37,6 @@
     border: 2px dashed red;
     transform: translate(-50%, -50%);
     pointer-events: none; /* permet de cliquer sur les boutons en dessous */
-}
-
-
-.scanner-buttons {
-    display: flex;
-    gap: 10px; /* espace entre les boutons */
-    margin-top: 15px;
 }
 
 .logo-container {
@@ -522,6 +528,7 @@ select {
 .carousel-buttons-container button {
   font-size: 24px;
 }
+
 
 
 
