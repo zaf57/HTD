@@ -19,9 +19,9 @@
         </div>
     <h1></h1>
 
+	<!-- Le contenu de la 1ere page -------------------------------------------------------------------------------------------------------------------------------------------------------->
     <div id="page1">
-        <!-- Le contenu de la première page -------------------------------------------------------------------------------------------------------------------------------------------------------->
-                 <div class="logo-container">
+        <div class="logo-container">
         <img class="logo" src="htd black.png" alt="HTD"/>
      <h2>Hauteur Rolling:</h2>   
     </div>
@@ -70,7 +70,7 @@
   margin-top: 40px;">🔇</button>
     </div>
   
-<!-- Le contenu de la deuxième page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+<!-- Le contenu de la 2eme page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
                     <div id="page2" style="display: none;">
   <div class="logo-container">
     <img class="logo" src="htd black.png" alt="HTD"/>
@@ -127,10 +127,10 @@
   <br>
   
 </div>
-
+    
+	<!-- Le contenu de la troisième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
         <div id="page3" style="display: none;">
-        <!-- Le contenu de la troisième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
-                      <div class="logo-container">
+    <div class="logo-container">
         <img class="logo" src="htd black.png" alt="HTD"/>
      <h2>Enregistrer Rolling:</h2>   
     </div>
@@ -157,7 +157,10 @@
   </form>
 <img src="https://github.com/zaf57/HTD/blob/main/qr-code4.png?raw=true" alt="Image de votre choix" style="width: 150px; height: auto; margin-left: 107px;margin-top: 0px;border-radius: 6px;">
         <br><br>
+   <div id="message-banner" class="message-banner" style="display: none;">
+            Enregistrement en cours...
     </div>
+		</div>
 
 
 
@@ -370,10 +373,9 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
 
 
 
-	
+	<!-- Le contenu de la 5eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
           <div id="page5" style="display: none;">
-        <!-- Le contenu de la 5eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
-                      <div class="logo-container">
+        <div class="logo-container">
         <img class="logo" src="htd black.png" alt="HTD">
      <h2>Anneau de transfert:</h2>   
     </div>
@@ -390,12 +392,22 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
 
 
     </div>
-  
+  <!-- Le contenu de la 6eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div id="page6" style="display: none;">
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD">
+    <h2>Scanner Code-barres</h2>
+  </div>
+
+  <video id="scanner-video" width="300" height="200" style="border:1px solid #ccc;"></video>
+  <div id="scanner-result" style="margin-top: 20px; font-size: 18px; text-align: center; color: green;"></div>
+  <button id="start-scan" style="margin-top: 20px;">Démarrer le scan</button>
+  <button id="stop-scan" style="margin-top: 10px;">Arrêter le scan</button>
+</div>
+	
     <br><br>
     
-        <div id="message-banner" class="message-banner" style="display: none;">
-            Enregistrement en cours...
-    </div>
+    
     
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
@@ -869,6 +881,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
