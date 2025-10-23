@@ -403,51 +403,25 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-// Fonction pour afficher la quatrième page
-    function afficherPage(pageNumber) {
-		for(let i=1; i <=5; i++) {
-		document.getElementById("page" + i).style.display=(i===pageNumber)? "block":"none";
-	}
-	}
-	
-	function afficherPage1() {
-            document.getElementById("page1").style.display = "block";
-            document.getElementById("page2").style.display = "none";
-            document.getElementById("page3").style.display = "none";
-            document.getElementById("page4").style.display = "none";
-	        document.getElementById("page5").style.display = "none";
-        }
+    
+	// Fonction pour afficher les pages
+ function afficherPage(pageNumber) {
+    // Afficher la bonne page
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+    currentPage = pageNumber;
 
-         function afficherPage2() {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "block";
-            document.getElementById("page3").style.display = "none";
-            document.getElementById("page4").style.display = "none";
-			document.getElementById("page5").style.display = "none";
+    // Mettre à jour la couleur active des boutons
+    const buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach((btn, index) => {
+        if (index + 1 === pageNumber) {
+            btn.classList.add('active-button');
+        } else {
+            btn.classList.remove('active-button');
         }
-
-         function afficherPage3() {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "none";
-            document.getElementById("page3").style.display = "block";
-            document.getElementById("page4").style.display = "none";
-			document.getElementById("page5").style.display = "none";
-        }
-          function afficherPage4() {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "none";
-            document.getElementById("page3").style.display = "none";
-            document.getElementById("page4").style.display = "block";
-			document.getElementById("page5").style.display = "none";
-        }
-	     function afficherPage5() {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "none";
-            document.getElementById("page3").style.display = "none";
-            document.getElementById("page4").style.display = "none";
-			document.getElementById("page5").style.display = "block";
-        }
-var correspondances = {};
+    });
+}
 
 function start() {
 	const hauteurPneu = document.getElementById("hauteur-pneu");
@@ -851,6 +825,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
