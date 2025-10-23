@@ -290,12 +290,12 @@ async function afficherListeVessies() {
 
   if (listeVisible) {
     container.innerHTML = "";
-    bouton.textContent = "Liste";
+    bouton.textContent = "Liste complète";
     listeVisible = false;
     return;
   }
 
-  bouton.textContent = "Chargement...";
+  bouton.textContent = "Charg...";
 
   const sheetId = "1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA";
   const url = `https://opensheet.elk.sh/${sheetId}/1`; // OpenSheet API
@@ -851,6 +851,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
