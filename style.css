@@ -38,11 +38,11 @@
 
 #scanner-overlay {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    width: 60%;
-    height: 30%;
-    border: 2px dashed red;
+    width: 55%;
+    height: 10%;
+    border: 1px dotted red;
     transform: translate(-50%, -50%);
     pointer-events: none; /* permet de cliquer sur les boutons en dessous */
 }
@@ -536,6 +536,7 @@ select {
 .carousel-buttons-container button {
   font-size: 24px;
 }
+
 
 
 
