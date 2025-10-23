@@ -1,3 +1,14 @@
+#scanner-video {
+    border: 1px solid #ccc;
+    width: 90%;       /* s’adapte à la largeur de l’écran */
+    max-width: 400px; /* largeur max */
+    height: auto;     /* garde les proportions */
+    background-color: #000; /* si la caméra ne se lance pas, fond noir */
+    object-fit: cover; /* remplit la vidéo sans déformation */
+    border-radius: 8px; /* optionnel, pour l’esthétique */
+}
+
+
 #scanner-container {
     display: flex;
     flex-direction: column;
@@ -501,6 +512,7 @@ select {
 .carousel-buttons-container button {
   font-size: 24px;
 }
+
 
 
 
