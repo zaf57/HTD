@@ -400,13 +400,14 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
   </div>
 
   <div id="scanner-container" style="text-align:center; margin-top:20px;">
-  <div id="scanner-video" style="width:300px; height:200px; border:1px solid #ccc; margin:auto;"></div>
+  <video id="video-stream" autoplay playsinline muted style="width:300px; height:200px; border:1px solid #ccc; border-radius:8px;"></video>
   <div id="scanner-result" style="margin-top: 20px; font-size: 18px; color: green;"></div>
   <div id="scanner-buttons" style="margin-top: 20px;">
     <button id="start-scan">Démarrer le scan</button>
     <button id="stop-scan">Arrêter le scan</button>
   </div>
 </div>
+
 
 
 
@@ -428,50 +429,61 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
 	<script>
 		
 //scanner code barre
- const startScanBtn = document.getElementById("start-scan");
-  const stopScanBtn = document.getElementById("stop-scan");
-  const scannerResult = document.getElementById("scanner-result");
+const startScanBtn = document.getElementById("start-scan");
+const stopScanBtn = document.getElementById("stop-scan");
+const scannerResult = document.getElementById("scanner-result");
+const videoStream = document.getElementById("video-stream");
 
-    startScanBtn.addEventListener("click", () => {
-    Quagga.init({
-        inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector('#scanner-video'), // Quagga va créer un canvas ici
-            constraints: {
-                facingMode: "environment"
-            },
-            area: { // optionnel: taille de la zone de scan
-                top: "0%",
-                right: "0%",
-                left: "0%",
-                bottom: "0%"
-            },
-        },
-        decoder: {
-            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
-        },
-    }, function(err) {
-        if (err) {
-            console.error(err);
-            scannerResult.textContent = "Erreur de caméra";
-            return;
-        }
-        Quagga.start();
-        scannerResult.textContent = "Scanning...";
-    });
+let stream;
 
-    Quagga.onDetected(function(data) {
-        const code = data.codeResult.code;
-        scannerResult.textContent = "Code détecté : " + code;
-        Quagga.stop(); // optionnel
-    });
+startScanBtn.addEventListener("click", async () => {
+    try {
+        // Demande l'accès à la caméra arrière
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        videoStream.srcObject = stream;
+
+        // Initialiser Quagga
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: videoStream, // utiliser le video existant
+                constraints: { facingMode: "environment" },
+            },
+            decoder: {
+                readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
+            },
+            locate: true
+        }, function(err) {
+            if (err) {
+                console.error(err);
+                scannerResult.textContent = "Erreur Quagga";
+                return;
+            }
+            Quagga.start();
+            scannerResult.textContent = "Scanning...";
+        });
+
+        Quagga.onDetected(data => {
+            const code = data.codeResult.code;
+            scannerResult.textContent = "Code détecté : " + code;
+            Quagga.stop(); // arrêter après détection
+        });
+
+    } catch (err) {
+        console.error(err);
+        scannerResult.textContent = "Erreur caméra : " + err.message;
+    }
 });
 
 stopScanBtn.addEventListener("click", () => {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop()); // arrêter la caméra
+    }
     Quagga.stop();
     scannerResult.textContent = "Scan arrêté";
 });
+
 		
 	// Fonction pour afficher les pages
  function afficherPage(pageNumber) {
@@ -894,6 +906,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
