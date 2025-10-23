@@ -431,26 +431,34 @@ const scannerResult = document.getElementById("scanner-result");
 
 startScanBtn.addEventListener("click", () => {
     Quagga.init({
-        inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector('#scanner-video'),
-            constraints: {
-                facingMode: "environment" // caméra arrière
-            },
+    inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: document.querySelector('#scanner-video'),
+        constraints: {
+            facingMode: "environment" // caméra arrière
         },
-        decoder: {
-            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
+        area: { // zone de scan visible
+            top: "0%",
+            right: "0%",
+            left: "0%",
+            bottom: "0%"
         },
-    }, function(err) {
-        if (err) {
-            console.error(err);
-            scannerResult.textContent = "Erreur de caméra";
-            return;
-        }
-        Quagga.start();
-        scannerResult.textContent = "Scanning...";
-    });
+        singleChannel: false // couleur normale, pas uniquement gris
+    },
+    decoder: {
+        readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
+    },
+}, function(err) {
+    if (err) {
+        console.error(err);
+        scannerResult.textContent = "Erreur de caméra";
+        return;
+    }
+    Quagga.start();
+    scannerResult.textContent = "Scanning...";
+});
+
 
     Quagga.onDetected(function(data) {
         const code = data.codeResult.code;
@@ -886,6 +894,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
