@@ -184,12 +184,12 @@ footer p {
     height: 53px;
     font-size: 18px;
     background: linear-gradient(to bottom, #ffa500, #604000);
-    color: black;
+    color: white;
 }
 
 #clear-button {
     background-color: #ffa500; /* Couleur de la touche Effacer */
-    color: black;
+    color: white;
     width: 147px;
 }
 
@@ -488,6 +488,7 @@ select {
 .carousel-buttons-container button {
   font-size: 24px;
 }
+
 
 
 
