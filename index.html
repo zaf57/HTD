@@ -402,7 +402,7 @@ document.getElementById("btn-liste").addEventListener("click", afficherListeVess
   <div id="scanner-container" style="text-align:center; margin-top:20px;">
 	  <div id="scanner-overlay"></div>
 <video id="video-stream" autoplay playsinline muted style="width:300px; height:300px; border:1px solid #ccc; border-radius:8px;"></video>
-  <div id="scanner-result" style="margin-top: 20px; font-size: 25px; color: green;"></div>
+  <div id="scanner-result" style="margin-top: 20px; font-size: 27px; font-weight: bold; color: green;"></div>
   <div id="scanner-buttons" style="margin-top: 20px;">
     <button id="start-scan">Démarer</button>
     <button id="stop-scan">Arrêter</button>
@@ -467,7 +467,7 @@ startScanBtn.addEventListener("click", async () => {
 
         Quagga.onDetected(data => {
             const code = data.codeResult.code;
-            scannerResult.textContent = "Code détecté : " + code;
+            scannerResult.textContent = "CB : " + code;
             Quagga.stop(); // arrêter après détection
         });
 
@@ -907,6 +907,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
