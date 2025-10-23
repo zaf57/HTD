@@ -176,21 +176,11 @@
     </div>
   </div>
 
-  <div style="text-align:center; margin-top:30px;">
-    <button id="open-sheet" style="display:none;
-        padding:10px 20px;
-        font-size:16px;
-		margin-top: 50px;
-        border-radius:6px;
-        border:none;
-        background-color:#4CAF50;
-        color:white;
-        cursor:pointer;
-        box-shadow:0 4px 6px rgba(0,0,0,0.2);
-        transition: background-color 0.3s;">
-      Doc vessie
-    </button>
+<div style="text-align:center; margin-top:100px;">
+    <button id="btn-liste">Liste</button>
   </div>
+  <div id="liste-vessies" style="margin-top:20px;"></div>
+	
 </div>
 
 <style>
@@ -291,26 +281,90 @@ function showSlide3D(index){
 document.getElementById("prev-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D-1));
 document.getElementById("next-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D+1));
 
-// Swipe tactile
-let touchStartX3D=0, touchEndX3D=0;
-const carouselElem = document.getElementById("carousel3d");
-carouselElem.addEventListener("touchstart", e=>touchStartX3D=e.changedTouches[0].screenX);
-carouselElem.addEventListener("touchend", e=>{
-  touchEndX3D=e.changedTouches[0].screenX;
-  const diff = touchEndX3D - touchStartX3D;
-  if(Math.abs(diff)>50){
-    if(diff<0) showSlide3D(vessieIndex3D+1);
-    else showSlide3D(vessieIndex3D-1);
+  //affiche_ferme liste vessie
+  let listeVisible = false;
+
+async function afficherListeVessies() {
+  const container = document.getElementById("liste-vessies");
+  const bouton = document.getElementById("btn-liste");
+
+  if (listeVisible) {
+    container.innerHTML = "";
+    bouton.textContent = "Liste";
+    listeVisible = false;
+    return;
   }
-});
 
-// Google Sheet
-document.getElementById("open-sheet").addEventListener("click", ()=>{
-  window.open("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/edit?usp=sharing", "_blank");
-});
+  bouton.textContent = "Chargement...";
 
-// Responsive: afficher 3 slides sur mobile
-window.addEventListener('resize', ()=>showSlide3D(vessieIndex3D));
+  const sheetId = "1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA";
+  const url = `https://opensheet.elk.sh/${sheetId}/1`; // OpenSheet API
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data || data.length === 0) {
+      container.innerHTML = "⚠️ Pas de données trouvées.";
+      bouton.textContent = "Liste";
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+    table.style.width = "80%";
+    table.style.margin = "auto";
+
+    // En-têtes
+    const headerRow = document.createElement("tr");
+    ["Type Vessie", "Pastille"].forEach(text => {
+      const th = document.createElement("th");
+      th.textContent = text;
+      th.style.border = "1px solid #ccc";
+      th.style.padding = "8px";
+      th.style.background = "#f5f5f5";
+      headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    // Lignes
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      const tdType = document.createElement("td");
+      const tdPastille = document.createElement("td");
+
+      tdType.textContent = row["Type vessie"] || "";
+      tdPastille.textContent = row["Pastille"] || "";
+
+      [tdType, tdPastille].forEach(td => {
+        td.style.border = "1px solid #ccc";
+        td.style.padding = "6px";
+        td.style.textAlign = "center";
+      });
+
+      tr.appendChild(tdType);
+      tr.appendChild(tdPastille);
+      table.appendChild(tr);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(table);
+
+    bouton.textContent = "Fermer";
+    listeVisible = true;
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "⚠️ Erreur de chargement";
+    bouton.textContent = "Liste";
+  }
+}
+
+// Attacher l’événement click
+document.getElementById("btn-liste").addEventListener("click", afficherListeVessies);
+
+
+
 </script>
 
 
@@ -797,6 +851,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
