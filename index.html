@@ -553,14 +553,14 @@ function s2ab(s) {
         function updateExtension() {
   const val = extensionValues[extensionIndex];
   document.getElementById('extension-value').textContent = val;
-  document.getElementById('extension-image').src = val + ".png";
+  document.getElementById('extension-image').src = "extension/" + val + ".png";
   calculerDouille();
 }
 
 function updateGalbage() {
   const val = galbageValues[galbageIndex];
   document.getElementById('galbage-value').textContent = val;
-  document.getElementById('galbage-image').src = val + ".png";
+  document.getElementById('galbage-image').src = "galbage/" + val + ".png";
   calculerDouille();
 }
 
@@ -797,6 +797,7 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     </script>
 </body>
 </html>
+
 
 
 
