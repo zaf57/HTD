@@ -1,3 +1,70 @@
+.sheet-section {
+  margin-top: 30px;
+}
+
+.sheet-section h3 {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.table-container {
+  width: 100%;
+  max-width: 1000px;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+#sheetTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-family: Arial, sans-serif;
+}
+
+#sheetTable thead {
+  background: #111827;
+  color: white;
+}
+
+#sheetTable th,
+#sheetTable td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#sheetTable th {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+#sheetTable td {
+  font-size: 14px;
+  color: #222;
+}
+
+#sheetTable tbody tr:hover {
+  background: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .sheet-section h3 {
+    font-size: 18px;
+  }
+
+  #sheetTable th,
+  #sheetTable td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
 #scanner-video canvas {
     width: 100% !important;
     height: 100% !important;
