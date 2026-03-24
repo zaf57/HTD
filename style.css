@@ -64,6 +64,17 @@
     font-size: 13px;
   }
 }
+#sheetTable th:nth-child(1),
+#sheetTable td:nth-child(1) {
+  width: 60px;           /* ajuste ici (40, 50, 70...) */
+  max-width: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
 
 #scanner-video canvas {
     width: 100% !important;
