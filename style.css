@@ -67,16 +67,16 @@
 }
 #sheetTable th:nth-child(1),
 #sheetTable td:nth-child(1) {
-  width: 60px;           /* ajuste ici (40, 50, 70...) */
-  max-width: 120px;
+  width: 40px;           /* ajuste ici (40, 50, 70...) */
+  max-width: 40px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 #sheetTable th:nth-child(2),
 #sheetTable td:nth-child(2) {
-  width: 70px;
-  max-width: 70px;
+  width: 100px;
+  max-width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
