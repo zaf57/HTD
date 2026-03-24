@@ -1,1 +1,909 @@
-t
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTD</title>
+    <link rel="icon" type="image/x-icon" href="htd black.ico">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+	<div class="button-container-all">
+        <div class="button-container">
+            <button class="nav-button" onclick="afficherPage(1)">Hauteur</button>
+            <button class="nav-button" onclick="afficherPage(2)">Douille</button>
+            <button class="nav-button" onclick="afficherPage(3)">Entrer</button>
+            <button class="nav-button" onclick="afficherPage(4)">Vessie</button>
+            <button class="nav-button" onclick="afficherPage(5)">Conf.</button>
+</div>
+        </div>
+    <h1></h1>
+
+	<!-- Le contenu de la 1ere page -------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div id="page1">
+        <div class="logo-container">
+        <img class="logo" src="htd black.png" alt="HTD"/>
+     <h2>Hauteur Rolling:</h2>   
+    </div>
+      
+      <label for="code-pneu">Code Rolling:</label>
+        <input type="text" id="code-pneu" placeholder="Entrez valeur" onkeyup="afficherHauteur()" style="height: 40px;width: 160px;margin-left: 10px;margin-top: 40px;">
+		<button class="nav-button" onclick="afficherPage(6)">Scanner</button>
+        
+<br><br>
+
+        <label for="hauteur-pneu">Hauteur Rolling:</label>
+		<input type="text" id="hauteur-pneu" placeholder="..." readonly style="height: 40px;width: 160px;margin-bottom: 55px;margin-left: 10px;">
+       
+            <br><br>
+      
+      <!-- Clavier numérique -->
+    <div id="numeric-keyboard">
+        <!-- Ligne 1 -->
+        <div class="numeric-row">
+            <button class="numeric-button">1</button>
+            <button class="numeric-button">2</button>
+            <button class="numeric-button">3</button>
+              </div>
+        <!-- Ligne 2 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">4</button>
+            <button class="numeric-button"style="margin-top: 3px;">5</button>
+            <button class="numeric-button"style="margin-top: 3px;">6</button>
+        </div>
+        <!-- Ligne 3 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">7</button>
+            <button class="numeric-button"style="margin-top: 3px;">8</button>
+            <button class="numeric-button"style="margin-top: 3px;">9</button>
+          </div>
+        <!-- Ligne 4 -->
+        <div class="numeric-row">
+            <button class="numeric-button"style="margin-top: 3px;">0</button>
+            <button id="clear-button" class="numeric-button"style="margin-top: 3px;">⌫</button>
+            
+        </div>
+    </div> 
+<button id="voice-btn" title="Dicter le code" style="margin-left: 90px;
+  margin-top: 40px;">🎙️</button>
+		<button id="voice-toggle" style="margin-left:0px;
+  margin-top: 40px;">🔇</button>
+    </div>
+  
+<!-- Le contenu de la 2eme page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+                    <div id="page2" style="display: none;">
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD"/>
+    <h2>Calculer Douille:</h2>
+  </div>
+
+<!-- SECTION EXTENSION -->
+<div class="carousel-container extension-carousel">
+  <label for="extension-input">Extension:</label>
+  <div class="carousel">
+    <div class="carousel-display" id="extension-carousel">
+      <img id="extension-image" src="480.png" alt="Extension" class="carousel-img extension-img">
+      <div id="extension-value" class="carousel-value extension-value">480</div>
+    </div>
+    <div class="carousel-buttons extension-buttons" style="margin-left: 14px;">
+      <button onclick="nextExtension()">▲+10</button>
+      <button onclick="prevExtension()">▼-10</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION GALBAGE -->
+<div class="carousel-container galbage-carousel">
+  <label for="galbage-input" style="margin-top: 46px;">Galbage:</label>
+  <div class="carousel">
+    <div class="carousel-display" id="galbage-carousel">
+      <img id="galbage-image" src="280.png" alt="Galbage" class="carousel-img galbage-img">
+      <div id="galbage-value" class="carousel-value galbage-value">280</div>
+    </div>
+    <div class="carousel-buttons galbage-buttons" style="margin-top: 38px;">
+      <button onclick="nextGalbage()">▲+5</button>
+      <button onclick="prevGalbage()">▼-5</button>
+    </div>
+  </div>
+</div>
+
+
+  <br><br>
+
+<div class="switch-container">
+  <span class="switch-label">Anneau JP:</span>
+  <label class="switch">
+    <input type="checkbox" id="jp-checkbox" onchange="calculerDouille()">
+    <span class="slider"></span>
+  </label>
+	 <img src="https://github.com/zaf57/HTD/blob/main/douille.png?raw=true" alt="Image Douille" style="width: 100px; height: auto; margin-left: px;margin-top: 0px;">
+</div>
+  
+  <div style="display: block;">
+    <label for="douille-result">Douille:</label>
+    <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
+  </div>
+
+  <br>
+  
+</div>
+    
+	<!-- Le contenu de la troisième page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div id="page3" style="display: none;">
+    <div class="logo-container">
+        <img class="logo" src="htd black.png" alt="HTD"/>
+     <h2>Enregistrer Rolling:</h2>   
+    </div>
+  
+		<form id="test-form" style="margin-top: 30px;">
+
+<label for="code_pneu">Code Rolling:</label>
+<input type="number" name="code_pneu" placeholder="Entrez valeur" id="code_pneu" class="numeric-input" style="height: 40px; width: 217px;"/>
+
+<br /><br />
+
+<label for="hauteur">Hauteur Rolling:</label>
+<input type="number" name="hauteur" placeholder="Entrez valeur" id="hauteur" class="numeric-input" style="height: 40px; width: 160px;" />
+			  
+<select name="plus" id="plus" style="height: 52px; width: 52px;">
+	    <option value="">↕</option>
+            <option value="+">+</option>
+            <option value="?">?</option>
+        </select>
+      
+    <br /><br />
+
+    <button type="submit" id="submit-form" name="envoyer" style="margin-bottom: 61px;margin-top: 10px;color: white;">Envoyer</button>
+  </form>
+<img src="https://github.com/zaf57/HTD/blob/main/qr-code4.png?raw=true" alt="Image de votre choix" style="width: 150px; height: auto; margin-left: 107px;margin-top: 0px;border-radius: 6px;">
+        <br><br>
+   <div id="message-banner" class="message-banner" style="display: none;">
+            Enregistrement en cours...
+    </div>
+		</div>
+
+
+
+	<!-- Le contenu de la 4eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="page4" style="display:none;">
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD">
+    <h2>Type Vessie:</h2>
+  </div>
+
+  <div class="carousel3d-container" style="position:relative; width:400px; height:300px; margin:auto; perspective:1000px;">
+    <div id="carousel3d" style="width:100%; height:100%; position:relative; transform-style: preserve-3d;"></div>
+
+    <div class="carousel-buttons-below" style="text-align:center; margin-top:10px;">
+      <button id="prev-vessie" style="padding:10px 20px; font-size:18px; margin-right:10px;">◀</button>
+      <button id="next-vessie" style="padding:10px 20px; font-size:18px;">▶</button>
+    </div>
+  </div>
+
+<div style="text-align:center; margin-top:100px;">
+    <button id="btn-liste" style="margin-top:20px;width: 120px; color: white;" >Liste complète</button>
+  </div>
+  <div id="liste-vessies" style="margin-top:20px;"></div>
+	
+</div>
+
+<style>
+.slide3d {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0.5);
+  transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s ease;
+  text-align:center;
+}
+.slide3d img {
+  border-radius:10px;
+  width:120px;
+  height:auto;
+  display:block;
+  margin:auto;
+}
+.type-text {
+  font-weight:bold;
+  margin-bottom:5px;
+	font-size: 20px;
+}
+.pastille-text {
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  background-color: rgba(255,255,255,0.8);
+  color:black;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:16px;
+  font-weight:bold;
+}
+</style>
+
+<script>
+let vessieData3D = [];
+let vessieIndex3D = 0;
+
+// Charger le CSV depuis Google Sheets
+fetch("https://docs.google.com/spreadsheets/d/1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA/export?format=csv&gid=0")
+  .then(res => res.text())
+  .then(csv => {
+    const lines = csv.trim().split("\n");
+    vessieData3D = lines.slice(1).map(line => {
+      const [type, pastille] = line.split(",");
+      return {type:type.trim(), pastille:pastille.trim()};
+    });
+    generateCarousel3D();
+    showSlide3D(0);
+  })
+  .catch(err => console.error("Erreur CSV:", err));
+
+function generateCarousel3D(){
+  const container = document.getElementById("carousel3d");
+  container.innerHTML = "";
+  vessieData3D.forEach(item => {
+    const slide = document.createElement("div");
+    slide.className = "slide3d";
+    slide.innerHTML = `
+      <div class="type-text">${item.type}</div>
+      <img src="https://github.com/zaf57/HTD/blob/main/galbage/vessie.png?raw=true">
+      <div class="pastille-text">${item.pastille}</div>
+    `;
+    container.appendChild(slide);
+  });
+}
+
+function showSlide3D(index){
+  vessieIndex3D = (index + vessieData3D.length) % vessieData3D.length;
+  const slides = document.querySelectorAll(".slide3d");
+  const total = slides.length;
+
+  slides.forEach((slide, idx) => {
+    let offset = idx - vessieIndex3D;
+    if(offset < -Math.floor(total/2)) offset += total;
+    if(offset > Math.floor(total/2)) offset -= total;
+
+    let scale = 0.5, x = 0, rotateY = 0, opacity = 0, zIndex = 1;
+
+    if(offset === 0){
+      scale = 1.2; x = 0; rotateY = 0; opacity = 1; zIndex = 10; // centrale
+    } else if(Math.abs(offset) === 1){
+      scale = 0.8; x = offset * 120; rotateY = offset * -20; opacity = 0.6; zIndex = 8; // côtés
+    } else {
+      scale = 0.5; x = 0; rotateY = 0; opacity = 0; zIndex = 1; // cachées
+    }
+
+    slide.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale}) rotateY(${rotateY}deg)`;
+    slide.style.opacity = opacity;
+    slide.style.zIndex = zIndex;
+  });
+}
+
+// Boutons
+document.getElementById("prev-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D-1));
+document.getElementById("next-vessie").addEventListener("click", ()=>showSlide3D(vessieIndex3D+1));
+
+  //affiche_ferme liste vessie
+  let listeVisible = false;
+
+async function afficherListeVessies() {
+  const container = document.getElementById("liste-vessies");
+  const bouton = document.getElementById("btn-liste");
+
+  if (listeVisible) {
+    container.innerHTML = "";
+    bouton.textContent = "Liste complète";
+    listeVisible = false;
+    return;
+  }
+
+  bouton.textContent = "Charg...";
+
+  const sheetId = "1j0BOZy6Hkw_rMB2GxddEtl5wgxT8jbDuwkOfOoQFkbA";
+  const url = `https://opensheet.elk.sh/${sheetId}/1`; // OpenSheet API
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data || data.length === 0) {
+      container.innerHTML = "⚠️ Pas de données trouvées.";
+      bouton.textContent = "Liste";
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+    table.style.width = "80%";
+    table.style.margin = "auto";
+
+    // En-têtes
+    const headerRow = document.createElement("tr");
+    ["Type Vessie", "Pastille"].forEach(text => {
+      const th = document.createElement("th");
+      th.textContent = text;
+      th.style.border = "1px solid #ccc";
+      th.style.padding = "8px";
+      th.style.background = "#f5f5f5";
+      headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    // Lignes
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      const tdType = document.createElement("td");
+      const tdPastille = document.createElement("td");
+
+      tdType.textContent = row["TYPE VESSIE"] || "";
+      tdPastille.textContent = row["PASTILLE"] || "";
+
+      [tdType, tdPastille].forEach(td => {
+        td.style.border = "1px solid #ccc";
+        td.style.padding = "6px";
+        td.style.textAlign = "center";
+      });
+
+      tr.appendChild(tdType);
+      tr.appendChild(tdPastille);
+      table.appendChild(tr);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(table);
+
+    bouton.textContent = "Fermer";
+    listeVisible = true;
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "⚠️ Erreur de chargement";
+    bouton.textContent = "Liste";
+  }
+}
+
+// Attacher l’événement click
+document.getElementById("btn-liste").addEventListener("click", afficherListeVessies);
+
+
+
+</script>
+
+
+
+	<!-- Le contenu de la 5eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+          <div id="page5" style="display: none;">
+        <div class="logo-container">
+        <img class="logo" src="htd black.png" alt="HTD">
+     <h2>Anneau de transfert:</h2>   
+    </div>
+  
+		  <br /><br />
+            <br /><br />
+  600-650 (pas de cale)<br /><br />
+  550-600 (cale nominale 25)<br /><br />
+  525-575 (cale nominale 37.5)<br /><br />
+  cale disponible: 0.5, 1, 1.5, 2
+
+    
+        <br /><br />
+
+
+    </div>
+  <!-- Le contenu de la 6eme page ----------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div id="page6" style="display: none;">
+  <div class="logo-container">
+    <img class="logo" src="htd black.png" alt="HTD">
+    <h2>Scanner Code-barres</h2>
+  </div>
+
+  <div id="scanner-container" style="text-align:center; margin-top:20px;">
+	  <div id="scanner-overlay"></div>
+<video id="video-stream" autoplay playsinline muted style="width:300px; height:300px; border:1px solid #ccc; border-radius:8px;"></video>
+  <div id="scanner-result" style="margin-top: 20px; font-size: 27px; font-weight: bold; color: green;"></div>
+  <div id="scanner-buttons" style="margin-top: 20px;">
+    <button id="start-scan">Démarer</button>
+    <button id="stop-scan">Arrêter</button>
+  </div>
+</div>
+
+
+
+
+	  
+</div>
+	
+    <br><br>
+    
+    
+    
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+	
+	<script>
+		
+//scanner code barre
+const startScanBtn = document.getElementById("start-scan");
+const stopScanBtn = document.getElementById("stop-scan");
+const scannerResult = document.getElementById("scanner-result");
+const videoStream = document.getElementById("video-stream");
+
+let stream;
+
+startScanBtn.addEventListener("click", async () => {
+    try {
+        // Demande l'accès à la caméra arrière
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        videoStream.srcObject = stream;
+
+        // Initialiser Quagga
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: videoStream, // utiliser le video existant
+                constraints: { facingMode: "environment" },
+            },
+            decoder: {
+                readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"]
+            },
+            locate: true
+        }, function(err) {
+            if (err) {
+                console.error(err);
+                scannerResult.textContent = "Erreur Quagga";
+                return;
+            }
+            Quagga.start();
+            scannerResult.textContent = "Scanning...";
+        });
+
+        Quagga.onDetected(data => {
+            const code = data.codeResult.code;
+            scannerResult.textContent = "CB : " + code;
+            Quagga.stop(); // arrêter après détection
+        });
+
+    } catch (err) {
+        console.error(err);
+        scannerResult.textContent = "Erreur caméra : " + err.message;
+    }
+});
+
+stopScanBtn.addEventListener("click", () => {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop()); // arrêter la caméra
+    }
+    Quagga.stop();
+    scannerResult.textContent = "Scan arrêté";
+});
+
+		
+	// Fonction pour afficher les pages
+ function afficherPage(pageNumber) {
+    // Afficher la bonne page
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+    currentPage = pageNumber;
+
+    // Mettre à jour la couleur active des boutons
+    const buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach((btn, index) => {
+        if (index + 1 === pageNumber) {
+            btn.classList.add('active-button');
+        } else {
+            btn.classList.remove('active-button');
+        }
+    });
+}
+
+function start() {
+	const hauteurPneu = document.getElementById("hauteur-pneu");
+    // Afficher le message de chargement directement dans la case
+    hauteurPneu.value = "Chargement...";
+             
+	gapi.client.init({
+                'apiKey': 'AIzaSyAIRpStG7VNS7XKpYmxunpO5hIsdZ_9d0E',
+                'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+            }).then(function () {
+                console.log('API initialized');
+                chargerCorrespondances();
+	        
+				 // Une fois les données prêtes, afficher le 👍
+        hauteurPneu.value = "👍"; 
+        
+				setTimeout(function() {
+            afficherHauteur();
+        }, 1000); // Délai de 1000 millisecondes
+            }, function (error) {
+                console.log('Error initializing API', error);
+            });
+        }
+	
+// Fonction pour charger les correspondances depuis Google Sheets
+function chargerCorrespondances() {
+       var fichier = "https://docs.google.com/spreadsheets/d/13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA/export?format=xlsx";
+       var requete = new XMLHttpRequest();
+
+       requete.open("GET", fichier, true);
+       requete.responseType = "arraybuffer";
+
+       requete.onload = function () {
+        var contenu = new Uint8Array(requete.response);
+        var classeur = XLSX.read(contenu, { type: 'array' });
+
+        var feuille = classeur.Sheets[classeur.SheetNames[0]];
+        var donnees = XLSX.utils.sheet_to_json(feuille);
+
+        correspondances = {};
+        donnees.forEach(function (d) {
+            correspondances[d.code_pneu] = {
+                hauteur: d.hauteur,
+                plus: d.plus // Assurez-vous que votre fichier Excel a une colonne "plus"
+            };
+        });
+         //console.log(correspondances);
+    };
+requete.send();
+}
+	    
+// Fonction pour obtenir le code pneu depuis Google Sheets et afficher la hauteur correspondante	    
+function getCodePneu() {
+    var codePneu = document.getElementById('code-pneu').value;
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '13Vf05H7GPCwWC-odB_EtnaHLWhdNwqWoBpEYrM2eIfA',
+        range: 'Feuille 1!A2:D', // Mettez à jour la plage pour inclure la colonne "plus"
+    }).then(function(response) {
+        var values = response.result.values;
+        var hauteurPneu = 'Non trouvé';
+        var plusValue = ''; // Ajoutez cette ligne pour récupérer la valeur de la colonne "plus"
+        
+        if (values && values.length > 0) {
+            for (var i = 0; i < values.length; i++) {
+                var row = values[i];
+                if (row[0] === codePneu) {
+                    hauteurPneu = row[1];
+                    plusValue = row[2]; // Mettez à jour l'indice pour la colonne "plus"
+                    break;
+                }
+            }
+        }
+         document.getElementById('hauteur-pneu').value = hauteurPneu + "  mm (plus: " + plusValue + ")";
+    }, function(response) {
+        console.log('Erreur : ' + response.result.error.message);
+    });
+}
+	
+// Fonction pour afficher la hauteur en fonction du code pneu saisi
+function afficherHauteur() {
+    var codePneu = document.getElementById("code-pneu").value;
+    var hauteurPneu = document.getElementById("hauteur-pneu");
+
+    if (correspondances.hasOwnProperty(codePneu)) {
+        var hauteur = correspondances[codePneu].hauteur;
+        var plus = correspondances[codePneu].plus;
+
+        // Afficher la hauteur, la valeur de "plus" (si elle existe) et l'unité dans la même case
+        hauteurPneu.value = hauteur + (plus ? "" + plus : "") + " mm";
+    } else {
+        hauteurPneu.value = "";
+    }
+}
+	    // Ajoutez un gestionnaire d'événements pour les champs de classe "numeric-input"
+$('.numeric-input').on('input', function() {
+    // Remplacez le contenu pour autoriser uniquement les chiffres, "+" et "-"
+    this.value = this.value.replace(/[^0-9+-]/g, '');
+    if (!this.checkValidity()) {
+        console.log('Valeur non valide');
+    }
+});
+window.onload = function() {
+          chargerCorrespondances();
+            gapi.load('client', start);
+        };  
+
+//function Envoyer les données pour la page 3    
+var $form = $('form#test-form'),
+        url = 'https://script.google.com/macros/s/AKfycby34RasVRKyltXRHjD0bZA7IE1AXakPyhoHJQO7A_QoVP7jc8BvVJ_vythxySdRmv8/exec';
+
+    $('#submit-form').on('click', function(e) {
+      e.preventDefault();
+      var jqxhr = $.ajax({
+        url: url,
+        method: "GET",
+        dataType: "json",
+        data: $form.serializeObject()
+      }).done(function(response) {
+                // Réinitialisez les valeurs des champs de saisie à une chaîne vide
+                // $('#code_pneu').val('');
+                // $('#hauteur').val('');
+	        // $('#plus').val('');
+      });
+            // Afficher la bannière pour indiquer l'enregistrement réussi
+            var messageBanner = document.getElementById("message-banner");
+            messageBanner.style.display = "block";
+
+            // Masquer la bannière après quelques secondes (par exemple, 3 secondes)
+            setTimeout(function() {
+            messageBanner.style.display = "none";
+            }, 800); // 800 millisecondes (1 secondes)
+   
+    // Réinitialiser les champs après un délai supplémentaire (par exemple, 500 millisecondes) pour garantir une réinitialisation plus rapide
+    setTimeout(function() {
+        $('#code_pneu').val('');
+        $('#hauteur').val('');
+        $('#plus').val('');
+	$('#code_pneu').focus();
+    }, 500); // 500 millisecondes
+});
+
+function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+//Fonction pour calculer la hauteur de la douille
+        const extensionValues = [390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490];
+        const galbageValues = [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330];
+
+        let extensionIndex = extensionValues.indexOf(480); // Index initial
+        let galbageIndex = galbageValues.indexOf(280); // Index initial
+
+        function updateExtension() {
+  const val = extensionValues[extensionIndex];
+  document.getElementById('extension-value').textContent = val;
+  document.getElementById('extension-image').src = "extension/" + val + ".png";
+  calculerDouille();
+}
+
+function updateGalbage() {
+  const val = galbageValues[galbageIndex];
+  document.getElementById('galbage-value').textContent = val;
+  document.getElementById('galbage-image').src = "galbage/" + val + ".png";
+  calculerDouille();
+}
+
+        function prevExtension() {
+            extensionIndex = (extensionIndex > 0) ? extensionIndex - 1 : extensionValues.length - 1;
+            updateExtension();
+        }
+
+        function nextExtension() {
+            extensionIndex = (extensionIndex < extensionValues.length - 1) ? extensionIndex + 1 : 0;
+            updateExtension();
+        }
+
+        function prevGalbage() {
+            galbageIndex = (galbageIndex > 0) ? galbageIndex - 1 : galbageValues.length - 1;
+            updateGalbage();
+        }
+
+        function nextGalbage() {
+            galbageIndex = (galbageIndex < galbageValues.length - 1) ? galbageIndex + 1 : 0;
+            updateGalbage();
+        }
+
+        function calculerDouille() {
+            var extensionValue = extensionValues[extensionIndex];
+            var galbageValue = galbageValues[galbageIndex];
+            var jpCheckbox = document.getElementById("jp-checkbox");
+            var douilleResult = document.getElementById("douille-result");
+
+            if (extensionValue - galbageValue > 205) {
+                douilleResult.value = "⚠ Augmenter Galbage!";
+				douilleResult.style.color = "red";
+            } else {
+                var a = -1; // Coefficient de régression linéaire pour extension
+                var b = 1;  // Coefficient pour galbage
+                var c = 535;  // Constante obtenue par régression linéaire
+
+                var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
+
+                if (jpCheckbox && jpCheckbox.checked) {
+                    douilleValue -= 10;
+                }
+
+                douilleResult.value = douilleValue + " mm";
+				douilleResult.style.color = "#ffa500";
+            }
+        }
+
+    
+    // Ajoutez cette ligne pour calculer la douille directement
+    calculerDouille();
+
+// Logique pour ajouter des gestionnaires d'événements pour les boutons numériques et la touche "Effacer"
+var numericButtons = document.querySelectorAll('.numeric-button');
+var clearButton = document.getElementById('clear-button');
+var codePneu = document.getElementById("code-pneu");
+// Ajoutez un gestionnaire d'événements clic à chaque bouton numérique
+numericButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var numericValue = button.textContent;
+        codePneu.value += numericValue;
+        afficherHauteur();
+    });
+});
+// Ajoutez un gestionnaire d'événements clic pour la touche "Effacer"
+clearButton.addEventListener('click', function() {
+    // Réinitialisez la valeur du champ "Code Rolling" à une chaîne vide
+    codePneu.value = "";
+    afficherHauteur();
+});
+	// Initialisation
+updateExtension();
+updateGalbage();
+
+//SWIPE CODE
+  let currentPage = 1;
+const totalPages = 6;
+
+// Quand on change de page via les boutons existants :
+function afficherPage(pageNumber) {
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+    currentPage = pageNumber;
+}
+
+// Gestion du swipe tactile
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50; // distance minimale du glissement
+
+document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const diff = touchEndX - touchStartX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff < 0) {
+            // Swipe gauche → page suivante
+            if (currentPage < totalPages) {
+                currentPage++;
+                afficherPage(currentPage);
+            }
+        } else {
+            // Swipe droite → page précédente
+            if (currentPage > 1) {
+                currentPage--;
+                afficherPage(currentPage);
+            }
+        }
+    }
+}
+
+	//couleur bouton
+  function afficherPage(pageNumber) {
+    // Afficher la bonne page
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).style.display = (i === pageNumber) ? "block" : "none";
+    }
+
+    // Mettre à jour la page courante
+    currentPage = pageNumber;
+
+    // Gérer la couleur active des boutons
+    const buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach((btn, index) => {
+        if (index + 1 === pageNumber) {
+            btn.classList.add('active-button');
+        } else {
+            btn.classList.remove('active-button');
+        }
+    });
+}
+
+// --- Commande vocale pour le champ Code Rolling ---
+const voiceBtn = document.getElementById("voice-btn");
+const codeInput = document.getElementById("code-pneu");
+const hauteurInput = document.getElementById("hauteur-pneu");
+const voiceToggle = document.getElementById("voice-toggle");
+
+let voiceEnabled = false; // OFF par défaut
+updateVoiceButton();
+
+// --- Fonctions On/Off ---
+function updateVoiceButton() {
+  voiceToggle.textContent = voiceEnabled ? "🔊" : "🔇";
+}
+voiceToggle.addEventListener("click", () => {
+  voiceEnabled = !voiceEnabled;
+  if (!voiceEnabled) window.speechSynthesis.cancel(); // stop toute synthèse vocale
+  updateVoiceButton();
+});
+
+// --- Synthèse vocale sécurisée ---
+function speakText(text) {
+  if (!voiceEnabled) return;
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "fr-FR";
+  msg.rate = 1;
+  msg.pitch = 1;
+  const voices = window.speechSynthesis.getVoices();
+  const maleVoice = voices.find(v => v.lang.includes("fr") && v.name.toLowerCase().includes("male")) || voices.find(v => v.lang.includes("fr"));
+  if (maleVoice) msg.voice = maleVoice;
+  window.speechSynthesis.speak(msg);
+}
+
+function speakHeight(text) {
+  speakText(`${text}`);
+}
+
+// --- Reconnaissance vocale ---
+if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = "fr-FR";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  let isListening = false;
+
+  voiceBtn.addEventListener("click", () => {
+    if (!isListening) {
+      recognition.start();
+      isListening = true;
+      voiceBtn.textContent = "🎙️";
+      voiceBtn.classList.add("listening");
+    }
+  });
+
+  recognition.onresult = (event) => {
+    const result = event.results[0][0].transcript.trim();
+    const cleanNumber = result.replace(/\D/g, "");
+    if (cleanNumber) {
+      codeInput.value = cleanNumber;
+      afficherHauteur();
+      setTimeout(() => {
+        const hauteur = hauteurInput.value;
+        if (hauteur) speakHeight(hauteur);
+      }, 500);
+    } else {
+      speakText("Je n’ai pas compris un nombre, peux-tu répéter ?");
+    }
+    resetMic();
+  };
+
+  recognition.onerror = () => {
+    speakText("Erreur du micro, vérifie les permissions.");
+    resetMic();
+  };
+
+  recognition.onend = resetMic;
+
+  function resetMic() {
+    voiceBtn.textContent = "🎤";
+    voiceBtn.classList.remove("listening");
+    isListening = false;
+  }
+
+} else {
+  voiceBtn.disabled = true;
+  voiceBtn.textContent = "❌";
+  voiceBtn.title = "Micro non supporté sur ce navigateur";
+}
+
+
+	
+    </script>
+</body>
+</html>
