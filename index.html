@@ -91,8 +91,10 @@
     </div>
   </div>
 </div>
-<div id="douille-warning" style="color:red; font-weight:bold; margin-top:5px; text-align:center;"></div>
-<!-- SECTION GALBAGE -->
+
+                      <div id="douille-warning" class="warning-bubble-inline"></div>
+
+                      <!-- SECTION GALBAGE -->
 <div class="carousel-container galbage-carousel">
   <label for="galbage-input" style="margin-top: 46px;">Galbage:</label>
   <div class="carousel">
@@ -769,13 +771,15 @@ function calculerDouille() {
     douilleResult.value = douilleValue + " mm";
 
     // 👉 Vérification condition
-    if (extensionValue - galbageValue > 205) {
-        warning.textContent = "⚠ Ecart entre la Douille, Augmenter Galbage ou baiser l'extension!";
-        douilleResult.style.color = "red";
-    } else {
-        warning.textContent = "";
-        douilleResult.style.color = "#ffa500";
-    }
+if (extensionValue - galbageValue > 205) {
+    warning.textContent = "⚠ Écart trop important : augmentez le galbage ou baissez l’extension !";
+    warning.style.opacity = "1";
+    douilleResult.style.color = "red";
+} else {
+    warning.style.opacity = "0";
+    douilleResult.style.color = "#ffa500";
+}
+
 }
 
     
