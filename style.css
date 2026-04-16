@@ -342,6 +342,7 @@ select {
     display: flex; /* Aligne les enfants (label et carrousel) sur la même ligne */
     align-items: center; /* Centre verticalement le label et le carrousel */
     margin-bottom: 20px; /* Espacement entre les blocs */
+	position: relative;
 }
 
 .carousel-container label {
@@ -643,6 +644,8 @@ select {
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 10;
+top: 50%;
+transform: translate(-50%, -50%);
 }
 
 
