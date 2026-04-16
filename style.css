@@ -623,9 +623,6 @@ select {
   font-size: 24px;
 }
 
-.carousel-container {
-  position: relative;
-}
 .warning-bubble-inline {
   position: absolute;
   left: 50%;
