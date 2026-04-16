@@ -86,12 +86,12 @@
       <div id="extension-value" class="carousel-value extension-value">480</div>
     </div>
     <div class="carousel-buttons extension-buttons" style="margin-left: 14px;">
-      <button onclick="nextExtension()">▲+10</button>
-      <button onclick="prevExtension()">▼-10</button>
+      <button onclick="nextExtension()">▲ +10mm</button>
+      <button onclick="prevExtension()">-10mm ▼</button>
     </div>
   </div>
 </div>
-
+<div id="douille-warning" style="color:red; font-weight:bold; margin-top:5px; text-align:center;"></div>
 <!-- SECTION GALBAGE -->
 <div class="carousel-container galbage-carousel">
   <label for="galbage-input" style="margin-top: 46px;">Galbage:</label>
@@ -101,8 +101,8 @@
       <div id="galbage-value" class="carousel-value galbage-value">280</div>
     </div>
     <div class="carousel-buttons galbage-buttons" style="margin-top: 38px;">
-      <button onclick="nextGalbage()">▲+5</button>
-      <button onclick="prevGalbage()">▼-5</button>
+      <button onclick="nextGalbage()">▲ +5mm</button>
+      <button onclick="prevGalbage()">-5mm ▼</button>
     </div>
   </div>
 </div>
@@ -122,7 +122,7 @@
   <div style="display: block;">
     <label for="douille-result">Douille:</label>
     <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
-    <div id="douille-warning" style="color:red; font-weight:bold; margin-top:5px; text-align:center;"></div>
+    
   </div>
 
   <br>
@@ -725,7 +725,7 @@ function calculerDouille() {
 
     // 👉 Vérification condition
     if (extensionValue - galbageValue > 205) {
-        warning.textContent = "⚠ Ecart entre la Douille! Augmenter Galbage ou diminuer l'extension";
+        warning.textContent = "⚠ Ecart entre la Douille, Augmenter Galbage ou baiser l'extension!";
         douilleResult.style.color = "red";
     } else {
         warning.textContent = "";
