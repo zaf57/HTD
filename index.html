@@ -671,14 +671,14 @@ function s2ab(s) {
 
         function updateExtension() {
   const val = extensionValues[extensionIndex];
-  document.getElementById('extension-value').textContent = val;
+  document.getElementById('extension-value').textContent = val + " mm";
   document.getElementById('extension-image').src = "extension/" + val + ".png";
   calculerDouille();
 }
 
 function updateGalbage() {
   const val = galbageValues[galbageIndex];
-  document.getElementById('galbage-value').textContent = val;
+  document.getElementById('galbage-value').textContent = val + " mm";
   document.getElementById('galbage-image').src = "galbage/" + val + ".png";
   calculerDouille();
 }
