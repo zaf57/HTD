@@ -82,7 +82,7 @@
   <label for="extension-input">Extension:</label>
   <div class="carousel">
     <div class="carousel-display" id="extension-carousel">
-      <img id="extension-image" src="480.png" alt="Extension" class="carousel-img extension-img">
+      <img id="extension-image" src="extension/480.png" alt="Extension" class="carousel-img extension-img" loading="eager" decoding="async">
       <div id="extension-value" class="carousel-value extension-value">480</div>
     </div>
     <div class="carousel-buttons extension-buttons" style="margin-left: 14px;">
@@ -97,7 +97,7 @@
   <label for="galbage-input" style="margin-top: 46px;">Galbage:</label>
   <div class="carousel">
     <div class="carousel-display" id="galbage-carousel">
-      <img id="galbage-image" src="280.png" alt="Galbage" class="carousel-img galbage-img">
+      <img id="galbage-image" src="galbage/280.png" alt="Galbage" class="carousel-img galbage-img" loading="eager" decoding="async">
       <div id="galbage-value" class="carousel-value galbage-value">280</div>
     </div>
     <div class="carousel-buttons galbage-buttons" style="margin-top: 38px;">
@@ -663,45 +663,90 @@ function s2ab(s) {
             return buf;
         }
 //Fonction pour calculer la hauteur de la douille
-        const extensionValues = [390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490];
-        const galbageValues = [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330];
+const extensionValues = [390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490];
+const galbageValues = [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330];
 
-        let extensionIndex = extensionValues.indexOf(480); // Index initial
-        let galbageIndex = galbageValues.indexOf(280); // Index initial
+let extensionIndex = extensionValues.indexOf(480);
+let galbageIndex = galbageValues.indexOf(280);
 
-        function updateExtension() {
+const imageCache = {
+  extension: {},
+  galbage: {}
+};
+
+function getImagePath(type, val) {
+  return `${type}/${val}.png`;
+}
+
+function preloadImage(type, val) {
+  if (imageCache[type][val]) return;
+
+  const img = new Image();
+  img.src = getImagePath(type, val);
+  imageCache[type][val] = img;
+}
+
+function preloadNearbyImages(type, values, index) {
+  const currentVal = values[index];
+  const prevIndex = (index > 0) ? index - 1 : values.length - 1;
+  const nextIndex = (index < values.length - 1) ? index + 1 : 0;
+
+  const prevVal = values[prevIndex];
+  const nextVal = values[nextIndex];
+
+  preloadImage(type, currentVal);
+  preloadImage(type, prevVal);
+  preloadImage(type, nextVal);
+}
+
+function setImage(type, val, elementId) {
+  const imgElement = document.getElementById(elementId);
+  const cachedImg = imageCache[type][val];
+  const newSrc = getImagePath(type, val);
+
+  if (cachedImg && cachedImg.complete) {
+    imgElement.src = cachedImg.src;
+  } else {
+    imgElement.src = newSrc;
+    preloadImage(type, val);
+  }
+}
+
+function updateExtension() {
   const val = extensionValues[extensionIndex];
   document.getElementById('extension-value').textContent = val + " mm";
-  document.getElementById('extension-image').src = "extension/" + val + ".png";
+  setImage("extension", val, "extension-image");
+  preloadNearbyImages("extension", extensionValues, extensionIndex);
   calculerDouille();
 }
 
 function updateGalbage() {
   const val = galbageValues[galbageIndex];
   document.getElementById('galbage-value').textContent = val + " mm";
-  document.getElementById('galbage-image').src = "galbage/" + val + ".png";
+  setImage("galbage", val, "galbage-image");
+  preloadNearbyImages("galbage", galbageValues, galbageIndex);
   calculerDouille();
 }
 
-        function prevExtension() {
-            extensionIndex = (extensionIndex > 0) ? extensionIndex - 1 : extensionValues.length - 1;
-            updateExtension();
-        }
+function prevExtension() {
+  extensionIndex = (extensionIndex > 0) ? extensionIndex - 1 : extensionValues.length - 1;
+  updateExtension();
+}
 
-        function nextExtension() {
-            extensionIndex = (extensionIndex < extensionValues.length - 1) ? extensionIndex + 1 : 0;
-            updateExtension();
-        }
+function nextExtension() {
+  extensionIndex = (extensionIndex < extensionValues.length - 1) ? extensionIndex + 1 : 0;
+  updateExtension();
+}
 
-        function prevGalbage() {
-            galbageIndex = (galbageIndex > 0) ? galbageIndex - 1 : galbageValues.length - 1;
-            updateGalbage();
-        }
+function prevGalbage() {
+  galbageIndex = (galbageIndex > 0) ? galbageIndex - 1 : galbageValues.length - 1;
+  updateGalbage();
+}
 
-        function nextGalbage() {
-            galbageIndex = (galbageIndex < galbageValues.length - 1) ? galbageIndex + 1 : 0;
-            updateGalbage();
-        }
+function nextGalbage() {
+  galbageIndex = (galbageIndex < galbageValues.length - 1) ? galbageIndex + 1 : 0;
+  updateGalbage();
+}
 
 function calculerDouille() {
     var extensionValue = extensionValues[extensionIndex];
