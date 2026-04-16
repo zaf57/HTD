@@ -632,17 +632,16 @@ select {
   color: white;
   padding: 8px 12px;
   border-radius: 8px;
-  
   font-weight: bold;
   text-align: center;
   font-size: 14px;
-
   white-space: nowrap;
-
+  max-width: 90%;          /* 🔥 limite largeur */
+  white-space: normal;     /* 🔥 autorise retour à la ligne */
+  word-wrap: break-word;   /* 🔥 coupe les mots longs */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-
   z-index: 10;
 }
 
