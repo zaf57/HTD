@@ -122,6 +122,7 @@
   <div style="display: block;">
     <label for="douille-result">Douille:</label>
     <input type="text" id="douille-result" readonly style="height: 40px;width: 205px;font-size: 20px;text-align: center;margin-bottom: 11px;">
+    <div id="douille-warning" style="color:red; font-weight:bold; margin-top:5px; text-align:center;"></div>
   </div>
 
   <br>
@@ -702,30 +703,35 @@ function updateGalbage() {
             updateGalbage();
         }
 
-        function calculerDouille() {
-            var extensionValue = extensionValues[extensionIndex];
-            var galbageValue = galbageValues[galbageIndex];
-            var jpCheckbox = document.getElementById("jp-checkbox");
-            var douilleResult = document.getElementById("douille-result");
+function calculerDouille() {
+    var extensionValue = extensionValues[extensionIndex];
+    var galbageValue = galbageValues[galbageIndex];
+    var jpCheckbox = document.getElementById("jp-checkbox");
+    var douilleResult = document.getElementById("douille-result");
+    var warning = document.getElementById("douille-warning");
 
-            if (extensionValue - galbageValue > 205) {
-                douilleResult.value = "⚠ Augmenter Galbage!";
-				douilleResult.style.color = "red";
-            } else {
-                var a = -1; // Coefficient de régression linéaire pour extension
-                var b = 1;  // Coefficient pour galbage
-                var c = 535;  // Constante obtenue par régression linéaire
+    var a = -1;
+    var b = 1;
+    var c = 535;
 
-                var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
+    var douilleValue = (extensionValue * a) + (galbageValue * b) + c;
 
-                if (jpCheckbox && jpCheckbox.checked) {
-                    douilleValue -= 10;
-                }
+    if (jpCheckbox && jpCheckbox.checked) {
+        douilleValue -= 10;
+    }
 
-                douilleResult.value = douilleValue + " mm";
-				douilleResult.style.color = "#ffa500";
-            }
-        }
+    // 👉 Toujours afficher la valeur
+    douilleResult.value = douilleValue + " mm";
+
+    // 👉 Vérification condition
+    if (extensionValue - galbageValue > 205) {
+        warning.textContent = "⚠ Augmenter Galbage !";
+        douilleResult.style.color = "red";
+    } else {
+        warning.textContent = "";
+        douilleResult.style.color = "#ffa500";
+    }
+}
 
     
     // Ajoutez cette ligne pour calculer la douille directement
